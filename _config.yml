@@ -1,5 +1,5 @@
-title:            Blog Title
-description:      Describe your website here.
+title:            Alan (AJ) Pryor, Jr. Portfolio
+description:      A portfolio of software and data science/machine learning projects.
 # put your disqus here
 disqus_shortname: 
 reading_time:     true # if true, shows the estimated reading time for a post
@@ -10,7 +10,7 @@ logo:             images/logo.png # logo visible in the topbar
 
 # url: http://aronbordin.com/neo-hpstr-jekyll-theme
 url: "https://apryor6.github.io"
-
+#url: ""
 # draw your top menu here
 # each item must have a title and a url.
 #   To list post categories. use type: 'categories'
@@ -19,47 +19,38 @@ url: "https://apryor6.github.io"
 menu:
   - title: 'Home'
     url: '/'
-  - title: 'Fork'
-    url: 'http://github.com/aron-bordin/neo-hpstr-jekyll-theme'
-  - title: 'Install'
-    url: '/theme-setup/'
-  - title: 'Tags'
-    url: '/tags'
-  - title: 'Categories'
-    url: '/categories'
-    type: 'categories'
-  - title: 'Favorites'
-    url: '#'
+  - title: 'Portfolio'
+    url: 'http://example.com'
     submenu:
-      - title: 'Code Highlighter'
-        url: '/intro/code-highlighting-post/'
-      - title: 'Sample Post'
-        url: '/intro/sample-post/'
+        - title: 'Machine Learning'
+          url: 'http://example.com'
+        - title: 'Software'
+          url: 'http://example.com'
 
 # Owner/author information
 owner:
-  name:           Your name
-  site:           http://aronbordin.com
+  name:           AJ Pryor
+  site:           http://apryor6.github.io
   avatar:         images/avatar.jpg
   bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
-  email:          you@email.com
+  email:          apryor6@gmail.com
   # Twitter nick for use in Twitter cards and follow button.
-  twitter: aron_bordin # if no twitter in this config, the twitter follow button will be removed
+  #twitter:  # if no twitter in this config, the twitter follow button will be removed
   # GitHub nick for use in follow button in author block.
   github: aron-bordin
 
 # Twitter account associated with the site if different from owner/author twitter account.
 # Used in Twitter cards.
-twitter: 
+#twitter: 
 
 # Social networking links used in author block underneath posts. Update and remove as you like.
-social:
-  - title: "github"
-    url: "https://github.com/aron-bordin"
-  - title: "linkedin"
-    url: "https://br.linkedin.com/in/aronbordin"
-  - title: "youtube"
-    url: "https://www.youtube.com/channel/UCfnSek-9HPWOx5e2pH7VFgg"
+#social:
+ # - title: "github"
+ #   url: "https://github.com/aron-bordin"
+ # - title: "linkedin"
+ #   url: "https://br.linkedin.com/in/aronbordin"
+ # - title: "youtube"
+ #   url: "https://www.youtube.com/channel/UCfnSek-9HPWOx5e2pH7VFgg"
 # Background image to be tiled on all pages
 background:
 
@@ -70,7 +61,7 @@ google_verify:
 bing_verify:
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/New_York
+timezone:    America/California
 locale:      en_US
 future:      true
 highlighter: rouge
