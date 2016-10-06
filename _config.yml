@@ -26,6 +26,8 @@ menu:
           url: 'http://example.com'
         - title: 'Software'
           url: 'http://example.com'
+  - title: 'Publications'
+    url: 'http://example.com'
 
 # Owner/author information
 owner:
