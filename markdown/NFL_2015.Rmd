@@ -64,7 +64,7 @@ The total yards per game is calculated essentially the same as for defense, but 
 
   - Touchdown (6 points)
   - Extra Point (1 point)
-  - Two-Conversion (2 points)
+  - Two-point Conversion (2 points)
   - Field-Goal (3 points)
 
 In R this can be done as
