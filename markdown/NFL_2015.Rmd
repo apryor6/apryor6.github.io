@@ -217,8 +217,11 @@ I'd prefer the background to be clean, so let's remove the grid lines and use `t
 ```{r fig.width=10, fig.height=10, echo=TRUE,message=FALSE, warning=FALSE}
 plt <- ggplot(data=nfl,aes(x=off_ypg,y=def_ypg)) + geom_point(aes(color=Team, size=ppg)) +
   labs(title="2015-2016 NFL Offense/Defense Overview",x="Offensive YPG", y="Defensive YPG")  + scale_color_manual(values=color.scheme) +
-  geom_text(aes(label=Team),size=3.0)  + 
-  theme_bw() + xlim(350, 460) + ylim(310,470) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())  + theme(axis.text=element_text(size=10), title=element_text(size=16)) + scale_size(range=c(5,17)) 
+  geom_text(aes(label=Team),size=3.0)  +
+  theme_bw() + xlim(350, 460) + ylim(310,470) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  theme(axis.text=element_text(size=10), title=element_text(size=16)) +
+  scale_size(range=c(5,17)) 
 plt
 ```
 
@@ -229,7 +232,13 @@ Now let's remove the color legend and move the size legend to the bottom.
 plt <- ggplot(data=nfl,aes(x=off_ypg,y=def_ypg)) + geom_point(aes(color=Team, size=ppg)) +
   labs(title="2015-2016 NFL Offense/Defense Overview",x="Offensive YPG", y="Defensive YPG")  + scale_color_manual(values=color.scheme) +
   geom_text(aes(label=Team),size=3.0)  + 
-  theme_bw() + xlim(350, 460) + ylim(310,470) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())  + theme(axis.text=element_text(size=10), title=element_text(size=16)) + scale_size(range=c(5,17)) + guides(color=FALSE) + theme(legend.position = "bottom")
+  theme_bw() + xlim(350, 460) +
+  ylim(310,470) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  theme(axis.text=element_text(size=10), title=element_text(size=16)) +
+  scale_size(range=c(5,17)) +
+  guides(color=FALSE) +
+  theme(legend.position = "bottom")
 plt
 ```
 
