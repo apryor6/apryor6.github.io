@@ -34,12 +34,12 @@ owner:
   name:           AJ Pryor
   site:           http://apryor6.github.io
   avatar:         images/avatar.jpg
-  bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
+  bio:            "Physics Ph.D. candidate, data scientist, and amateur software engineer. I develop algorithms and use them and those written by others to do interesting things."
   email:          apryor6@gmail.com
   # Twitter nick for use in Twitter cards and follow button.
   #twitter:  # if no twitter in this config, the twitter follow button will be removed
   # GitHub nick for use in follow button in author block.
-  github: aron-bordin
+  github: apryor6
 
 # Twitter account associated with the site if different from owner/author twitter account.
 # Used in Twitter cards.
