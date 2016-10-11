@@ -33,7 +33,7 @@ str(df)
 
 There's a ton of information here. It seems every play of every game in the regular season is catalogued. Each game has a `GameID` and the `Date` on which it was played. The offense and defense teams are given by `posteam` and `DefensiveTeam`, respectively. There's also the time on the clock, current down and distance, type of play, special teams information, information on the players involved, etc. It's really tempting to explore this in great detail, but for the purposes of this demonstration, let's keep it simple. I'll organize things a bit and create some summary statistics. 
 
-NFL games usually, but not always, played on Sundays, so they are instead grouped by week. First, I'll assign the week number to each game relative to the first game of the season.
+NFL games usually, but not always, are played on Sundays, so they are instead grouped by week. First, I'll assign the week number to each game relative to the first game of the season.
 
 ```{r}
 
@@ -77,7 +77,7 @@ off <- df %>%
             ppg=(   sum(Touchdown*6, na.rm=TRUE) +
                     sum(ifelse(ExPointResult=="Success",1,0),na.rm=TRUE) + 
                     sum(ifelse(TwoPointConv=="Success",2,0),na.rm=TRUE)  +  
-                    sum(ifelse(FieldGoalResult=="Good",2,0),na.rm=TRUE))/ n_distinct(GameID)) %>%
+                    sum(ifelse(FieldGoalResult=="Good",3,0),na.rm=TRUE))/ n_distinct(GameID)) %>%
   arrange(desc(ppg))                                                 
 off <- data.frame(off)
 off
