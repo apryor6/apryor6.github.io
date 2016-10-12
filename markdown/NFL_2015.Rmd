@@ -252,7 +252,7 @@ labs(title="2015-2016 NFL Offense/Defense Overview",x="Offensive YPG", y="Defens
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
   theme(axis.text=element_text(size=22), title=element_text(size=28)) +
   scale_size(range=c(8,23)) + guides(color=FALSE) + theme(legend.position = "bottom")
-plt + coord_fixed(ratio = .5)
+plt <- plt + coord_fixed(ratio = .5) + scale_y_reverse()
 plt
 ```
 
