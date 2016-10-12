@@ -1,6 +1,6 @@
 ---
 title: "2015-2016 NFL Football Season - Making A Beautiful Scatter Plot with R"
-output: github_document
+output: html_notebook
 ---
 
 ```{r setup, include=FALSE}
@@ -253,6 +253,7 @@ labs(title="2015-2016 NFL Offense/Defense Overview",x="Offensive YPG", y="Defens
   theme(axis.text=element_text(size=22), title=element_text(size=28)) +
   scale_size(range=c(8,23)) + guides(color=FALSE) + theme(legend.position = "bottom")
 plt + coord_fixed(ratio = .5)
+plt
 ```
 
 Looks pretty good!
