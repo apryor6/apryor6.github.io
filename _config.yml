@@ -23,11 +23,11 @@ menu:
     url: 'http://example.com'
     submenu:
         - title: 'Machine Learning'
-          url: 'http://example.com'
+          url: 'example.com'
         - title: 'Software'
-          url: 'http://example.com'
+          url: '/about'
   - title: 'Publications'
-    url: 'http://example.com'
+    url: '/publications'
 
 # Owner/author information
 owner:
