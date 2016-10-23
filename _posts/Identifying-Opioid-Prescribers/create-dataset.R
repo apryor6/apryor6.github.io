@@ -3,9 +3,6 @@ library(tidyr)
 library(magrittr)
 library(data.table)
 library(dplyr)
-# setwd('/home/aj/kaggle/Identifying-Opioid-Prescribers')
-# setwd('/Users/ajpryor/kaggle/Identifying-Opioid-Prescribers')
-setwd('/u/home/a/apryor/machine_learning')
 t0 <- proc.time()
 row.number.limit <- 25000
 num_drugs <- 250 # maximum number of prescription drugs to randomly select from the total pool, will be truncated if too large
