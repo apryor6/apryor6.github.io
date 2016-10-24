@@ -25,7 +25,11 @@ Building a Dataset
 
 The primary source of the raw data I will be pulling from is [cms.org](https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Part-D-Prescriber.html). Part of Obamacare requires more visilibity into government aid programs, so this dataset is a compilation of drug prescriptions made to citizens claiming coverage under Class D Medicare. It contains approxiately 24 million entries in .csv format. Each row contains information about one doctor and one drug, so each doctor occurs multiple times (called long format). We want to pivot this data to wide format so that each row represents a single doctor and contains information on every drug. Those of you who have used Excel on large datasets will know painfully well that anything close to a million rows in Excel is painfully slow, so if you have ever wondered how to manage such a file, I've included the R code I used to build the dataset [here](https://github.com/apryor6/apryor6.github.io/tree/master/_posts/Identifying-Opioid-Prescribers). This kind of work is pretty code-dense and not exactly riveting, so I won't include the gory details here. Let's just skip to the fun part. The final trimmed result is a dataset containing 25,000 unique doctors and the numbers of prescriptions written for 250 drugs in the year 2014. Specifically, The data consists of the following characteristics for each prescriber
 
--NPI – unique National Provider Identifier number -Gender - (M/F) -State - U.S. State by abbreviation -Credentials - set of initials indicative of medical degree -Specialty - description of type of medicinal practice A long list of drugs with numeric values indicating the total number of prescriptions written for the year by that individual -Opioid.Prescriber - a boolean label indicating whether or not that individual prescribed opiate drugs more than 10 times in the year
+-   NPI – unique National Provider Identifier number 
+-   Gender - (M/F) -State - U.S. State by abbreviation 
+-   Credentials - set of initials indicative of medical degree 
+-   Specialty - description of type of medicinal practice A long list of drugs with numeric values indicating the total number of prescriptions written for the year by that individual
+-   Opioid.Prescriber - a boolean label indicating whether or not that individual prescribed opiate drugs more than 10 times in the year
 
 Data Cleaning
 -------------
