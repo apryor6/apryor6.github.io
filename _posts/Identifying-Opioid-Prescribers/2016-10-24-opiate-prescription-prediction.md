@@ -18,7 +18,7 @@ The goal of this experiment is to demonstrate the possibility that predictive an
 
 If you are interested in the dataset, you can find it on Kaggle [here](https://www.kaggle.com/apryor6/us-opiate-prescriptions).
 
-*Disclaimer* I am absolutely not suggesting that doctors who prescribe opiates are culpable for overdoses. These are drugs with true medical value when used appropriately. The idea is rather that a systematic way for identifying sources may reveal trends in particular practices, fields, or regions of the country that could be used effectively to combat the problem.
+*Disclaimer I am absolutely not suggesting that doctors who prescribe opiates are culpable for overdoses. These are drugs with true medical value when used appropriately. The idea is rather that a systematic way for identifying sources may reveal trends in particular practices, fields, or regions of the country that could be used effectively to combat the problem.*
 
 Building a Dataset
 ------------------
