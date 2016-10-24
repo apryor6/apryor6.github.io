@@ -20,12 +20,9 @@ menu:
   - title: 'Home'
     url: '/'
   - title: 'Portfolio'
-    url: 'http://example.com'
-    submenu:
-        - title: 'Machine Learning'
-          url: 'example.com'
-        - title: 'Software'
-          url: '/about'
+    url: '/'
+  - title: 'Software'
+    url: 'https://github.com/apryor6/'
   - title: 'Publications'
     url: '/publications'
 
