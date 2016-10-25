@@ -774,7 +774,7 @@ importance %>% arrange(desc(Importance)) %>%
   theme(axis.text.x=element_text(angle=45,vjust = 1,hjust=1),axis.ticks.x = element_blank()) +ylab("Importance") +ggtitle("Feature Importance for Detecting Opioid Prescription")
 ~~~
 
-![](../images/Identifying-Opioid-Prescribers/creation+analysis_files/unnamed-chunk-19-1.png)
+![](../images/Identifying-Opioid-Prescribers/unnamed-chunk-19-1.png)
 
 Our best feature was a drug called [Gabapentin](https://www.drugs.com/gabapentin.html), which unsurprisingly is used to treat nerve pain caused by things like shingles. It's not an opiate, but likely gets prescribed at the same time. The `Surgeon` feature we engineered has done quite well. The other drugs are for various conditions including inflamatation, cancer, and athritis among others.
 
@@ -803,6 +803,6 @@ od %>%
   scale_fill_continuous(low='gray85', high='darkred',guide=guide_colorbar(ticks=FALSE,barheight=1,barwidth=10,title.vjust=.8,values=c(0.2,0.3)),name="Deaths per Million") + theme(axis.text=element_blank(),axis.title=element_blank(),axis.ticks=element_blank(),legend.position="bottom",plot.title=element_text(size=20))
 ~~~
 
-![](../images/Identifying-Opioid-Prescribers/creation+analysis_files/unnamed-chunk-20-1.png)
+![](../images/Identifying-Opioid-Prescribers/unnamed-chunk-20-1.png)
 
 As you can see, it's a serious problem. Maybe we as data scientists have the tools to make a difference.
