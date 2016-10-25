@@ -68,7 +68,7 @@ df <- df[, !names(df) %in% opioids]
 
     ## [1] 25000   245
 
-Convert character columns to factors. I'm sure there is a nicer way to code this, but it's late and this works for now. Feel free to comment the better way.
+Convert character columns to factors. 
 
 ~~~ r
 char_cols <- c("NPI",names(df)[vapply(df,is.character,TRUE)])
