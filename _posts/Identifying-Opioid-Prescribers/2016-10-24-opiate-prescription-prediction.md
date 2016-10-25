@@ -55,7 +55,6 @@ library(caret)
 df <- data.frame(fread("prescriber-info.csv",nrows=-1))
 ~~~
 
-    ## [1] 25000   256
 
 First, we have to remove all of the information about opiate prescriptions from the data because that would be cheating. Conveniently, the same source that provided the raw data used to build this dataset also includes a list of all opiate drugs exactly as they are named in the data.
 
@@ -66,7 +65,6 @@ opioids <- gsub("\ |-",".",opioids) # replace hyphens and spaces with periods to
 df <- df[, !names(df) %in% opioids]
 ~~~
 
-    ## [1] 25000   245
 
 Convert character columns to factors. 
 
@@ -191,7 +189,6 @@ df %<>%
   select(-Credentials)
 ~~~
 
-    ## [1] 25000   295
 
 On that note, let's look at `Specialty`
 
