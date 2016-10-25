@@ -2,7 +2,7 @@
 layout: dark-post
 title:  "Combating the Opioid Epidemic with Machine Learning"
 description: "Combating the Opioid Epidemic with Machine Learning"
-tags: [sample post]
+tags: [Machine Learning, Artificial Intelligence, R, Opiate, Overdose, U.S.]
 ---
 
 
@@ -23,7 +23,7 @@ Building a Dataset
 
 The primary source of the raw data I will be pulling from is [cms.org](https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Part-D-Prescriber.html). Part of Obamacare requires more visilibity into government aid programs, so this dataset is a compilation of drug prescriptions made to citizens claiming coverage under Class D Medicare. It contains approxiately 24 million entries in .csv format. Each row contains information about one doctor and one drug, so each doctor occurs multiple times (called long format). We want to pivot this data to wide format so that each row represents a single doctor and contains information on every drug.  
 
-Those of you who have used Excel on large datasets will know painfully well that anything close to a million rows in Excel is painfully slow, so if you have ever wondered how to manage such a file, I've included the R code I used to build the dataset [here](https://github.com/apryor6/apryor6.github.io/tree/master/_posts/Identifying-Opioid-Prescribers).   
+Those of you who have used Excel on large datasets will know very well that anything close to a million rows in Excel is painfully slow, so if you have ever wondered how to manage such a file, I've included the R code I used to build the dataset [here](https://github.com/apryor6/apryor6.github.io/tree/master/_posts/Identifying-Opioid-Prescribers).   
 
 This kind of work is pretty code-dense and not exactly riveting, so I won't include the gory details here. Let's just skip to the fun part. The final trimmed result is a dataset containing 25,000 unique doctors and the numbers of prescriptions written for 250 drugs in the year 2014. Specifically, The data consists of the following characteristics for each prescriber
 
@@ -31,7 +31,8 @@ This kind of work is pretty code-dense and not exactly riveting, so I won't incl
 -   Gender - (M/F)
 -   State - U.S. State by abbreviation
 -   Credentials - set of initials indicative of medical degree
--   Specialty - description of type of medicinal practice A long list of drugs with numeric values indicating the total number of prescriptions written for the year by that individual
+-   Specialty - description of type of medicinal practice
+-   A long list of drugs with numeric values indicating the total number of prescriptions written for the year by that individual
 -   Opioid.Prescriber - a boolean label indicating whether or not that individual prescribed opiate drugs more than 10 times in the year
 
 Data Cleaning
@@ -756,7 +757,7 @@ Now we build the model. I'll use a 5-fold cross validation to optimize hyperpara
     ##        'Positive' Class : yes             
     ## 
 
-Looks like we did a good job, the accuracy is not bad for a first attempt. I would be very interested to see others fork this kernel and make it even more accurate. If our goal is to predict significant sources of opioid prescriptions for the purpose of some government agency doing investigative work, then we would likely care more about precision (Pos Pred Value in this package) than accuracy. The reason is because a false positive is potentially sending people on a wild goose chase, wasting money and time.
+Looks like we did a good job, the accuracy is not bad for a first attempt. If our goal is to predict significant sources of opioid prescriptions for the purpose of some government agency doing investigative work, then we would likely care more about precision (Pos Pred Value in this package) than accuracy. The reason is because a false positive is potentially sending people on a wild goose chase, wasting money and time.
 
 The other nice thing about trees is the ability to view the importance of the features in the decision making process. This is done by cycling through each feature, randomly shuffling its values about, and seeing how much that hurts your cross-validation results. If shuffling a feature screws you up, then it must be pretty important. Let's extract the importance from our model with `varImp` and make a bar plot.
 
