@@ -45,8 +45,6 @@ The dataset was grouped and assembled into the right shape, but the data itself 
 Load the relevant libraries and read in the dataset
 
 ~~~ r
-# setwd('/home/aj/kaggle/Identifying-Opioid-Prescribers')
-setwd('/Users/ajpryor/kaggle/Identifying-Opioid-Prescribers')
 library(dplyr)
 library(magrittr)
 library(ggplot2)
