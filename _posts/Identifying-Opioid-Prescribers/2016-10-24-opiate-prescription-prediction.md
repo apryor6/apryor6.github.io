@@ -1,7 +1,7 @@
 ---
 layout: dark-post
-title: Combating the Opioid Epidemic with Machine Learning
-description: "A test post"
+title:  "Combating the Opioid Epidemic with Machine Learning"
+description: "Combating the Opioid Epidemic with Machine Learning"
 tags: [sample post]
 ---
 
@@ -12,22 +12,21 @@ Over the past 15 years, deaths from prescription opiates have [quadrupled](https
 
 Here is a visualization of the distribution of fatal overdose rate across the country. By the end of this post, you'll see exactly how such an image can be built.
 
-![](../../images/Identifying-Opioid-Prescribers/overdose-map.png)
-<!-- more -->
-The goal of this experiment is to demonstrate the possibility that predictive analytics with machine learning can be used to predict the likelihood that a given doctor is a significant prescriber of opiates. I'll compile a dataset, do some data cleaning and feature engineering, and finally build a predictive model using a gradient boosted classification tree ensemble with `gbm` and `caret` that predicts with &gt;80% accuracy that an arbitrary entry is a significant prescriber of opioids. I'll also do some analysis and visualization of my results combined with those pulled from other sources.  
+![](../images/Identifying-Opioid-Prescribers/overdose-map.png)
 
-If you are interested in the dataset, you can find it on Kaggle [here](https://www.kaggle.com/apryor6/us-opiate-prescriptions).
+The goal of this experiment is to demonstrate the possibility that predictive analytics with machine learning can be used to predict the likelihood that a given doctor is a significant prescriber of opiates. I'll compile a dataset, do some data cleaning and feature engineering, and finally build a predictive model using a gradient boosted classification tree ensemble with `gbm` and `caret` that predicts with &gt;80% accuracy that an arbitrary entry is a significant prescriber of opioids. I'll also do some analysis and visualization of my results combined with those pulled from other sources. If you are interested in the dataset, you can find it on Kaggle [here](https://www.kaggle.com/apryor6/us-opiate-prescriptions).
 
-*Disclaimer I am absolutely not suggesting that doctors who prescribe opiates are culpable for overdoses. These are drugs with true medical value when used appropriately. The idea is rather that a systematic way for identifying sources may reveal trends in particular practices, fields, or regions of the country that could be used effectively to combat the problem.*
+*Disclaimer* I am absolutely not suggesting that doctors who prescribe opiates are culpable for overdoses. These are drugs with true medical value when used appropriately. The idea is rather that a systematic way for identifying sources may reveal trends in particular practices, fields, or regions of the country that could be used effectively to combat the problem.
 
 Building a Dataset
 ------------------
 
 The primary source of the raw data I will be pulling from is [cms.org](https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Part-D-Prescriber.html). Part of Obamacare requires more visilibity into government aid programs, so this dataset is a compilation of drug prescriptions made to citizens claiming coverage under Class D Medicare. It contains approxiately 24 million entries in .csv format. Each row contains information about one doctor and one drug, so each doctor occurs multiple times (called long format). We want to pivot this data to wide format so that each row represents a single doctor and contains information on every drug. Those of you who have used Excel on large datasets will know painfully well that anything close to a million rows in Excel is painfully slow, so if you have ever wondered how to manage such a file, I've included the R code I used to build the dataset [here](https://github.com/apryor6/apryor6.github.io/tree/master/_posts/Identifying-Opioid-Prescribers). This kind of work is pretty code-dense and not exactly riveting, so I won't include the gory details here. Let's just skip to the fun part. The final trimmed result is a dataset containing 25,000 unique doctors and the numbers of prescriptions written for 250 drugs in the year 2014. Specifically, The data consists of the following characteristics for each prescriber
 
--   NPI – unique National Provider Identifier number 
--   Gender - (M/F) -State - U.S. State by abbreviation 
--   Credentials - set of initials indicative of medical degree 
+-   NPI – unique National Provider Identifier number
+-   Gender - (M/F)
+-   State - U.S. State by abbreviation
+-   Credentials - set of initials indicative of medical degree
 -   Specialty - description of type of medicinal practice A long list of drugs with numeric values indicating the total number of prescriptions written for the year by that individual
 -   Opioid.Prescriber - a boolean label indicating whether or not that individual prescribed opiate drugs more than 10 times in the year
 
@@ -49,18 +48,23 @@ library(data.table)
 library(lme4)
 library(caret)
 
-limit.rows <- 25000
-df <- data.frame(fread("prescriber-info.csv",nrows=limit.rows))
+df <- data.frame(fread("prescriber-info.csv",nrows=-1))
+dim(df)
 ~~~
+
+    ## [1] 25000   256
 
 First, we have to remove all of the information about opiate prescriptions from the data because that would be cheating. Conveniently, the same source that provided the raw data used to build this dataset also includes a list of all opiate drugs exactly as they are named in the data.
 
 ~~~ r
-opioids <- read.csv("opioids.csv",skip=2)
-opioids <- as.character(opioids[,2]) # second column contains the names of the opiates
+opioids <- read.csv("opioids.csv")
+opioids <- as.character(opioids[,1])
 opioids <- gsub("\ |-",".",opioids) # replace hyphens and spaces with periods to match the dataset
 df <- df[, !names(df) %in% opioids]
+dim(df)
 ~~~
+
+    ## [1] 25000   245
 
 Convert character columns to factors. I'm sure there is a nicer way to code this, but it's late and this works for now. Feel free to comment the better way.
 
@@ -183,7 +187,10 @@ The credentials are quite the mess. Titles are inconsistently entered with perio
 # 7 years of college down the drain
 df %<>%
   select(-Credentials)
+dim(df)
 ~~~
+
+    ## [1] 25000   295
 
 On that note, let's look at `Specialty`
 
@@ -373,380 +380,380 @@ Now we build the model. I'll use a 5-fold cross validation to optimize hyperpara
 
     ## + Fold1: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2657             nan     0.1000    0.0448
-    ##      2        1.1923             nan     0.1000    0.0369
-    ##      3        1.1315             nan     0.1000    0.0307
-    ##      4        1.0799             nan     0.1000    0.0260
-    ##      5        1.0356             nan     0.1000    0.0218
-    ##      6        0.9984             nan     0.1000    0.0186
-    ##      7        0.9667             nan     0.1000    0.0158
-    ##      8        0.9395             nan     0.1000    0.0136
-    ##      9        0.9157             nan     0.1000    0.0118
-    ##     10        0.8950             nan     0.1000    0.0101
-    ##     20        0.7702             nan     0.1000    0.0036
-    ##     40        0.6652             nan     0.1000    0.0013
-    ##     60        0.6203             nan     0.1000    0.0009
-    ##     80        0.5886             nan     0.1000    0.0005
-    ##    100        0.5673             nan     0.1000    0.0004
-    ##    120        0.5502             nan     0.1000    0.0001
-    ##    140        0.5381             nan     0.1000    0.0001
-    ##    150        0.5335             nan     0.1000    0.0001
+    ##      1        1.3305             nan     0.1000    0.0125
+    ##      2        1.3082             nan     0.1000    0.0112
+    ##      3        1.2892             nan     0.1000    0.0092
+    ##      4        1.2730             nan     0.1000    0.0083
+    ##      5        1.2573             nan     0.1000    0.0076
+    ##      6        1.2429             nan     0.1000    0.0069
+    ##      7        1.2298             nan     0.1000    0.0064
+    ##      8        1.2183             nan     0.1000    0.0058
+    ##      9        1.2081             nan     0.1000    0.0050
+    ##     10        1.1995             nan     0.1000    0.0043
+    ##     20        1.1239             nan     0.1000    0.0038
+    ##     40        1.0376             nan     0.1000    0.0014
+    ##     60        0.9848             nan     0.1000    0.0008
+    ##     80        0.9500             nan     0.1000    0.0008
+    ##    100        0.9249             nan     0.1000    0.0003
+    ##    120        0.9037             nan     0.1000    0.0002
+    ##    140        0.8878             nan     0.1000    0.0002
+    ##    150        0.8801             nan     0.1000    0.0001
     ## 
     ## - Fold1: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## + Fold1: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2484             nan     0.1000    0.0533
-    ##      2        1.1614             nan     0.1000    0.0437
-    ##      3        1.0892             nan     0.1000    0.0363
-    ##      4        1.0282             nan     0.1000    0.0306
-    ##      5        0.9768             nan     0.1000    0.0258
-    ##      6        0.9329             nan     0.1000    0.0219
-    ##      7        0.8940             nan     0.1000    0.0192
-    ##      8        0.8598             nan     0.1000    0.0164
-    ##      9        0.8312             nan     0.1000    0.0140
-    ##     10        0.8062             nan     0.1000    0.0125
-    ##     20        0.6615             nan     0.1000    0.0047
-    ##     40        0.5756             nan     0.1000    0.0019
-    ##     60        0.5415             nan     0.1000    0.0015
-    ##     80        0.5213             nan     0.1000    0.0003
-    ##    100        0.5084             nan     0.1000    0.0001
-    ##    120        0.4967             nan     0.1000   -0.0000
-    ##    140        0.4881             nan     0.1000    0.0001
-    ##    150        0.4852             nan     0.1000    0.0001
+    ##      1        1.3194             nan     0.1000    0.0179
+    ##      2        1.2883             nan     0.1000    0.0153
+    ##      3        1.2608             nan     0.1000    0.0134
+    ##      4        1.2362             nan     0.1000    0.0120
+    ##      5        1.2122             nan     0.1000    0.0119
+    ##      6        1.1920             nan     0.1000    0.0095
+    ##      7        1.1739             nan     0.1000    0.0090
+    ##      8        1.1562             nan     0.1000    0.0087
+    ##      9        1.1416             nan     0.1000    0.0070
+    ##     10        1.1277             nan     0.1000    0.0070
+    ##     20        1.0287             nan     0.1000    0.0035
+    ##     40        0.9412             nan     0.1000    0.0011
+    ##     60        0.8960             nan     0.1000    0.0005
+    ##     80        0.8634             nan     0.1000    0.0003
+    ##    100        0.8403             nan     0.1000    0.0004
+    ##    120        0.8214             nan     0.1000    0.0002
+    ##    140        0.8075             nan     0.1000    0.0001
+    ##    150        0.8023             nan     0.1000   -0.0000
     ## 
     ## - Fold1: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## + Fold1: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2428             nan     0.1000    0.0565
-    ##      2        1.1505             nan     0.1000    0.0463
-    ##      3        1.0721             nan     0.1000    0.0384
-    ##      4        1.0068             nan     0.1000    0.0329
-    ##      5        0.9506             nan     0.1000    0.0277
-    ##      6        0.9024             nan     0.1000    0.0238
-    ##      7        0.8614             nan     0.1000    0.0204
-    ##      8        0.8262             nan     0.1000    0.0175
-    ##      9        0.7951             nan     0.1000    0.0155
-    ##     10        0.7679             nan     0.1000    0.0135
-    ##     20        0.6167             nan     0.1000    0.0041
-    ##     40        0.5351             nan     0.1000    0.0008
-    ##     60        0.5063             nan     0.1000    0.0006
-    ##     80        0.4913             nan     0.1000    0.0001
-    ##    100        0.4790             nan     0.1000   -0.0000
-    ##    120        0.4701             nan     0.1000    0.0001
-    ##    140        0.4621             nan     0.1000    0.0003
-    ##    150        0.4588             nan     0.1000   -0.0000
+    ##      1        1.3099             nan     0.1000    0.0225
+    ##      2        1.2702             nan     0.1000    0.0196
+    ##      3        1.2368             nan     0.1000    0.0165
+    ##      4        1.2079             nan     0.1000    0.0144
+    ##      5        1.1808             nan     0.1000    0.0134
+    ##      6        1.1597             nan     0.1000    0.0102
+    ##      7        1.1385             nan     0.1000    0.0104
+    ##      8        1.1194             nan     0.1000    0.0094
+    ##      9        1.1008             nan     0.1000    0.0093
+    ##     10        1.0847             nan     0.1000    0.0080
+    ##     20        0.9816             nan     0.1000    0.0036
+    ##     40        0.8919             nan     0.1000    0.0013
+    ##     60        0.8473             nan     0.1000    0.0006
+    ##     80        0.8187             nan     0.1000    0.0005
+    ##    100        0.7979             nan     0.1000    0.0002
+    ##    120        0.7823             nan     0.1000    0.0001
+    ##    140        0.7701             nan     0.1000    0.0001
+    ##    150        0.7643             nan     0.1000    0.0001
     ## 
     ## - Fold1: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## + Fold2: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2659             nan     0.1000    0.0446
-    ##      2        1.1925             nan     0.1000    0.0370
-    ##      3        1.1318             nan     0.1000    0.0307
-    ##      4        1.0797             nan     0.1000    0.0258
-    ##      5        1.0363             nan     0.1000    0.0219
-    ##      6        0.9995             nan     0.1000    0.0185
-    ##      7        0.9682             nan     0.1000    0.0159
-    ##      8        0.9408             nan     0.1000    0.0138
-    ##      9        0.9171             nan     0.1000    0.0117
-    ##     10        0.8964             nan     0.1000    0.0102
-    ##     20        0.7721             nan     0.1000    0.0048
-    ##     40        0.6712             nan     0.1000    0.0014
-    ##     60        0.6201             nan     0.1000    0.0015
-    ##     80        0.5910             nan     0.1000    0.0005
-    ##    100        0.5686             nan     0.1000    0.0004
-    ##    120        0.5524             nan     0.1000    0.0001
-    ##    140        0.5397             nan     0.1000    0.0003
-    ##    150        0.5359             nan     0.1000    0.0001
+    ##      1        1.3310             nan     0.1000    0.0121
+    ##      2        1.3089             nan     0.1000    0.0108
+    ##      3        1.2904             nan     0.1000    0.0091
+    ##      4        1.2731             nan     0.1000    0.0086
+    ##      5        1.2575             nan     0.1000    0.0081
+    ##      6        1.2432             nan     0.1000    0.0069
+    ##      7        1.2296             nan     0.1000    0.0066
+    ##      8        1.2175             nan     0.1000    0.0058
+    ##      9        1.2072             nan     0.1000    0.0049
+    ##     10        1.1987             nan     0.1000    0.0042
+    ##     20        1.1231             nan     0.1000    0.0029
+    ##     40        1.0359             nan     0.1000    0.0016
+    ##     60        0.9823             nan     0.1000    0.0011
+    ##     80        0.9445             nan     0.1000    0.0005
+    ##    100        0.9182             nan     0.1000    0.0006
+    ##    120        0.8990             nan     0.1000    0.0003
+    ##    140        0.8818             nan     0.1000    0.0002
+    ##    150        0.8746             nan     0.1000    0.0001
     ## 
     ## - Fold2: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## + Fold2: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2499             nan     0.1000    0.0529
-    ##      2        1.1633             nan     0.1000    0.0435
-    ##      3        1.0911             nan     0.1000    0.0362
-    ##      4        1.0302             nan     0.1000    0.0304
-    ##      5        0.9795             nan     0.1000    0.0258
-    ##      6        0.9361             nan     0.1000    0.0219
-    ##      7        0.8977             nan     0.1000    0.0190
-    ##      8        0.8640             nan     0.1000    0.0169
-    ##      9        0.8348             nan     0.1000    0.0145
-    ##     10        0.8095             nan     0.1000    0.0127
-    ##     20        0.6641             nan     0.1000    0.0038
-    ##     40        0.5774             nan     0.1000    0.0007
-    ##     60        0.5443             nan     0.1000    0.0005
-    ##     80        0.5254             nan     0.1000    0.0003
-    ##    100        0.5105             nan     0.1000    0.0002
-    ##    120        0.5008             nan     0.1000    0.0003
-    ##    140        0.4906             nan     0.1000    0.0000
-    ##    150        0.4879             nan     0.1000    0.0001
+    ##      1        1.3206             nan     0.1000    0.0173
+    ##      2        1.2895             nan     0.1000    0.0156
+    ##      3        1.2622             nan     0.1000    0.0135
+    ##      4        1.2367             nan     0.1000    0.0129
+    ##      5        1.2143             nan     0.1000    0.0113
+    ##      6        1.1934             nan     0.1000    0.0102
+    ##      7        1.1742             nan     0.1000    0.0093
+    ##      8        1.1575             nan     0.1000    0.0084
+    ##      9        1.1421             nan     0.1000    0.0077
+    ##     10        1.1282             nan     0.1000    0.0070
+    ##     20        1.0303             nan     0.1000    0.0031
+    ##     40        0.9371             nan     0.1000    0.0014
+    ##     60        0.8888             nan     0.1000    0.0007
+    ##     80        0.8587             nan     0.1000    0.0004
+    ##    100        0.8369             nan     0.1000    0.0005
+    ##    120        0.8190             nan     0.1000    0.0004
+    ##    140        0.8049             nan     0.1000    0.0001
+    ##    150        0.7994             nan     0.1000    0.0001
     ## 
     ## - Fold2: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## + Fold2: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2422             nan     0.1000    0.0561
-    ##      2        1.1505             nan     0.1000    0.0457
-    ##      3        1.0730             nan     0.1000    0.0385
-    ##      4        1.0068             nan     0.1000    0.0326
-    ##      5        0.9520             nan     0.1000    0.0276
-    ##      6        0.9051             nan     0.1000    0.0235
-    ##      7        0.8641             nan     0.1000    0.0205
-    ##      8        0.8287             nan     0.1000    0.0175
-    ##      9        0.7978             nan     0.1000    0.0154
-    ##     10        0.7705             nan     0.1000    0.0133
-    ##     20        0.6188             nan     0.1000    0.0041
-    ##     40        0.5392             nan     0.1000    0.0014
-    ##     60        0.5107             nan     0.1000    0.0002
-    ##     80        0.4955             nan     0.1000    0.0002
-    ##    100        0.4840             nan     0.1000    0.0000
-    ##    120        0.4725             nan     0.1000    0.0001
-    ##    140        0.4637             nan     0.1000    0.0000
-    ##    150        0.4594             nan     0.1000    0.0000
+    ##      1        1.3095             nan     0.1000    0.0224
+    ##      2        1.2712             nan     0.1000    0.0192
+    ##      3        1.2367             nan     0.1000    0.0174
+    ##      4        1.2074             nan     0.1000    0.0141
+    ##      5        1.1809             nan     0.1000    0.0131
+    ##      6        1.1586             nan     0.1000    0.0106
+    ##      7        1.1371             nan     0.1000    0.0107
+    ##      8        1.1177             nan     0.1000    0.0095
+    ##      9        1.1003             nan     0.1000    0.0083
+    ##     10        1.0853             nan     0.1000    0.0073
+    ##     20        0.9797             nan     0.1000    0.0033
+    ##     40        0.8876             nan     0.1000    0.0009
+    ##     60        0.8427             nan     0.1000    0.0007
+    ##     80        0.8139             nan     0.1000    0.0005
+    ##    100        0.7941             nan     0.1000    0.0005
+    ##    120        0.7779             nan     0.1000    0.0001
+    ##    140        0.7655             nan     0.1000    0.0001
+    ##    150        0.7600             nan     0.1000    0.0004
     ## 
     ## - Fold2: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## + Fold3: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2671             nan     0.1000    0.0444
-    ##      2        1.1943             nan     0.1000    0.0369
-    ##      3        1.1336             nan     0.1000    0.0305
-    ##      4        1.0823             nan     0.1000    0.0256
-    ##      5        1.0391             nan     0.1000    0.0218
-    ##      6        1.0024             nan     0.1000    0.0184
-    ##      7        0.9702             nan     0.1000    0.0159
-    ##      8        0.9433             nan     0.1000    0.0136
-    ##      9        0.9197             nan     0.1000    0.0117
-    ##     10        0.8995             nan     0.1000    0.0101
-    ##     20        0.7745             nan     0.1000    0.0048
-    ##     40        0.6715             nan     0.1000    0.0008
-    ##     60        0.6221             nan     0.1000    0.0004
-    ##     80        0.5913             nan     0.1000    0.0011
-    ##    100        0.5702             nan     0.1000    0.0002
-    ##    120        0.5552             nan     0.1000    0.0001
-    ##    140        0.5436             nan     0.1000    0.0002
-    ##    150        0.5374             nan     0.1000    0.0001
+    ##      1        1.3307             nan     0.1000    0.0130
+    ##      2        1.3078             nan     0.1000    0.0111
+    ##      3        1.2894             nan     0.1000    0.0093
+    ##      4        1.2726             nan     0.1000    0.0086
+    ##      5        1.2574             nan     0.1000    0.0072
+    ##      6        1.2434             nan     0.1000    0.0067
+    ##      7        1.2298             nan     0.1000    0.0066
+    ##      8        1.2185             nan     0.1000    0.0053
+    ##      9        1.2075             nan     0.1000    0.0054
+    ##     10        1.1992             nan     0.1000    0.0041
+    ##     20        1.1252             nan     0.1000    0.0027
+    ##     40        1.0386             nan     0.1000    0.0019
+    ##     60        0.9865             nan     0.1000    0.0009
+    ##     80        0.9520             nan     0.1000    0.0007
+    ##    100        0.9271             nan     0.1000    0.0006
+    ##    120        0.9084             nan     0.1000    0.0005
+    ##    140        0.8907             nan     0.1000    0.0002
+    ##    150        0.8832             nan     0.1000    0.0002
     ## 
     ## - Fold3: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## + Fold3: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2491             nan     0.1000    0.0529
-    ##      2        1.1622             nan     0.1000    0.0434
-    ##      3        1.0897             nan     0.1000    0.0360
-    ##      4        1.0284             nan     0.1000    0.0302
-    ##      5        0.9779             nan     0.1000    0.0249
-    ##      6        0.9338             nan     0.1000    0.0222
-    ##      7        0.8959             nan     0.1000    0.0190
-    ##      8        0.8628             nan     0.1000    0.0161
-    ##      9        0.8337             nan     0.1000    0.0145
-    ##     10        0.8085             nan     0.1000    0.0123
-    ##     20        0.6651             nan     0.1000    0.0044
-    ##     40        0.5825             nan     0.1000    0.0007
-    ##     60        0.5454             nan     0.1000    0.0005
-    ##     80        0.5266             nan     0.1000    0.0001
-    ##    100        0.5119             nan     0.1000    0.0003
-    ##    120        0.5023             nan     0.1000    0.0001
-    ##    140        0.4938             nan     0.1000    0.0000
-    ##    150        0.4904             nan     0.1000    0.0001
+    ##      1        1.3191             nan     0.1000    0.0181
+    ##      2        1.2879             nan     0.1000    0.0155
+    ##      3        1.2612             nan     0.1000    0.0131
+    ##      4        1.2366             nan     0.1000    0.0124
+    ##      5        1.2142             nan     0.1000    0.0108
+    ##      6        1.1945             nan     0.1000    0.0098
+    ##      7        1.1762             nan     0.1000    0.0090
+    ##      8        1.1590             nan     0.1000    0.0086
+    ##      9        1.1437             nan     0.1000    0.0076
+    ##     10        1.1293             nan     0.1000    0.0071
+    ##     20        1.0350             nan     0.1000    0.0034
+    ##     40        0.9438             nan     0.1000    0.0011
+    ##     60        0.8990             nan     0.1000    0.0007
+    ##     80        0.8672             nan     0.1000    0.0003
+    ##    100        0.8444             nan     0.1000    0.0003
+    ##    120        0.8267             nan     0.1000    0.0005
+    ##    140        0.8137             nan     0.1000    0.0002
+    ##    150        0.8070             nan     0.1000    0.0004
     ## 
     ## - Fold3: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## + Fold3: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2435             nan     0.1000    0.0559
-    ##      2        1.1512             nan     0.1000    0.0463
-    ##      3        1.0750             nan     0.1000    0.0381
-    ##      4        1.0089             nan     0.1000    0.0326
-    ##      5        0.9538             nan     0.1000    0.0274
-    ##      6        0.9055             nan     0.1000    0.0236
-    ##      7        0.8644             nan     0.1000    0.0204
-    ##      8        0.8289             nan     0.1000    0.0178
-    ##      9        0.7986             nan     0.1000    0.0151
-    ##     10        0.7714             nan     0.1000    0.0136
-    ##     20        0.6200             nan     0.1000    0.0045
-    ##     40        0.5389             nan     0.1000    0.0012
-    ##     60        0.5134             nan     0.1000    0.0003
-    ##     80        0.4961             nan     0.1000    0.0002
-    ##    100        0.4835             nan     0.1000    0.0006
-    ##    120        0.4740             nan     0.1000    0.0000
-    ##    140        0.4669             nan     0.1000    0.0000
-    ##    150        0.4628             nan     0.1000    0.0001
+    ##      1        1.3102             nan     0.1000    0.0227
+    ##      2        1.2718             nan     0.1000    0.0190
+    ##      3        1.2398             nan     0.1000    0.0160
+    ##      4        1.2117             nan     0.1000    0.0143
+    ##      5        1.1845             nan     0.1000    0.0135
+    ##      6        1.1620             nan     0.1000    0.0111
+    ##      7        1.1410             nan     0.1000    0.0105
+    ##      8        1.1230             nan     0.1000    0.0088
+    ##      9        1.1061             nan     0.1000    0.0084
+    ##     10        1.0915             nan     0.1000    0.0072
+    ##     20        0.9865             nan     0.1000    0.0035
+    ##     40        0.8978             nan     0.1000    0.0010
+    ##     60        0.8508             nan     0.1000    0.0008
+    ##     80        0.8236             nan     0.1000    0.0002
+    ##    100        0.8019             nan     0.1000    0.0002
+    ##    120        0.7864             nan     0.1000    0.0001
+    ##    140        0.7745             nan     0.1000    0.0000
+    ##    150        0.7688             nan     0.1000    0.0000
     ## 
     ## - Fold3: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## + Fold4: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2665             nan     0.1000    0.0446
-    ##      2        1.1927             nan     0.1000    0.0366
-    ##      3        1.1318             nan     0.1000    0.0304
-    ##      4        1.0810             nan     0.1000    0.0257
-    ##      5        1.0378             nan     0.1000    0.0219
-    ##      6        1.0010             nan     0.1000    0.0187
-    ##      7        0.9688             nan     0.1000    0.0160
-    ##      8        0.9415             nan     0.1000    0.0137
-    ##      9        0.9180             nan     0.1000    0.0118
-    ##     10        0.8978             nan     0.1000    0.0103
-    ##     20        0.7699             nan     0.1000    0.0048
-    ##     40        0.6628             nan     0.1000    0.0021
-    ##     60        0.6119             nan     0.1000    0.0015
-    ##     80        0.5822             nan     0.1000    0.0002
-    ##    100        0.5617             nan     0.1000    0.0004
-    ##    120        0.5458             nan     0.1000    0.0006
-    ##    140        0.5343             nan     0.1000    0.0001
-    ##    150        0.5274             nan     0.1000    0.0005
+    ##      1        1.3312             nan     0.1000    0.0120
+    ##      2        1.3086             nan     0.1000    0.0112
+    ##      3        1.2896             nan     0.1000    0.0093
+    ##      4        1.2723             nan     0.1000    0.0085
+    ##      5        1.2566             nan     0.1000    0.0076
+    ##      6        1.2425             nan     0.1000    0.0069
+    ##      7        1.2295             nan     0.1000    0.0065
+    ##      8        1.2185             nan     0.1000    0.0055
+    ##      9        1.2075             nan     0.1000    0.0053
+    ##     10        1.1990             nan     0.1000    0.0042
+    ##     20        1.1260             nan     0.1000    0.0026
+    ##     40        1.0342             nan     0.1000    0.0020
+    ##     60        0.9801             nan     0.1000    0.0010
+    ##     80        0.9470             nan     0.1000    0.0005
+    ##    100        0.9229             nan     0.1000    0.0004
+    ##    120        0.9009             nan     0.1000    0.0004
+    ##    140        0.8841             nan     0.1000    0.0005
+    ##    150        0.8766             nan     0.1000    0.0003
     ## 
     ## - Fold4: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## + Fold4: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2482             nan     0.1000    0.0535
-    ##      2        1.1609             nan     0.1000    0.0436
-    ##      3        1.0880             nan     0.1000    0.0364
-    ##      4        1.0263             nan     0.1000    0.0306
-    ##      5        0.9756             nan     0.1000    0.0255
-    ##      6        0.9305             nan     0.1000    0.0224
-    ##      7        0.8921             nan     0.1000    0.0190
-    ##      8        0.8583             nan     0.1000    0.0169
-    ##      9        0.8293             nan     0.1000    0.0143
-    ##     10        0.8030             nan     0.1000    0.0127
-    ##     20        0.6597             nan     0.1000    0.0041
-    ##     40        0.5706             nan     0.1000    0.0007
-    ##     60        0.5379             nan     0.1000    0.0011
-    ##     80        0.5187             nan     0.1000    0.0002
-    ##    100        0.5046             nan     0.1000    0.0001
-    ##    120        0.4944             nan     0.1000    0.0000
-    ##    140        0.4873             nan     0.1000   -0.0000
-    ##    150        0.4830             nan     0.1000    0.0001
+    ##      1        1.3206             nan     0.1000    0.0182
+    ##      2        1.2902             nan     0.1000    0.0149
+    ##      3        1.2628             nan     0.1000    0.0135
+    ##      4        1.2365             nan     0.1000    0.0129
+    ##      5        1.2143             nan     0.1000    0.0113
+    ##      6        1.1938             nan     0.1000    0.0103
+    ##      7        1.1751             nan     0.1000    0.0090
+    ##      8        1.1579             nan     0.1000    0.0086
+    ##      9        1.1425             nan     0.1000    0.0074
+    ##     10        1.1286             nan     0.1000    0.0068
+    ##     20        1.0283             nan     0.1000    0.0035
+    ##     40        0.9390             nan     0.1000    0.0009
+    ##     60        0.8912             nan     0.1000    0.0005
+    ##     80        0.8600             nan     0.1000    0.0004
+    ##    100        0.8387             nan     0.1000    0.0007
+    ##    120        0.8206             nan     0.1000    0.0005
+    ##    140        0.8054             nan     0.1000    0.0005
+    ##    150        0.8007             nan     0.1000    0.0002
     ## 
     ## - Fold4: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## + Fold4: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2414             nan     0.1000    0.0570
-    ##      2        1.1494             nan     0.1000    0.0465
-    ##      3        1.0712             nan     0.1000    0.0388
-    ##      4        1.0048             nan     0.1000    0.0331
-    ##      5        0.9480             nan     0.1000    0.0280
-    ##      6        0.8999             nan     0.1000    0.0237
-    ##      7        0.8585             nan     0.1000    0.0203
-    ##      8        0.8222             nan     0.1000    0.0181
-    ##      9        0.7915             nan     0.1000    0.0152
-    ##     10        0.7643             nan     0.1000    0.0135
-    ##     20        0.6119             nan     0.1000    0.0044
-    ##     40        0.5322             nan     0.1000    0.0008
-    ##     60        0.5057             nan     0.1000    0.0004
-    ##     80        0.4884             nan     0.1000    0.0004
-    ##    100        0.4765             nan     0.1000    0.0001
-    ##    120        0.4676             nan     0.1000   -0.0000
-    ##    140        0.4600             nan     0.1000   -0.0000
-    ##    150        0.4565             nan     0.1000   -0.0000
+    ##      1        1.3107             nan     0.1000    0.0222
+    ##      2        1.2708             nan     0.1000    0.0197
+    ##      3        1.2384             nan     0.1000    0.0162
+    ##      4        1.2074             nan     0.1000    0.0152
+    ##      5        1.1824             nan     0.1000    0.0120
+    ##      6        1.1583             nan     0.1000    0.0120
+    ##      7        1.1375             nan     0.1000    0.0100
+    ##      8        1.1186             nan     0.1000    0.0097
+    ##      9        1.1006             nan     0.1000    0.0091
+    ##     10        1.0851             nan     0.1000    0.0074
+    ##     20        0.9791             nan     0.1000    0.0039
+    ##     40        0.8878             nan     0.1000    0.0016
+    ##     60        0.8429             nan     0.1000    0.0010
+    ##     80        0.8159             nan     0.1000    0.0003
+    ##    100        0.7947             nan     0.1000    0.0005
+    ##    120        0.7784             nan     0.1000    0.0002
+    ##    140        0.7661             nan     0.1000    0.0001
+    ##    150        0.7614             nan     0.1000    0.0001
     ## 
     ## - Fold4: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## + Fold5: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2666             nan     0.1000    0.0447
-    ##      2        1.1924             nan     0.1000    0.0370
-    ##      3        1.1315             nan     0.1000    0.0308
-    ##      4        1.0794             nan     0.1000    0.0258
-    ##      5        1.0351             nan     0.1000    0.0217
-    ##      6        0.9983             nan     0.1000    0.0185
-    ##      7        0.9665             nan     0.1000    0.0158
-    ##      8        0.9396             nan     0.1000    0.0137
-    ##      9        0.9161             nan     0.1000    0.0118
-    ##     10        0.8955             nan     0.1000    0.0102
-    ##     20        0.7698             nan     0.1000    0.0051
-    ##     40        0.6666             nan     0.1000    0.0023
-    ##     60        0.6212             nan     0.1000    0.0009
-    ##     80        0.5858             nan     0.1000    0.0004
-    ##    100        0.5669             nan     0.1000    0.0002
-    ##    120        0.5516             nan     0.1000    0.0001
-    ##    140        0.5407             nan     0.1000    0.0000
-    ##    150        0.5323             nan     0.1000    0.0006
+    ##      1        1.3305             nan     0.1000    0.0126
+    ##      2        1.3079             nan     0.1000    0.0110
+    ##      3        1.2896             nan     0.1000    0.0091
+    ##      4        1.2724             nan     0.1000    0.0082
+    ##      5        1.2568             nan     0.1000    0.0076
+    ##      6        1.2421             nan     0.1000    0.0073
+    ##      7        1.2287             nan     0.1000    0.0064
+    ##      8        1.2172             nan     0.1000    0.0056
+    ##      9        1.2064             nan     0.1000    0.0053
+    ##     10        1.1979             nan     0.1000    0.0042
+    ##     20        1.1231             nan     0.1000    0.0027
+    ##     40        1.0373             nan     0.1000    0.0015
+    ##     60        0.9817             nan     0.1000    0.0009
+    ##     80        0.9491             nan     0.1000    0.0009
+    ##    100        0.9234             nan     0.1000    0.0006
+    ##    120        0.9033             nan     0.1000    0.0002
+    ##    140        0.8871             nan     0.1000    0.0002
+    ##    150        0.8786             nan     0.1000    0.0004
     ## 
     ## - Fold5: shrinkage=0.1, interaction.depth=1, n.minobsinnode=10, n.trees=150 
     ## + Fold5: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2486             nan     0.1000    0.0532
-    ##      2        1.1615             nan     0.1000    0.0436
-    ##      3        1.0891             nan     0.1000    0.0364
-    ##      4        1.0273             nan     0.1000    0.0303
-    ##      5        0.9762             nan     0.1000    0.0256
-    ##      6        0.9323             nan     0.1000    0.0220
-    ##      7        0.8947             nan     0.1000    0.0191
-    ##      8        0.8604             nan     0.1000    0.0170
-    ##      9        0.8315             nan     0.1000    0.0142
-    ##     10        0.8054             nan     0.1000    0.0127
-    ##     20        0.6615             nan     0.1000    0.0042
-    ##     40        0.5743             nan     0.1000    0.0014
-    ##     60        0.5418             nan     0.1000    0.0002
-    ##     80        0.5232             nan     0.1000    0.0003
-    ##    100        0.5100             nan     0.1000    0.0002
-    ##    120        0.4959             nan     0.1000    0.0001
-    ##    140        0.4872             nan     0.1000   -0.0001
-    ##    150        0.4842             nan     0.1000    0.0000
+    ##      1        1.3206             nan     0.1000    0.0181
+    ##      2        1.2903             nan     0.1000    0.0146
+    ##      3        1.2628             nan     0.1000    0.0139
+    ##      4        1.2369             nan     0.1000    0.0128
+    ##      5        1.2135             nan     0.1000    0.0114
+    ##      6        1.1935             nan     0.1000    0.0103
+    ##      7        1.1759             nan     0.1000    0.0086
+    ##      8        1.1583             nan     0.1000    0.0088
+    ##      9        1.1423             nan     0.1000    0.0079
+    ##     10        1.1282             nan     0.1000    0.0071
+    ##     20        1.0288             nan     0.1000    0.0038
+    ##     40        0.9396             nan     0.1000    0.0014
+    ##     60        0.8957             nan     0.1000    0.0004
+    ##     80        0.8634             nan     0.1000    0.0007
+    ##    100        0.8398             nan     0.1000    0.0003
+    ##    120        0.8221             nan     0.1000    0.0005
+    ##    140        0.8079             nan     0.1000    0.0001
+    ##    150        0.8019             nan     0.1000    0.0000
     ## 
     ## - Fold5: shrinkage=0.1, interaction.depth=2, n.minobsinnode=10, n.trees=150 
     ## + Fold5: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2436             nan     0.1000    0.0566
-    ##      2        1.1513             nan     0.1000    0.0466
-    ##      3        1.0738             nan     0.1000    0.0386
-    ##      4        1.0076             nan     0.1000    0.0333
-    ##      5        0.9510             nan     0.1000    0.0276
-    ##      6        0.9032             nan     0.1000    0.0241
-    ##      7        0.8613             nan     0.1000    0.0206
-    ##      8        0.8252             nan     0.1000    0.0176
-    ##      9        0.7946             nan     0.1000    0.0153
-    ##     10        0.7670             nan     0.1000    0.0136
-    ##     20        0.6164             nan     0.1000    0.0041
-    ##     40        0.5372             nan     0.1000    0.0009
-    ##     60        0.5091             nan     0.1000    0.0004
-    ##     80        0.4928             nan     0.1000    0.0001
-    ##    100        0.4776             nan     0.1000    0.0001
-    ##    120        0.4683             nan     0.1000    0.0001
-    ##    140        0.4595             nan     0.1000    0.0000
-    ##    150        0.4560             nan     0.1000    0.0001
+    ##      1        1.3113             nan     0.1000    0.0223
+    ##      2        1.2715             nan     0.1000    0.0197
+    ##      3        1.2392             nan     0.1000    0.0163
+    ##      4        1.2091             nan     0.1000    0.0148
+    ##      5        1.1819             nan     0.1000    0.0132
+    ##      6        1.1586             nan     0.1000    0.0111
+    ##      7        1.1366             nan     0.1000    0.0106
+    ##      8        1.1169             nan     0.1000    0.0095
+    ##      9        1.1003             nan     0.1000    0.0082
+    ##     10        1.0854             nan     0.1000    0.0069
+    ##     20        0.9809             nan     0.1000    0.0038
+    ##     40        0.8917             nan     0.1000    0.0013
+    ##     60        0.8453             nan     0.1000    0.0007
+    ##     80        0.8158             nan     0.1000    0.0008
+    ##    100        0.7964             nan     0.1000    0.0003
+    ##    120        0.7810             nan     0.1000    0.0004
+    ##    140        0.7681             nan     0.1000    0.0000
+    ##    150        0.7625             nan     0.1000    0.0002
     ## 
     ## - Fold5: shrinkage=0.1, interaction.depth=3, n.minobsinnode=10, n.trees=150 
     ## Aggregating results
     ## Selecting tuning parameters
     ## Fitting n.trees = 150, interaction.depth = 3, shrinkage = 0.1, n.minobsinnode = 10 on full training set
     ## Iter   TrainDeviance   ValidDeviance   StepSize   Improve
-    ##      1        1.2416             nan     0.1000    0.0563
-    ##      2        1.1490             nan     0.1000    0.0462
-    ##      3        1.0711             nan     0.1000    0.0383
-    ##      4        1.0055             nan     0.1000    0.0328
-    ##      5        0.9501             nan     0.1000    0.0274
-    ##      6        0.9035             nan     0.1000    0.0233
-    ##      7        0.8624             nan     0.1000    0.0202
-    ##      8        0.8264             nan     0.1000    0.0180
-    ##      9        0.7958             nan     0.1000    0.0149
-    ##     10        0.7684             nan     0.1000    0.0137
-    ##     20        0.6170             nan     0.1000    0.0046
-    ##     40        0.5363             nan     0.1000    0.0012
-    ##     60        0.5075             nan     0.1000    0.0005
-    ##     80        0.4933             nan     0.1000    0.0002
-    ##    100        0.4811             nan     0.1000    0.0001
-    ##    120        0.4706             nan     0.1000    0.0002
-    ##    140        0.4630             nan     0.1000    0.0005
-    ##    150        0.4603             nan     0.1000    0.0000
+    ##      1        1.3117             nan     0.1000    0.0224
+    ##      2        1.2716             nan     0.1000    0.0196
+    ##      3        1.2387             nan     0.1000    0.0163
+    ##      4        1.2090             nan     0.1000    0.0144
+    ##      5        1.1821             nan     0.1000    0.0135
+    ##      6        1.1593             nan     0.1000    0.0111
+    ##      7        1.1401             nan     0.1000    0.0095
+    ##      8        1.1209             nan     0.1000    0.0095
+    ##      9        1.1029             nan     0.1000    0.0087
+    ##     10        1.0871             nan     0.1000    0.0079
+    ##     20        0.9840             nan     0.1000    0.0038
+    ##     40        0.8943             nan     0.1000    0.0017
+    ##     60        0.8502             nan     0.1000    0.0007
+    ##     80        0.8206             nan     0.1000    0.0007
+    ##    100        0.8005             nan     0.1000    0.0003
+    ##    120        0.7843             nan     0.1000    0.0002
+    ##    140        0.7717             nan     0.1000    0.0002
+    ##    150        0.7659             nan     0.1000    0.0000
 
     ## Confusion Matrix and Statistics
     ## 
     ##           Reference
     ## Prediction   no  yes
-    ##        no  1999  414
-    ##        yes   65 2522
+    ##        no  1742  546
+    ##        yes  298 2414
     ##                                           
-    ##                Accuracy : 0.9042          
-    ##                  95% CI : (0.8957, 0.9122)
-    ##     No Information Rate : 0.5872          
+    ##                Accuracy : 0.8312          
+    ##                  95% CI : (0.8205, 0.8415)
+    ##     No Information Rate : 0.592           
     ##     P-Value [Acc > NIR] : < 2.2e-16       
     ##                                           
-    ##                   Kappa : 0.8072          
+    ##                   Kappa : 0.657           
     ##  Mcnemar's Test P-Value : < 2.2e-16       
     ##                                           
-    ##             Sensitivity : 0.8590          
-    ##             Specificity : 0.9685          
-    ##          Pos Pred Value : 0.9749          
-    ##          Neg Pred Value : 0.8284          
-    ##              Prevalence : 0.5872          
-    ##          Detection Rate : 0.5044          
-    ##    Detection Prevalence : 0.5174          
-    ##       Balanced Accuracy : 0.9137          
+    ##             Sensitivity : 0.8155          
+    ##             Specificity : 0.8539          
+    ##          Pos Pred Value : 0.8901          
+    ##          Neg Pred Value : 0.7614          
+    ##              Prevalence : 0.5920          
+    ##          Detection Rate : 0.4828          
+    ##    Detection Prevalence : 0.5424          
+    ##       Balanced Accuracy : 0.8347          
     ##                                           
     ##        'Positive' Class : yes             
     ## 
@@ -767,7 +774,7 @@ importance %>% arrange(desc(Importance)) %>%
   theme(axis.text.x=element_text(angle=45,vjust = 1,hjust=1),axis.ticks.x = element_blank()) +ylab("Importance") +ggtitle("Feature Importance for Detecting Opioid Prescription")
 ~~~
 
-![](../../images/Identifying-Opioid-Prescribers/unnamed-chunk-19-1.png)
+![](../images/Identifying-Opioid-Prescribers/creation+analysis_files/unnamed-chunk-19-1.png)
 
 Our best feature was a drug called [Gabapentin](https://www.drugs.com/gabapentin.html), which unsurprisingly is used to treat nerve pain caused by things like shingles. It's not an opiate, but likely gets prescribed at the same time. The `Surgeon` feature we engineered has done quite well. The other drugs are for various conditions including inflamatation, cancer, and athritis among others.
 
@@ -796,6 +803,6 @@ od %>%
   scale_fill_continuous(low='gray85', high='darkred',guide=guide_colorbar(ticks=FALSE,barheight=1,barwidth=10,title.vjust=.8,values=c(0.2,0.3)),name="Deaths per Million") + theme(axis.text=element_blank(),axis.title=element_blank(),axis.ticks=element_blank(),legend.position="bottom",plot.title=element_text(size=20))
 ~~~
 
-![](../../images/Identifying-Opioid-Prescribers/unnamed-chunk-20-1.png)
+![](../images/Identifying-Opioid-Prescribers/creation+analysis_files/unnamed-chunk-20-1.png)
 
 As you can see, it's a serious problem. Maybe we as data scientists have the tools to make a difference.
