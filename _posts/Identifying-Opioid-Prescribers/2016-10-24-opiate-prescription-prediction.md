@@ -13,6 +13,7 @@ Over the past 15 years, deaths from prescription opiates have [quadrupled](https
 Here is a visualization of the distribution of fatal overdose rate across the country. By the end of this post, you'll see exactly how such an image can be built.
 
 ![](../images/Identifying-Opioid-Prescribers/overdose-map.png)
+
 <!-- more -->
 
 The goal of this experiment is to demonstrate the possibility that predictive analytics with machine learning can be used to predict the likelihood that a given doctor is a significant prescriber of opiates. I'll compile a dataset, do some data cleaning and feature engineering, and finally build a predictive model using a gradient boosted classification tree ensemble with `gbm` and `caret` that predicts with &gt;80% accuracy that an arbitrary entry is a significant prescriber of opioids. I'll also do some analysis and visualization of my results combined with those pulled from other sources. If you are interested in the dataset, you can find it on Kaggle [here](https://www.kaggle.com/apryor6/us-opiate-prescriptions).
