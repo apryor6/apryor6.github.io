@@ -53,7 +53,6 @@ library(lme4)
 library(caret)
 
 df <- data.frame(fread("prescriber-info.csv",nrows=-1))
-dim(df)
 ~~~
 
     ## [1] 25000   256
@@ -65,7 +64,6 @@ opioids <- read.csv("opioids.csv")
 opioids <- as.character(opioids[,1])
 opioids <- gsub("\ |-",".",opioids) # replace hyphens and spaces with periods to match the dataset
 df <- df[, !names(df) %in% opioids]
-dim(df)
 ~~~
 
     ## [1] 25000   245
@@ -191,7 +189,6 @@ The credentials are quite the mess. Titles are inconsistently entered with perio
 # 7 years of college down the drain
 df %<>%
   select(-Credentials)
-dim(df)
 ~~~
 
     ## [1] 25000   295
