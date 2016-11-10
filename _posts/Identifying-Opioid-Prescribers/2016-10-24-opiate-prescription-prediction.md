@@ -136,7 +136,7 @@ Looking ahead, I'm going to be interested in the variable importance state-by-st
 df <- cbind(df[names(df)!="State"],dummy(df$State))
 ~~~
 
-Let's look at `Credentials` now
+Let's look at ~Credentials~ now
 
 ~~~ r
 df %>%
