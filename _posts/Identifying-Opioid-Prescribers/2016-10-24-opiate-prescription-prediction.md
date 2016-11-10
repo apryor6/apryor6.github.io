@@ -11,7 +11,8 @@ To that end, the goal of this experiment is to demonstrate the possibility that 
 
 Here is a visualization of the distribution of fatal overdose rate across the country. By the end of this post, you'll see exactly how such an image can be built.
 
-![](../images/Identifying-Opioid-Prescribers/overdose-map.png)
+![](../../images/Identifying-Opioid-Prescribers/overdose-map.png)
+
 <!-- more -->
 
 *Disclaimer I am absolutely not suggesting that doctors who prescribe opiates are culpable for overdoses. These are drugs with true medical value when used appropriately. The idea is rather that a systematic way for identifying sources may reveal trends in particular practices, fields, or regions of the country that could be used effectively to combat the problem.*
@@ -39,8 +40,7 @@ Data Cleaning
 Load the relevant libraries and read the data
 
 ~~~ r
-# setwd('/home/aj/kaggle/Identifying-Opioid-Prescribers')
-setwd('/Users/ajpryor/kaggle/Identifying-Opioid-Prescribers')
+
 library(dplyr)
 library(magrittr)
 library(ggplot2)
@@ -124,12 +124,10 @@ df$State <- droplevels(df$State)
 As a quick sanity check to make sure we still don't have any bogus states, let's pull that table from the web and make sure our abbreviations are valid
 
 ~~~ r
-## This bit of code can't be run on Kaggle, but you can run it locally. 
-
-# library(htmltab)
-# state.abbrevs <- data.frame(htmltab("http://www.infoplease.com/ipa/A0110468.html",which=2))
-# state.abbrevs <- state.abbrevs$Postal.Code
-# if (all(levels(df$State)[levels(df$State)!="other"] %in% state.abbrevs)){print("All abbreviations are valid")} else{print("Uh oh..")}
+library(htmltab)
+state.abbrevs <- data.frame(htmltab("http://www.infoplease.com/ipa/A0110468.html",which=2))
+state.abbrevs <- state.abbrevs$Postal.Code
+if (all(levels(df$State)[levels(df$State)!="other"] %in% state.abbrevs)){print("All abbreviations are valid")} else{print("Uh oh..")}
 ~~~
 
 Looking ahead, I'm going to be interested in the variable importance state-by-state, so instead of using a single factor I'll convert to dummy variables so each can be scored separately.
