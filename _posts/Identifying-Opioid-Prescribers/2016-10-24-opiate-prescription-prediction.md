@@ -368,7 +368,7 @@ train_set <- df[train_ind,]
 test_set  <- df[-train_ind,]
 ~~~
 
-Now we build the model. I'll use a 5-fold cross validation to optimize hyperparameters for the boosted tree ensemble. A downside of trees is they take a while to train (though they predict quickly). For this reason I'll just use the default parameters and scan tree depths of 1-3 and total number of trees 50, 100, and 150. For a production model, one should do a more exhaustive search, but to keep this kernel relatively lightweight this is fine. I'll run this and go grab some coffee.
+Now we build the model. I'll use a 5-fold cross validation to optimize hyperparameters for the boosted tree ensemble. A downside of trees is they take a while to train (though they predict quickly). A production model would call for an exhaustive hyperparameter search, but to keep the running time of this script reasonable I will search only a few parameters. I'll run this and go grab some coffee.
 
 ~~~ r
 objControl <- trainControl(method='cv', number=5, returnResamp='none', summaryFunction = twoClassSummary, classProbs = TRUE, verboseIter = TRUE,savePredictions = TRUE)
