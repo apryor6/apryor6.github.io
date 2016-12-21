@@ -15,7 +15,7 @@ to clean the data in the form of Kaggle kernels early in the competition. You vi
 [Python](https://www.kaggle.com/apryor6/santander-product-recommendation/detailed-cleaning-visualization-python) or [R](https://www.kaggle.com/apryor6/santander-product-recommendation/detailed-cleaning-visualization).
 The full source code is also available on [Github](https://github.com/apryor6/Kaggle-Competition-Santander) along with instructions for running it.
 
-<!--more-->
+<!-- more -->
 
 ## Overview
 
