@@ -7,7 +7,7 @@ tags: [Machine Learning, R, Kaggle, competition, Santander, Product, Recommendat
 
 --------------------
 
-This is a detailed description of our best solution to the [Santander Product Recommendation](https://www.kaggle.com/c/santander-product-recommendation) 
+This is a detailed description of our solution to the [Santander Product Recommendation](https://www.kaggle.com/c/santander-product-recommendation) 
 competition hosted by [Kaggle](http://www.kaggle.com). The $60,000 challenge was to produce a recommendation 
 system for Santander Banks, which is a global provider of a number of financial services. For this competition I teamed up with my good friend and fellow data scientist Matt -- 
 you can check out his blog [here](http://statmills.com). I publicly released the code I used
