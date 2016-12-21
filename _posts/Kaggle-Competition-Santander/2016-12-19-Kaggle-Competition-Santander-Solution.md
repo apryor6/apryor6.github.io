@@ -174,6 +174,7 @@ Engineered numerical features:
 5. months.since.owned - the number of months since each product was last owned (22 features)   
 
 ## Validation Strategy 
+
 The validation strategy changed depending on which methods were being used.
 Earlier in the competition, my strategy was to train on June 2015 only. Here, I split the data into
 a 75/25% train/test split, and computed the MAP@7 on the holdout. Another model was then trained
@@ -188,7 +189,9 @@ As the testing dataset contains about a million rows, only around 30,000 of them
 a purchase and thus potentially contribute to the score. Since the leaderboard is only computed on 30% of that,
 it means less than 10,000 accounts are contributing to the public scores, so there aren't really that many samples. These two effects made it quite hard to gauge
 improvements, and resulted in myself, along with likely many others, trusting feedback from the public leaderboard 
-more than local validation. Overfitting is of course a real danger here, but I didn't see a way around it.
+more than local validation. Overfitting is of course a real danger here, but I didn't see a way around it.  
+
+All hyperparameters for the models as well as the blending weights were optimized based upon this CV method.
 
 Code Walkthrough
 ----------------
