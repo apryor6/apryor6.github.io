@@ -948,7 +948,7 @@ create.lag.feature <- function(dt, # should be a data.table!
 *Now I use that function to create lagged features of `ind_actividad_cliente`, the customer activity index. For a few percent of customers I noticed that `ind_actividad_cliente` was almost perfectly correlated with one of a few products (particularly `ind_tjcr_fin_ult1` (credit card), `ind_cco_fin_ult1` (current accounts), and `ind_recibo_ult1` (debit account)). I think this is actually a leak in the dataset, as it appears such a customer was marked as active because they used a product. Therefore, I thought this was going to be an extremely powerful feature, but it turned out to not provide much, if any, benefit. My conclusion was that although this was a useful predictor for that few percent of customers, the problem is being unable to identify which accounts followed this trend. To me it seems `ind_actividad_cliente` is recorded with high inconsistency. Some customers own many products and are marked inactive, while others are marked active but own nothing. Maybe one of the teams who outperformed us figured out how to utilize this information.*
 
 ~~~ r
-source('~/kaggle/competition-santander/project/Santander/lib/create-lag-feature.R')
+source('project/Santander/lib/create-lag-feature.R')
 df <- as.data.table(df)
 df <- create.lag.feature(df,'ind_actividad_cliente',1:11,na.fill=0)
 ~~~
@@ -1543,52 +1543,6 @@ purchase.frequencies <- purchase.frequencies %>%
   dplyr::mutate(num.transactions = cumsum(num.transactions))
 write.csv(purchase.frequencies,"purchase.frequencies.csv",row.names=FALSE)
 
-~~~
-
-### Creating Lag Features
-Soon after discovering that lagged product ownership was a useful feature (i.e. whether or not a product was owned
-1,2,3,4,etc months ago), I figured it was possible to use other lagged features. Here is a function
-that makes it easy to add lagged features. The idea is to join the data by account id, `ncodpers`,
-and to match the month with the lag month. For example, to add a 2-month lag feature to an
-observation in month 5, we want to extract the value of `feature.name` at month 3.
-
-~~~ r
-# create-lag-feature.R
-
-create.lag.feature <- function(dt, # should be a data.table!
-                               feature.name, # name of the feature to lag
-                               months.to.lag=1,# vector of integers indicating how many months to lag
-                               by=c("ncodpers","month.id"), # keys to join data.tables by
-                               na.fill = NA)  
-  {
-  # get the feature and change the name to avoid .x and .y being appending to names
-  dt.sub <- dt[,mget(c(by,feature.name))]
-  names(dt.sub)[names(dt.sub) == feature.name] <- "original.feature"
-  original.month.id <- dt.sub$month.id
-  added.names <- c()
-  for (month.ago in months.to.lag){
-    print(paste("Collecting information on",feature.name,month.ago,"month(s) ago"))
-    colname <- paste("lagged.",feature.name,".",month.ago,"months.ago",sep="")
-    added.names <- c(colname,added.names)
-    # This is a self join except the month is shifted
-    dt.sub <- merge(dt.sub,
-                    dt.sub[,.(ncodpers,
-                                        month.id=month.ago+original.month.id,
-                                        lagged.feature=original.feature)],
-                    by=by,
-                    all.x=TRUE,
-                    sort=FALSE)
-    names(dt.sub)[names(dt.sub)=="lagged.feature"] <- colname
-    # dt.sub[[colname]][is.na(dt.sub[[colname]])] <- dt.sub[["original.feature"]][is.na(dt.sub[[colname]])]
-  }
-  df <- merge(dt,
-              dt.sub[,c(by,added.names),with=FALSE],
-              by=by,
-              all.x=TRUE,
-              sort=FALSE)
-  df[is.na(df)] <- na.fill
-  return(df)
-}
 ~~~
 
 ### Number of months since product was last owned
