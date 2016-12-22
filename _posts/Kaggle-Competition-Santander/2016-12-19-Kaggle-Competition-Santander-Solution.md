@@ -106,7 +106,7 @@ The third realization was that the most useful features were those related to pr
 ownership. After looking at the feature importance outputted by XGBoost, I added the product 
 ownership status for each of the previous 2-5 months as features in addition to the most 
 recent month and applied the repeated single-class classification strategy to produce a MAP@7 greater than 0.03 with a single model, which 
-would have resulted in a *(might have to edit here after final results)*top 100 finish and a bronze medal. These lagged ownership features
+would have resulted in a top 100 finish and a bronze medal. These lagged ownership features
 were limited to 5 months because the earliest data was from January 2015 and thus this was the 
 furthest back we could go. If I were actually being contracted by Santander to build a 
 recommendation system, this is likely where I would have stopped. Estimates of the maximum possible
@@ -143,15 +143,15 @@ producing all of these follows.
 
 Base categorical features:  
 1. sexo                   - gender  
-2. ind_nuevo     		  - is the customer new?  
-3. ind_empleado  		  - customer employee status  
+2. ind\_nuevo     		  - is the customer new?  
+3. ind\_empleado  		  - customer employee status  
 4. segmento     		  - segmentation  
 5. nomprov    			  - Province name  
 6. indext      		 	  - Foreigner index  
 7. indresi     			  - Residence index  
 8. indrel       		  - primary customer at beginning but not end of month  
-9. tiprel_1mes   		  - Customer relation type at the beginning of the month  
-10. ind_actividad_cliente - customer active?  
+9. tiprel\_1mes   		  - Customer relation type at the beginning of the month  
+10. ind\_actividad\_cliente - customer active?  
 
 Base numerical features:  
 1. age        - age in years  
@@ -168,7 +168,7 @@ Engineered categorical features:
 
 Engineered numerical features:  
 1. purchase.frequency - the number of times each product has been purchased (22 features)  
-2. total_products     - the total number of products owned 1-11 months ago (11 features)  
+2. total\_products     - the total number of products owned 1-11 months ago (11 features)  
 3. num.transactions   - the total number of transaction 1-11 months ago (11 features). A transaction is defined as adding *or* dropping a product  
 4. num.purchases      - the total number of products added 1-11 months ago (11 features)  
 5. months.since.owned - the number of months since each product was last owned (22 features)   
