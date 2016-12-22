@@ -1,6 +1,6 @@
 ---
 layout: dark-post
-title: Santander Product Recommendation Competition Solution (R)
+title: Santander Product Recommendation Competition Solution (Top 1.1%)
 description: "Explanation of features and code used to make them"
 tags: [Machine Learning, R, Kaggle, competition, Santander, Product, Recommendation]
 ---
@@ -10,7 +10,7 @@ tags: [Machine Learning, R, Kaggle, competition, Santander, Product, Recommendat
 This is a detailed description of our solution to the [Santander Product Recommendation](https://www.kaggle.com/c/santander-product-recommendation) 
 competition hosted by [Kaggle](http://www.kaggle.com). The $60,000 challenge was to produce a recommendation 
 system for Santander Banks, which is a global provider of a number of financial services. For this competition I teamed up with my good friend and fellow data scientist Matt -- 
-you can check out his blog [here](http://statmills.com). I publicly released the code I used
+you can check out his blog [here](http://statmills.com). We ended up placing 21st out of 1836 teams. I publicly released the code I used
 to clean the data in the form of Kaggle kernels early in the competition. You view that either in
 [Python](https://www.kaggle.com/apryor6/santander-product-recommendation/detailed-cleaning-visualization-python) or [R](https://www.kaggle.com/apryor6/santander-product-recommendation/detailed-cleaning-visualization).
 The full source code is also available on [Github](https://github.com/apryor6/Kaggle-Competition-Santander) along with instructions for running it.
