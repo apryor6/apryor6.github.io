@@ -19,7 +19,7 @@ The full source code is also available on [Github](https://github.com/apryor6/Ka
 
 ## Overview
 
-The goal of this competition was to take an ~13.6 million row dataset containing information about customers of 
+The goal of this competition was to take an approximately 13.6 million row dataset containing information about customers of 
 Santander Banks between January 2015 and May 2016 and to predict which products they would purchase in 
 June 2016, which was withheld from us. The purpose of this is so that Santander can build a better recommendation system
 and presumably do a better job of advertising services to the people that are likely to use them, not only
@@ -363,7 +363,13 @@ ggplot(data=df,aes(x=age)) +
 
 In addition to NA, there are people with very small and very high ages. It's also interesting that the distribution is bimodal. There are a large number of university aged students, and then another peak around middle-age. Let's separate the distribution and move the outliers to the mean of the closest one. I also add a feature indicating in which month the person's birthday is -- maybe you are more likely to add products then.   
   
-*I later changed missing values to -1 as a flag and got **slightly** better results. It seems some predictive power is contained in the lack of information itself. I also later discovered that the first 6 months of this dataset appear to be backfilled and are stagnant. For example, `antiguedad` (the number of months an account has existed) does not increment at all for the first 6 months. Here I use the person's birthday to backcorrect the ages. This might seem like a small thing to do, but there is a harsh cutoff at age 20 for ownership of junior accounts, so this little detail matters.*
+*I later changed missing values to -1 as a flag and got __slightly__ better results. 
+It seems some predictive power is contained in the lack of information itself. I also
+later discovered that the first 6 months of this dataset appear to be backfilled and are stagnant. 
+For example, `antiguedad` (the number of months an account has existed) does not increment at all
+for the first 6 months. Here I use the person's birthday to backcorrect the ages. This might
+seem like a small thing to do, but there is a harsh cutoff at age 20 for ownership of junior 
+accounts, so this little detail matters.*
 
 ~~~ r
 # df$age[(df$age < 18)] <- median(df$age[(df$age >= 18) & (df$age <=30)],na.rm=TRUE)
@@ -438,7 +444,12 @@ summary(df[is.na(df$antiguedad),]%>%select(ind_nuevo))
     ##  Max.   :1
 
 
-*This feature is the number of months since the account joined and suffers from the stagnation issue I mentioned previously in the first 6 months, and here I correct it. Many customers have a valid value for `fecha_alta`, the month that they joined, and this can be used to recompute `antiguedad`. For entries without `fecha_alta`, I assume the value of `antiguedad` at month 6 is correct and correct the rest accordingly.
+*This feature is the number of months since the account joined and suffers
+from the stagnation issue I mentioned previously in the first 6 months, 
+and here I correct it. Many customers have a valid value for `fecha_alta`, 
+the month that they joined, and this can be used to recompute `antiguedad`. 
+For entries without `fecha_alta`, I assume the value of `antiguedad` at month 
+6 is correct and correct the rest accordingly.*
 
 ~~~ r
 new.antiguedad <- df %>% 
