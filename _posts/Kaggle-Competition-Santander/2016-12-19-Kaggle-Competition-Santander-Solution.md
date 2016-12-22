@@ -927,8 +927,8 @@ create.lag.feature <- function(dt, # should be a data.table!
     # This is a self join except the month is shifted
     dt.sub <- merge(dt.sub,
                     dt.sub[,.(ncodpers,
-                                        month.id=month.ago+original.month.id,
-                                        lagged.feature=original.feature)],
+                              month.id=month.ago+original.month.id,
+                              lagged.feature=original.feature)],
                     by=by,
                     all.x=TRUE,
                     sort=FALSE)
