@@ -1,7 +1,7 @@
 ---
 layout: dark-post
 title: Santander Product Recommendation Competition Solution (Top 1.1%)
-description: "Explanation of features and code used to make them"
+description: "Solution Details"
 tags: [Machine Learning, R, Kaggle, competition, Santander, Product, Recommendation]
 ---
 
