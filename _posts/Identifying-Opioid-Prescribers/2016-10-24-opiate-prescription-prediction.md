@@ -1,6 +1,6 @@
 ---
 layout: dark-post
-title: Combating the Opioid Epidemic with Machine Learning
+title: Combating the Opioid Epidemic with Machine Learning [R]
 description: "Can we save live with machine learning?"
 tags: [Machine Learning, R, Opioid]
 ---
