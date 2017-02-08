@@ -257,7 +257,7 @@ void mexFunction(int nlhs, mxArray *plhs[],int nrhs, const mxArray *prhs[]) {
     y      = mxGetPr(prhs[1]);
     x      = mxGetPr(prhs[2]);
     result = mxGetPr(plhs[0]);
-    splinterp::parallel_interp2(splinter::interp2_F<double>,Matrix, nrows, ncols, x, y, npoints, result, 1);    
+    splinterp::parallel_interp2(splinterp::interp2_F<double>,Matrix, nrows, ncols, x, y, npoints, result, 1);    
 }
 
 ~~~
