@@ -96,7 +96,7 @@ And that's it for the serial implementation.
 ## Parallelization
 Running this function in parallel has the potential to further speed up the code by a factor up to how many cores your machine has. When a computing solution contains a loop whose iterations are completely independent of another such as above, it is known as embarassingly parallel. All we have to do to run this concurrently is to divide up the workload into chunks, and pass these off to separate threads. C++11 makes this even easier by introducing `std::thread`.  
 
-To accomplish this, we write a wrapper that takes in an interpolation function like the one we just wrote and its parameters. Using the number of threads, which is defined by a macro. Wrapping it in `#ifndef/#endif` allows the user to specify a number of threads to be set at compile time with the -D flag.
+To accomplish this, we write a wrapper that takes in an interpolation function like the one we just wrote and its parameters. We then figure out how much work to give to each thread by dividing the total work by the number of threads, which is defined by a macro. Wrapping it in `#ifndef/#endif` allows the user to specify a number of threads to be set at compile time with the -D flag.
 
 
 ~~~ c++
