@@ -401,7 +401,7 @@ void ArrayPow2_CUDA(Array2D<T>& in, Array2D<T>& result) {
  it needs, it usually will yell at you for "undefined symbols", meaning that it is looking for an object that
  hasn't been defined.   In C++, there are some ways you can get around this, but usually the easiest solution is 
  to put the full template implementation in the header file. This way the classes that need to be instantiated 
- are guaranteed to be visible at compile tie. With CUDA code this solution doesn't work  
+ are guaranteed to be visible at compile time. With CUDA code this solution doesn't work 
  because the compilation of CUDA and C++ by `nvcc` are inherently decoupled, so there must be multiple files.
  
  The solution is to forcibly
@@ -411,8 +411,7 @@ void ArrayPow2_CUDA(Array2D<T>& in, Array2D<T>& result) {
 ## Putting it all together 
 
 Now that we have implemented our CUDA template specialization and kernel, 
-we want to tie all of this back into our original library in a way that doesn't
-add any CUDA dependencies to users who just want to continue using the CPU-only version 
+we want to tie all of this back into our original library in a way that doesn't add any CUDA dependencies to users who just want to continue using the CPU-only version 
 and provides a way to choose between CPU or GPU implementations at runtime without demanding
  that developers go through their code and change function names everywhere. The solution
  I used for integrating the GPU code is the following: 
@@ -448,8 +447,8 @@ using namespace std;
 
 int main(int argc, char** argv) {
 #ifdef ENABLE_GPU
-    if (argc>1 && !strcmp(argv[1],"gpu")){
-        if (strcmp(argv[2],"1")){
+    if (argc>2 && !strcmp(argv[1],"gpu")){
+        if (!strcmp(argv[2],"1")){
             ArrayPow2 = ArrayPow2_CUDA;
         } else{
             ArrayPow2 = ArrayPow2_CPU;
@@ -465,8 +464,11 @@ int main(int argc, char** argv) {
     Array2D<float> arr(new float[120], 60, 2);
     int a = 2;
     for (auto& i:arr)i=++a;
-
+    cout << "arr[0]" << *arr.begin()<< endl;
     Array2D<float> result(arr);
+    cout << "arr[0]" << *arr.begin()<< endl;
+    cout << "result[0]" << *result.begin()<< endl;
+
     ArrayPow2(arr, result);
 
     cout << "arr[0]   = " << *arr.begin() << endl;
@@ -496,7 +498,7 @@ With this setup we now have three ways to compile and run the program:
 is now to run on the GPU.
 3. Run the program compiled in option 2) on the CPU by adding `gpu 0` to the command line call
 
-Here's the output from each of these (I added a line to ArrayPow2_CPU and ArrayPow2_GPU to print
+Here's the output from each of these (I added a line to ArrayPow2\_CPU and ArrayPow2\_GPU to print
 which version was triggered):
 
 ~~~ 
