@@ -309,19 +309,22 @@ for `Array2D<T>` that took in another `Array2D<T>` I have
  #define BLOCK_SIZE 1024
  
 template <class T>
+__global__ void pow2(T* in, T* out, size_t N){
+  int idx = threadIdx.x + blockIdx.x*blockDim.x;
+  if (idx < N)out[idx] = in[idx] * in[idx];
+}
+  
+  
+template <class T>
 void ArrayPow2_CUDA(Array2D<T>& in, Array2D<T>& result) {
+  std::cout << "Using the GPU version\n";
   Array2D< Cutype<T> > in_d(in);
   size_t N = in.size();
   pow2 <<< (N - 1) / BLOCK_SIZE + 1, BLOCK_SIZE >>> (in_d.begin(), in_d.begin(), in.size());
   cudaMemcpy(in.begin(), in_d.begin(), sizeof(T) * N, cudaMemcpyDeviceToHost);
 }
 
- template <class T>
- __global__ void pow2(T* in, T* out, size_t N){
-     int idx = threadIdx.x + blockIdx.x*blockDim.x;
-     if (idx < N)out[idx] = in[idx] * in[idx];
- }
- 
+
 
  
  template void ArrayPow2_CUDA(Array2D<float>&, Array2D<float>&);
@@ -447,7 +450,9 @@ could be millions of lines long, and contain many calls to a function like
 `ArrayPow2`, but once it is replaced with a function pointer that is set to the GPU implementation, the entire project would immediately use the GPU version 
  with no further changes. Now, in this example I only considered a single function, but the extension
  to many is trivial. All that is required is configuration and assignment of the function pointers at the beginning of the end-users program. 
- Furthermore, this could be done however the developer wanted. For example, a check 
+ Furthermore, this could be done however the developer wanted.   
+ 
+ For example, a check 
  could be added for the array size, and the CPU or GPU version alternatively used based
  on optimizaton/tuning results. Another use case is if code was being run on a large 
  cluster where some nodes have GPUs, but others do not. A simple query can be run to check if a valid
