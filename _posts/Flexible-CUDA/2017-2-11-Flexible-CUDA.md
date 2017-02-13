@@ -1,6 +1,6 @@
 ---
 layout: dark-post
-title: The CPU/GPU Switcheroo&#58; Flexible Extension of C+ Template Libraries with CUDA
+title: The CPU/GPU Switcheroo&#58; Flexible Extension of C++ Template Libraries with CUDA
 description: "Functional Programming Techniques and Template Specialization in CUDA"
 tags: [C++, CUDA, NVIDIA, GPU, Software Engineer, Functional Programming]
 ---
@@ -9,19 +9,64 @@ Consider the following scenario. You are a developer for a large C++ template li
 
 <!-- more -->
 
-A really bad way would be to maintain two separate projects. A better way would be to provide compile-time options to either target the GPU or CPU implementations of each function; however, that would force users to pick a version and stick with it, with recompilation required to change targets. Furthermore, a function might run faster on the CPU for small array sizes, and faster on the GPU for large ones, so ideally the user would have access to both implementations. Okay, so what if we just provide two functions `foo_cpu()` and `foo_gpu()` so that the developer can choose which version of `foo()` to use? This solution is close to a good answer, but without one additional improvement you're now expecting somebody to go through their (potentially huge) codebase and change function names and introduce extra logical statements. As we will see, there is a functional programming solution that allows for infectious runtime determination of implementation that requires minimal change to existing codebases.  
+A really bad way would be to maintain two separate 
+projects. A better way would be to provide
+compile-time options to either target the 
+GPU or CPU implementations of each function;
+however, that would force users to pick a 
+version and stick with it, with recompilation 
+required to change targets. Furthermore, a 
+function might run faster on the CPU for small
+array sizes, and faster on the GPU for large 
+ones, so ideally the user would have access to both
+implementations. Okay, so what if we just provide 
+two functions `foo_cpu()` and `foo_gpu()` so that 
+the developer can choose which version of `foo()` 
+to use? This solution is close to a good answer, 
+but without one additional improvement you're now
+expecting somebody to go through their (potentially
+huge) codebase and change function names and possibly
+introduce extra logical statements. As we will 
+see, there is a functional programming solution 
+that allows for infectious runtime determination 
+of implementation that requires minimal change to
+    existing codebases.  
 
-A second concern relates to the development of the CUDA implementation of the library itself. CUDA is a very low-level language, and if our library has complex data structures than it can be difficult to manage data allocation and memory transfers. On the host-side (CPU), C++ classes make development easier by abstracting away this type of housekeeping, and ideally we want to do the same on the device-side (GPU) so that we can push our accelerated library out faster. With template metaprogramming, we can create a CUDA-interface to our existing classes that greatly simplifies GPU development.  
+A second concern relates to the development of the CUDA 
+implementation of the library itself. CUDA is a 
+very low-level language, and if our library has 
+complex data structures than it can be difficult 
+to manage data allocation and memory transfers. 
+On the host-side (CPU), C++ classes make development
+easier by abstracting away this type of housekeeping,
+and ideally we want to do the same on the 
+device-side (GPU) so that we can push our
+accelerated library out faster. With specialized template
+metaprogramming, we can create a CUDA-interface 
+to our existing classes that greatly simplifies 
+GPU development by abstracting away the tedium of 
+dealing with low-level GPU memory management 
+with `cudaMalloc`, `cudaMemcpy`, etc.
 
 In the rest of this article I'll walk through an example of how this problem might come up in practice and how to solve it. 
 
 ## Demonstration
-To demonstrate solutions to both of these problems (implementing code for the GPU and template specialization for the GPU), let's consider a simple example of a template library that works on 2D arrays, and a function that squares every element in the array.
+To demonstrate solutions to both of these topics, let's consider a simple example of a template library that works on 2D arrays, 
+and a single function that squares every element in the array.
+The actual CUDA code for this is trivial, but is not the 
+main focus. The software design concept is more important.
 
 ### The C++ Code
 First, we build a basic 2D array class.   
 
-*Disclaimer: This is an example and not intended to be used in a real library without further modification. You generally don't want to be passing/freeing raw pointers in constructors/destructors without some sort of reference counting mechanism. There's no move constructor, no operator[] overload, error checking, etc.*  
+*Disclaimer: This is an example and not intended 
+to be used in a real library without further
+modification. You generally don't want to be 
+passing/freeing raw pointers in 
+constructors/destructors without some sort of 
+reference counting mechanism. There's also no move 
+constructor, no operator[] overload, error 
+checking, etc.*  
 
 
 ~~~ c++
@@ -102,7 +147,8 @@ void ArrayPow2(Array2D<T>& in, Array2D<T>& result){
 }
 ~~~
 
-`std::transform` applies the function-like object in the 4th argument to every element from the first to second arguments, and stores the results in the 3rd. Here I used a lambda function.  
+`std::transform` applies the function-like object in the 4th argument to every element from the first to second arguments, and stores the results in the 3rd. 
+Here I used a lambda function to express the squaring operation.  
 
 A simple driver program verifies that what we have 
 so far is okay:
@@ -135,7 +181,7 @@ arr[0]^2 = 9
 
 
 To make developing/transcribing the CUDA version of our code easier,
-we want to implement a CUDA version of our `Array2D` class. This can
+we first want to implement a CUDA version of our `Array2D` class. This can
 be done by creating a specialization of `Array2D` for CUDA. To differentiate
 between the CPU and GPU versions of `Array2D`, I introduce a trivial class 
 that just contains a single value. 
@@ -147,10 +193,17 @@ struct Cutype{
 };
 ~~~
 
-The effect this has is subtle, but powerful. With no additional overhead,
-I can now create an `Array2D< Cutype<float> >` that will instantiate an entirely
+The effect this has is subtle, but powerful. I can now create an `Array2D< Cutype<float> >` that will instantiate an entirely
 different class than `Array2D<float>`, and in this case that specialzation
- will be used to abstract away calls to `cudaMalloc`, `cudaMemcpy`, etc.
+will be used to abstract away calls to `cudaMalloc`, `cudaMemcpy`, etc. Both
+will contain data of type `float`, but you might also decide that
+the CUDA versions store data as `Cutype <float>`. There is no additional overhead
+for the extra layer of this datatype, it gets optimized away in the compiler
+and replaced as `float` (you can check the outputted assembly if you don't believe me).
+An additional positive side effect of this is that `Cutype` then serves
+as a compile-time error boundary to prevent accidental assignment or 
+dereferencing of data on the device from the host, which results in a 
+segmentation fault at runtime.
  
  Here is the full specialization (as before this class
  is incomplete, but contains the code relevant to this discussion):
@@ -279,7 +332,7 @@ for `Array2D<T>` that took in another `Array2D<T>` I have
  Other than the way this object is built, the way you interact with 
  such a class is largely unchanged.
  
- ## CUDA Implementation
+## CUDA Implementation
  
  Although we have written a bunch of code for the GPU, we haven't actually
  written any CUDA yet -- we've just used the CUDA runtime API. To make a 
