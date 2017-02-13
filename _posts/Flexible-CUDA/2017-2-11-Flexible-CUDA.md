@@ -57,7 +57,9 @@ In the rest of this article I'll walk through an example of how this problem mig
 To demonstrate solutions to both of these topics, let's consider a simple example of a template library that works on 2D arrays, 
 and a single function that squares every element in the array.
 The actual CUDA code for this is trivial, but is not the 
-main focus. The overall software design concept is more important.
+main focus. The overall software design concept is more important.  
+
+*You can find the code for this article [here](https://github.com/apryor6/blog-flexible-cuda)*
 
 ### The C++ Code
 First, we build a basic 2D array class.   
