@@ -3,7 +3,10 @@ layout: dark-post
 title: The CPU/GPU Switcheroo&#58; Flexible Extension of C++ Template Libraries with CUDA
 description: "Functional Programming Techniques and Template Specialization in CUDA"
 tags: [C++, CUDA, NVIDIA, GPU, Software Engineer, Functional Programming]
+categories: [image]
 ---
+<figure class="half center">
+        <a href="/images/Flexible-CUDA/NVIDIA-CUDA.jpg"><img src="/images/Flexible-CUDA/NVIDIA-CUDA.jpg" alt=""></a> </figure class="half center">
 
 Consider the following scenario. You are a developer for a large C++ template library that performs computationally intensive processing on custom, complex data types, and you want to accelerate some of the slower functions with GPUs through CUDA. However, you don't want to suddenly introduce the CUDA toolkit as a hard dependency because you expect many of your users will continue to use CPU-only implementations. You simply want to provide GPU acceleration to those who wish to leverage it. What's the best way to accomplish this from a software engineering perspective?  
 
@@ -498,7 +501,7 @@ With this setup we now have three ways to compile and run the program:
 is now to run on the GPU.
 3. Run the program compiled in option 2) on the CPU by adding `gpu 0` to the command line call
 
-Here's the output from each of these (I added a line to ArrayPow2\_CPU and ArrayPow2\_GPU to print
+Here's the output from each of these (I added a line to `ArrayPow2_CPU` and `ArrayPow2_GPU` to print
 which version was triggered):
 
 ~~~ 
