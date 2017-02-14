@@ -543,7 +543,7 @@ could be millions of lines long, and contain many calls to a function like
  
  For example, a check 
  could be added for the array size, and the CPU or GPU version alternatively used based
- on optimizaton/tuning results. Another use case is if code was being run on a large 
+ on optimization/tuning results. Another use case is if code was being run on a large 
  cluster where some nodes have GPUs, but others do not. A simple query can be run to check if a valid
  GPU is found and to use it, and then if not to fall back to the CPU version. A data center could be concerned
  about power consumption and dynamically change where data is processed in real-time. There are a lot of
