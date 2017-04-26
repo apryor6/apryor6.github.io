@@ -518,8 +518,8 @@ arr[0]^2 = 9
 $  make gpu
 $ ./demo
 Using the GPU version
-arr[0]   = 0
-arr[0]^2 = 3
+arr[0]   = 3
+arr[0]^2 = 9
 ~~~
 
 ~~~ 
