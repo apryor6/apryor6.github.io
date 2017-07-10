@@ -10,7 +10,7 @@ share: true
 
 2. [**Pryor Jr, A.** et al. GENFIRE: A generalized Fourier iterative reconstruction algorithm for high-resolution 3D imaging. *ArXiv Prepr.* ArXiv170604309 (2017).](https://arxiv.org/abs/1706.04309)
 
-3. [**Pryor, Jr.** et al. A Streaming Multi-GPU Implementation of Image Simulation Algorithms for Scanning Transmission Electron Microscopy. *ArXiv Prepr.* ArXiv170608563 (2017).](https://arxiv.org/abs/1706.08563)
+3. [**Pryor, Jr.** et al. A streaming multi-GPU implementation of image simulation algorithms for scanning transmission electron microscopy. *ArXiv Prepr.* ArXiv170608563 (2017).](https://arxiv.org/abs/1706.08563)
 
 4. [Yang, Y. et al. Deciphering chemical order/disorder and material properties at the single-atom level. *Nature* 542. 75-79 (2017)](http://www.nature.com/nature/journal/v542/n7639/abs/nature21042.html)
 
