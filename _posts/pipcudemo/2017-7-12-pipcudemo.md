@@ -5,6 +5,8 @@ description: "Accessing CUDA code through Python"
 tags: [Python, C++, CUDA, NVIDIA, GPU]
 ---
 
+`Test`
+
 *The code for this post is located [here](https://github.com/apryor6/pipcudemo). To run the code you will need a CUDA-enabled GPU and an installation of the [CUDA toolkit](https://developer.nvidia.com/cuda-downloads)*
 
 Python is easy. GPUs are fast. Combining Python and CUDA is a fantastic way to leverage the performance benefits and parallelism inherent in GPUs with all of the syntactic niceties of Python. However, there is a potential snag. If the package is written purely in Python, C, or C++, distribution is easily accomplished using setuptools and users can install your package and its dependencies with either `pip install` or through the `setup.py` script. Unfortunately, `setuptools` is not currently compatible with NVIDIA's compiler, `nvcc`, which is necessary for compiling CUDA code. So how can we make a Python package that involves CUDA? One solution to this problem is to compile the CUDA code into a shared library which is then linked against by the Python package just like any other C/C++ library. In this tutorial I will walk through all of the steps necessary to write a C++/CUDA library and then to create a Python extension package that can be uploaded to PyPi and subsequently installed by users with `pip`. I'm a big fan of [CMake](https://cmake.org/), and will use it to build the shared library.   
