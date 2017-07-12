@@ -5,7 +5,13 @@ description: "Accessing CUDA code through Python"
 tags: [Python, C++, CUDA, NVIDIA, GPU]  
 ---  
 
-`Test`
+~~~ c++
+int main(){
+	std::cout
+}
+~~~
+
+inline code error `Test` hmm
 
 *The code for this post is located [here](https://github.com/apryor6/pipcudemo). To run the code you will need a CUDA-enabled GPU and an installation of the [CUDA toolkit](https://developer.nvidia.com/cuda-downloads)*
 
