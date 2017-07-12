@@ -64,7 +64,6 @@ timezone:    America/California
 locale:      en_US
 future:      true
 highlighter: rouge
-# markdown:    redcarpet
 markdown: kramdown
 gems:
   - jekyll-sitemap
