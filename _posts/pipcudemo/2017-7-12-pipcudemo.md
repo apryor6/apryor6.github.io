@@ -1,9 +1,4 @@
----
-layout: dark-post  
-title: Building a pip-installable Python package that invokes custom CUDA code [Python/C++/CUDA]  
-description: "Accessing CUDA code through Python"  
-tags: [Python, C++, CUDA, NVIDIA, GPU]  
----  
+
 
 ~~~ c++
 int main(){
