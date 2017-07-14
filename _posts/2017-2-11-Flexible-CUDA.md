@@ -1,10 +1,9 @@
 ---
-layout: dark-post
-title: The CPU/GPU Switcheroo&#58; Flexible Extension of C++ Template Libraries with CUDA [C++/CUDA]
-description: "Functional Programming Techniques and Template Specialization in CUDA"
-tags: [C++, CUDA, NVIDIA, GPU, Software Engineer, Functional Programming]
-categories: [image]
+layout: post
+title: The CPU/GPU Switcheroo&#58; Flexible Extension of C++ Template Libraries with CUDA 
+subtitle: Functional Programming Techniques and Template Specialization in CUDA [C++/CUDA]
 ---
+
 <figure class="half center">
         <a href="/images/Flexible-CUDA/NVIDIA-CUDA.jpg"><img src="/images/Flexible-CUDA/NVIDIA-CUDA.jpg" alt=""></a> </figure class="half center">
 
