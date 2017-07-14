@@ -4,8 +4,7 @@ title: The CPU/GPU Switcheroo&#58; Flexible Extension of C++ Template Libraries 
 subtitle: Functional Programming Techniques and Template Specialization in CUDA [C++/CUDA]
 ---
 
-<figure class="half center">
-        <a href="/images/Flexible-CUDA/NVIDIA-CUDA.jpg"><img src="/images/Flexible-CUDA/NVIDIA-CUDA.jpg" alt=""></a> </figure class="half center">
+![CUDA](/images/Flexible-CUDA/NVIDIA-CUDA.jpg)
 
 Consider the following scenario. You are a developer for a large C++ template library that performs computationally intensive processing on custom, complex data types, and you want to accelerate some of the slower functions with GPUs through CUDA. However, you don't want to suddenly introduce the CUDA toolkit as a hard dependency because you expect many of your users will continue to use CPU-only implementations. You simply want to provide GPU acceleration to those who wish to leverage it. What's the best way to accomplish this from a software engineering perspective?  
 
