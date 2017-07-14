@@ -338,7 +338,7 @@ If everything went smoothly, you can run the test program with
 ./test_mylib
 ~~~
 
-and should see some text print including "Test passed." Shared libraries have different names depending on your operating system, but will be something like "libmylib.so", "libmylib.dylib", "mylib.dll", etc. The executable needs to find the shared library, and thus it may be necessary to add the library to the search path. The variable containing paths to shared libraries is `LD_LIBRARY_PATH` on Linux, `DYLD_LIBRARY_PATH` on Mac, and `PATH`.  
+and should see some text print including "Test passed." Shared libraries have different names depending on your operating system, but will be something like "libmylib.so", "libmylib.dylib", "mylib.dll", etc. The executable needs to find the shared library, and thus it may be necessary to add the library to the search path. The variable containing paths to shared libraries is `LD_LIBRARY_PATH` on Linux, `DYLD_LIBRARY_PATH` on Mac, and `PATH` on Windows.  
 
 Now that we have a working CUDA library, we can move on to creating a Python wrapper for it.
 
