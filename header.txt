@@ -1,6 +1,0 @@
----
-layout: dark-post
-title: R-Markdown Sample Project
-description: "A test post"
-tags: [sample post]
----
