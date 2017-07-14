@@ -25,6 +25,8 @@ description: A collection of data science and high-performance computing project
 navbar-links:
   About Me: "aboutme"
   Software:
+    - Prismatic: "http://www.prism-em.com"
+    - GENFIRE: "http://www.genfire-em.com"
     - Github: "http://www.github.com/apryor6"
   Publications: "publications"
 
