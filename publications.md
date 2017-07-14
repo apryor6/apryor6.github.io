@@ -4,8 +4,6 @@ title: Publications
 share: true
 ---
 
-# Publications  
-
 1. [Gallagher-Jones\*, Sato Baraldi Dias\*, **Pryor Jr.**\* et al. Correlative cellular ptychography with functionalized nanoparticles at the Fe L-edge. *Sci. Rep.* **7**, (2017).](http://www.nature.com/articles/s41598-017-04784-5)
 
 2. [**Pryor Jr** et al. GENFIRE: A generalized Fourier iterative reconstruction algorithm for high-resolution 3D imaging. *ArXiv Prepr.* ArXiv17:**0604309** (2017).](https://arxiv.org/abs/1706.04309)
