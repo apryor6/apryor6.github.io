@@ -372,7 +372,7 @@ pcd.add(1,2)
 
 Although the above may sound like a lot of steps, it's actually quite simple using some Python API calls, defined in `Python.h`
 
-~~~ c+++
+~~~ c++
 // pipcudemo/core.cpp
 
 #include "Python.h"
