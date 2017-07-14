@@ -41,8 +41,6 @@ namespace pipcudemo{
 
 Super simple. I wrapped it in a namespace `pipcudemo` to prevent any name conflicts with the standard library and because I think it is clearer.   
 
-The implementation is just a wrapper which invokes a `__host__` CUDA function.  
-
 ### Error checking
 
 CUDA API calls return error codes, and it is the responsibility of the programmer to monitor them. A very helpful macro is discussed [in this StackOverflow thread](https://stackoverflow.com/questions/14038589/what-is-the-canonical-way-to-check-for-errors-using-the-cuda-runtime-api). You just wrap CUDA API calls in this macro and if a failure occurs at runtime it will gracefully exit and print a useful error message.
