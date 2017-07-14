@@ -1,8 +1,7 @@
 ---
-layout: dark-post
-title: Combating the Opioid Epidemic with Machine Learning [R]
-description: "Can we save live with machine learning?"
-tags: [Machine Learning, R, Opioid]
+layout: post
+title: Combating the Opioid Epidemic with Machine Learning 
+subtitle: Can we save live with machine learning? [R]
 ---
 
 Over the past 15 years, deaths from prescription opiates have [quadrupled](https://www.cdc.gov/drugoverdose/epidemic/#), but so has the amount of opiates prescribed. This massive increase in prescription rates has occurred while the levels of pain experienced by Americans has [remain largely unchanged](http://time.com/3663907/treating-pain-opioids-painkillers/). Intuitively it follows that unneccessary prescriptions potentially play a significant role in the increase in opioid overdoses. An effective strategy for identifying instances of overprescribing is therefore a potentially life saving endeavor.

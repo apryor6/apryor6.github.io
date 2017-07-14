@@ -1,10 +1,9 @@
 ---
-layout: dark-post
-title: Accelerating MATLAB with Multithreaded C++ [MATLAB/C++]
-description: "Linking C++ to MATLAB with MEX"
-tags: [MATLAB C++ MEX multithreading parallel software splinterp]
-categories: [image]
+layout: post
+title: Accelerating MATLAB with Multithreaded C++ 
+subtitle: Linking C++ to MATLAB with MEX [MATLAB/C++] 
 ---
+
 <figure class="half center">
 	<a href="/images/matlab.png"><img src="/images/matlab.png" alt=""></a> </figure class="half center">
 	 

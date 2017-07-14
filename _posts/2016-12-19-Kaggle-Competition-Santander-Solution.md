@@ -1,8 +1,7 @@
 ---
-layout: dark-post
-title: Santander Product Recommendation Competition Solution (Top 1.1%) [R]
-description: "Solution Details"
-tags: [Machine Learning, R, Kaggle, competition, Santander, Product, Recommendation]
+layout: post
+title: Santander Product Recommendation Competition Solution 
+subtitle: Solution Details (Top 1.1%) [R]
 ---
 
 --------------------
