@@ -462,6 +462,8 @@ We define our extension module by including the source file and, critically, ind
 `MANIFEST.in` indicates what extra files need to be included in the package that ships to PyPi. We might have files on our local version that we don't want to distribute. The `include` keyword is used in the manifest file like so
 
 ~~~
+// Manifest.in
+
 include myCuda.cu
 include myCuda.cuh
 include mylib.h
