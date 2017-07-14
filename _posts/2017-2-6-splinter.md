@@ -267,7 +267,7 @@ This example just considered the case where the input `data` is real, but in gen
 
 ## Benchmarks
 The following are benchmarks for computing a 1D line of length N from a 2D array of size NxN
-![](../../images/splinterp/linear_time.png)
-![](../../images/splinterp/log_time.png)
-![](../../images/splinterp/ratio.png)
+![](../images/splinterp/linear_time.png)
+![](../images/splinterp/log_time.png)
+![](../images/splinterp/ratio.png)
 
