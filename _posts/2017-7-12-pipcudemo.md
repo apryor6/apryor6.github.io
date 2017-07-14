@@ -403,7 +403,7 @@ static PyObject* pipcudemo_core_divide(PyObject *self, PyObject *args){
 	}
 
 static PyMethodDef pipcudemo_core_methods[] = {
-	{"add",(PyCFunction)pipcudemo_core_add,			  METH_VARARGS, "Add two integers"},
+	{"add",(PyCFunction)pipcudemo_core_add,	METH_VARARGS, "Add two integers"},
 	{"subtract",(PyCFunction)pipcudemo_core_subtract, METH_VARARGS, "Subtract two integers"},
 	{"multiply",(PyCFunction)pipcudemo_core_multiply, METH_VARARGS, "Multiply two integers"},
 	{"divide",(PyCFunction)pipcudemo_core_divide,     METH_VARARGS, "Divide two integers"},
