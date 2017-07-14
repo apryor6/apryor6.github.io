@@ -14,7 +14,7 @@ The functions implemented in this example will be simple to illustrate the metho
 
 ## The CUDA/C++ Code
 
-Our library is going to be a simple calculator that can add, subtract, multiply, and divide two integers. Be aware that this is actually a bad application of GPUs, but it is intended to be a simple example. If you were to instead add two arrays of integers, GPUs are great.  
+Our library is going to be a simple calculator that can add, subtract, multiply, and divide two integers. Be aware that this is actually a bad application of GPUs because nothing is happening in parallel, but this intended as a simple example for learning purposes. If you were to instead add two arrays of integers, GPUs are great.  
 
 What we will do is expose some C++ functions that our Python package will be able to invoke, and the implementation of those functions will invoke CUDA code. The key is that Python never directly sees CUDA. It sees a C++ function signature (which it knows how to work with), but the actual implementation of that function is delayed until the linking process, and by that point the CUDA code will have been compiled.  
 
