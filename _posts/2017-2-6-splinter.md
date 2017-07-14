@@ -4,9 +4,8 @@ title: Accelerating MATLAB with Multithreaded C++
 subtitle: Linking C++ to MATLAB with MEX [MATLAB/C++] 
 ---
 
-<figure class="half center">
-	<a href="/images/matlab.png"><img src="/images/matlab.png" alt=""></a> </figure class="half center">
-	 
+ ![MATLAB](/images/matlab.png)
+
 	 
 [MATLAB](https://www.mathworks.com) is a useful tool for exploratory data analysis, rapid algorithm prototyping, and data visualization that is widely used in science and engineering communities. Some of MATLAB's functions, such as the FFT, are relatively fast. MATLAB uses [FFTW](http://www.fftw.org) under the hood which has separate, optimized routines for performing, for example, real-to-complex transforms faster than the more general complex-to-complex, and MATLAB is smart about figuring out what kind of data you gave it and then choosing the optimal FFTW routine. I actually tested this at one point and found a hand-written C program using FFTW was only about 15% faster than MATLAB, and that was only when I used the optimal routines.
 
