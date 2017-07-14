@@ -520,10 +520,10 @@ pcd.multiply(4,5)
 pcd.divide(999,9)
 ~~~
 
-> 3
-> -2
-> 20
-> 111
+> 3  
+> -2  
+> 20  
+> 111  
 
 ### Troubleshooting
 
