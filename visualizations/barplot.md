@@ -303,7 +303,7 @@ p = sns.barplot(data=df.sort_values('Count', ascending=False),
 ```
 
 
-![png](images/barplot.png)
+![png](figures/barplot.png)
 
 
 
