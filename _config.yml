@@ -24,6 +24,7 @@ description: A collection of data science and high-performance computing project
 # List of links in the navigation bar
 navbar-links:
   About Me: "aboutme"
+  Gallery: "test.md"
   Software:
     - Prismatic: "http://www.prism-em.com"
     - GENFIRE: "http://www.genfire-em.com"
