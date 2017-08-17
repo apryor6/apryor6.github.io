@@ -6,6 +6,8 @@
 %matplotlib inline
 import seaborn as sns
 sns.palplot(sns.color_palette("Paired"))
+for i in range(10):
+    print(i)
 ```
 
 
