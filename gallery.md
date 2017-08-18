@@ -1,5 +1,5 @@
 ## Gallery (Under Construction)
-A collection of data visualizations. Each final image below links to a Jupyter notebook with the corresponding code.
+A collection of data visualizations. Each final image below links to the markdown output of a Jupyter notebook with the corresponding code. Each section is designed to explore mainly the parameters that are specific to one type of plot to avoid repetition (e.g. adjusting labels or titles is the same for all), and at the last cell all of the extra modifications are made to make the final result look nice.
 
 Table of Contents   
 	- [Seaborn](#seaborn)  
@@ -8,7 +8,7 @@ Table of Contents
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
 
 <a name="seaborn"></a>
-### Seaborn
+## Seaborn
 <a name="colors"></a>
 [![png](visualizations/figures/colors.png)](../visualizations/seaborn/colors/colors)
 <a name="barplot"></a>

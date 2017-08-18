@@ -1,5 +1,5 @@
 
-# seaborn.countplot
+# Colors in Seaborn
 ---
 Bar graphs are useful for displaying relationships between categorical data and at least one numerical variable. `seaborn.countplot` is a barplot where the dependent variable is the number of instances of each instance of the independent variable.
 
