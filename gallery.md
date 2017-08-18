@@ -1,11 +1,14 @@
-## Gallery
+## Gallery (Under Construction)
 A collection of data visualizations. Each final image below links to a Jupyter notebook with the corresponding code.
 
 Table of Contents   
-	- [Colors](#colors)   
-	- [Bar plot](#barplot)   
-	- [Count plot](#countplot)   
+	- [Seaborn](#seaborn)  
+	&nbsp;&nbsp;&nbsp;&nbsp; - [Colors](#colors)   
+	&nbsp;&nbsp;&nbsp;&nbsp; - [Bar plot](#barplot)   
+	&nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
 
+<a name="seaborn"></a>
+### Seaborn
 <a name="colors"></a>
 [![png](visualizations/figures/colors.png)](../visualizations/seaborn/colors/colors)
 <a name="barplot"></a>
