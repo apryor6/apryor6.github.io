@@ -12,5 +12,8 @@ Table of Contents
 [![png](visualizations/figures/barplot.png)](../visualizations/seaborn/barplot/barplot)
 <a name="countplot"></a>
 [![png](visualizations/figures/countplot.png)](../visualizations/seaborn/countplot/countplot)
+![png](../tmp/cube.gif)
+![gif](../tmp/cube.gif)
+![tiff](../tmp/cube.gif)
 
 
