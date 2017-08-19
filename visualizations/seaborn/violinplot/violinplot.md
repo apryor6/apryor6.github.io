@@ -17,7 +17,7 @@ plt.rcParams['font.family'] = "serif"
 
 
 ```python
-df = pd.read_csv('../../datasets/movie_metadata.csv')
+df = pd.read_csv('../../../datasets/movie_metadata.csv')
 ```
 
 
@@ -238,24 +238,24 @@ df.head()
       <th>director_name</th>
       <th>genres</th>
       <th>duration</th>
-      <th>Animation</th>
-      <th>Film-Noir</th>
-      <th>News</th>
-      <th>Short</th>
-      <th>Thriller</th>
-      <th>Game-Show</th>
-      <th>Action</th>
-      <th>...</th>
-      <th>Horror</th>
-      <th>Sport</th>
-      <th>Documentary</th>
-      <th>Western</th>
-      <th>Crime</th>
-      <th>Adventure</th>
-      <th>Reality-TV</th>
-      <th>Biography</th>
+      <th>Fantasy</th>
+      <th>War</th>
+      <th>Family</th>
       <th>Mystery</th>
-      <th>Romance</th>
+      <th>Sport</th>
+      <th>History</th>
+      <th>Comedy</th>
+      <th>...</th>
+      <th>Sci-Fi</th>
+      <th>Action</th>
+      <th>Thriller</th>
+      <th>Horror</th>
+      <th>Crime</th>
+      <th>Biography</th>
+      <th>News</th>
+      <th>Music</th>
+      <th>Western</th>
+      <th>Game-Show</th>
     </tr>
   </thead>
   <tbody>
@@ -264,20 +264,20 @@ df.head()
       <td>James Cameron</td>
       <td>Action|Adventure|Fantasy|Sci-Fi</td>
       <td>178.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -288,20 +288,20 @@ df.head()
       <td>Gore Verbinski</td>
       <td>Action|Adventure|Fantasy</td>
       <td>169.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -316,16 +316,16 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -340,13 +340,13 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -370,7 +370,7 @@ df.head()
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -435,33 +435,33 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <th>20174</th>
-      <td>148.0</td>
-      <td>Thriller</td>
+      <th>0</th>
+      <td>178.0</td>
+      <td>Fantasy</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>20175</th>
-      <td>164.0</td>
-      <td>Thriller</td>
+      <th>1</th>
+      <td>169.0</td>
+      <td>Fantasy</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>20200</th>
-      <td>131.0</td>
-      <td>Thriller</td>
+      <th>7</th>
+      <td>100.0</td>
+      <td>Fantasy</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>20201</th>
-      <td>124.0</td>
-      <td>Thriller</td>
+      <th>9</th>
+      <td>153.0</td>
+      <td>Fantasy</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>20202</th>
-      <td>143.0</td>
-      <td>Thriller</td>
+      <th>13</th>
+      <td>151.0</td>
+      <td>Fantasy</td>
       <td>1</td>
     </tr>
   </tbody>
@@ -633,7 +633,7 @@ plt.text(4.85,200, "Violin Plot", fontsize = 95, color="black", fontstyle='itali
 
 
 
-    <matplotlib.text.Text at 0x7f0e522da5f8>
+    <matplotlib.text.Text at 0x7f9c6e707e48>
 
 
 
@@ -643,5 +643,5 @@ plt.text(4.85,200, "Violin Plot", fontsize = 95, color="black", fontstyle='itali
 
 
 ```python
-p.get_figure().savefig('../figures/violinplot.png')
+p.get_figure().savefig('../../figures/violinplot.png')
 ```

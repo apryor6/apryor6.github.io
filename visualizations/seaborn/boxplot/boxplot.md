@@ -18,7 +18,7 @@ plt.rcParams['font.family'] = "serif"
 
 
 ```python
-df = pd.read_csv('../../datasets/movie_metadata.csv')
+df = pd.read_csv('../../../datasets/movie_metadata.csv')
 ```
 
 
@@ -240,23 +240,23 @@ df.head()
       <th>genres</th>
       <th>duration</th>
       <th>Comedy</th>
-      <th>Sci-Fi</th>
-      <th>Mystery</th>
-      <th>Drama</th>
       <th>Sport</th>
-      <th>Western</th>
-      <th>Game-Show</th>
-      <th>...</th>
-      <th>Romance</th>
-      <th>Documentary</th>
-      <th>Short</th>
-      <th>Reality-TV</th>
+      <th>Thriller</th>
+      <th>Music</th>
+      <th>Adventure</th>
       <th>History</th>
-      <th>Musical</th>
-      <th>Film-Noir</th>
       <th>Biography</th>
+      <th>...</th>
+      <th>Documentary</th>
+      <th>Horror</th>
+      <th>Fantasy</th>
       <th>War</th>
       <th>Action</th>
+      <th>Romance</th>
+      <th>Reality-TV</th>
+      <th>Drama</th>
+      <th>Animation</th>
+      <th>News</th>
     </tr>
   </thead>
   <tbody>
@@ -266,23 +266,23 @@ df.head()
       <td>Action|Adventure|Fantasy|Sci-Fi</td>
       <td>178.0</td>
       <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
@@ -293,20 +293,20 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -315,9 +315,9 @@ df.head()
       <td>148.0</td>
       <td>0</td>
       <td>0</td>
+      <td>1</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
@@ -325,12 +325,12 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -339,7 +339,7 @@ df.head()
       <td>164.0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -349,12 +349,12 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -369,8 +369,8 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -658,7 +658,7 @@ plt.text(5.4,200, "Box Plot", fontsize = 95, color="black", fontstyle='italic')
 
 
 
-    <matplotlib.text.Text at 0x7ff18f87b518>
+    <matplotlib.text.Text at 0x7f23580f4a58>
 
 
 
@@ -668,5 +668,5 @@ plt.text(5.4,200, "Box Plot", fontsize = 95, color="black", fontstyle='italic')
 
 
 ```python
-p.get_figure().savefig('../figures/boxplot.png')
+p.get_figure().savefig('../../figures/boxplot.png')
 ```

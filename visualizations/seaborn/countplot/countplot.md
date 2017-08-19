@@ -17,7 +17,7 @@ plt.rcParams['font.family'] = "serif"
 
 
 ```python
-df = pd.read_csv('../../datasets/movie_metadata.csv')
+df = pd.read_csv('../../../datasets/movie_metadata.csv')
 ```
 
 
@@ -238,24 +238,24 @@ df.head()
       <th>director_name</th>
       <th>genres</th>
       <th>duration</th>
-      <th>Music</th>
-      <th>Mystery</th>
-      <th>History</th>
-      <th>Fantasy</th>
-      <th>Thriller</th>
-      <th>Action</th>
+      <th>Crime</th>
       <th>Comedy</th>
-      <th>...</th>
-      <th>Family</th>
-      <th>Documentary</th>
-      <th>Sport</th>
-      <th>Game-Show</th>
-      <th>Romance</th>
-      <th>Western</th>
       <th>Sci-Fi</th>
+      <th>War</th>
+      <th>Western</th>
       <th>Biography</th>
-      <th>Horror</th>
+      <th>Reality-TV</th>
+      <th>...</th>
+      <th>Sport</th>
       <th>Film-Noir</th>
+      <th>Romance</th>
+      <th>Short</th>
+      <th>Family</th>
+      <th>Animation</th>
+      <th>Adventure</th>
+      <th>Mystery</th>
+      <th>Horror</th>
+      <th>Thriller</th>
     </tr>
   </thead>
   <tbody>
@@ -266,10 +266,10 @@ df.head()
       <td>178.0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
       <td>1</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
@@ -291,9 +291,9 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
@@ -302,7 +302,7 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -316,8 +316,8 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
@@ -326,10 +326,10 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>3</th>
@@ -340,8 +340,8 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
@@ -353,7 +353,7 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>4</th>
@@ -369,7 +369,7 @@ df.head()
       <td>0</td>
       <td>...</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -406,23 +406,6 @@ df = df.loc[df.Category.isin(top_categories[:howmany])]
 
 
 ```python
-s
-```
-
-
-
-
-    Index(['Drama', 'Comedy', 'Thriller', 'Action', 'Romance', 'Adventure',
-           'Crime', 'Sci-Fi', 'Fantasy', 'Horror', 'Family', 'Mystery', 'Music',
-           'Biography', 'Animation', 'War', 'History', 'Sport', 'Musical',
-           'Documentary', 'Western', 'Film-Noir', 'Short', 'News', 'Reality-TV',
-           'Game-Show'],
-          dtype='object', name='Category')
-
-
-
-
-```python
 df.head()
 ```
 
@@ -455,39 +438,39 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <th>15129</th>
-      <td>178.0</td>
-      <td>Fantasy</td>
+      <th>45</th>
+      <td>140.0</td>
+      <td>Crime</td>
       <td>1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>15130</th>
-      <td>169.0</td>
-      <td>Fantasy</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>15136</th>
-      <td>100.0</td>
-      <td>Fantasy</td>
+      <th>59</th>
+      <td>91.0</td>
+      <td>Crime</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>15138</th>
-      <td>153.0</td>
-      <td>Fantasy</td>
+      <th>66</th>
+      <td>152.0</td>
+      <td>Crime</td>
       <td>1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>15142</th>
-      <td>151.0</td>
-      <td>Fantasy</td>
+      <th>100</th>
+      <td>106.0</td>
+      <td>Crime</td>
       <td>1</td>
       <td>1</td>
+    </tr>
+    <tr>
+      <th>157</th>
+      <td>90.0</td>
+      <td>Crime</td>
+      <td>1</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -503,7 +486,7 @@ p = sns.countplot(data=df, x = 'Category')
 ```
 
 
-![png](output_10_0.png)
+![png](output_9_0.png)
 
 
 color by a category
@@ -516,7 +499,7 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_12_0.png)
+![png](output_11_0.png)
 
 
 make plot horizontal
@@ -529,7 +512,7 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_14_0.png)
+![png](output_13_0.png)
 
 
 Saturation
@@ -543,7 +526,7 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_16_0.png)
+![png](output_15_0.png)
 
 
 Targeting a non-default axes
@@ -562,12 +545,12 @@ sns.countplot(data=df,
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f83742ee0b8>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f56109117f0>
 
 
 
 
-![png](output_18_1.png)
+![png](output_17_1.png)
 
 
 Add error bars
@@ -584,7 +567,7 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_20_0.png)
+![png](output_19_0.png)
 
 
 add black bounding lines
@@ -603,7 +586,7 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_22_0.png)
+![png](output_21_0.png)
 
 
 Remove color fill
@@ -623,7 +606,7 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_24_0.png)
+![png](output_23_0.png)
 
 
 
@@ -642,7 +625,7 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_26_0.png)
+![png](output_25_0.png)
 
 
 
@@ -661,7 +644,7 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_28_0.png)
+![png](output_27_0.png)
 
 
 
@@ -719,7 +702,7 @@ p = sns.countplot(data=df,
 
 
 
-![png](output_31_1.png)
+![png](output_30_1.png)
 
 
 
@@ -740,7 +723,7 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_33_0.png)
+![png](output_32_0.png)
 
 
 
@@ -773,13 +756,21 @@ leg.get_title().set_color('white')
 for lab in labs:
     lab.set_color('white')
 p.axes.xaxis.label.set_text("Counts")
+plt.text(00,0, "Count Plot", fontsize = 95, color='white', fontstyle='italic')
 ```
 
 
-![png](output_34_0.png)
+
+
+    <matplotlib.text.Text at 0x7f560e487710>
+
+
+
+
+![png](output_33_1.png)
 
 
 
 ```python
-p.get_figure().savefig('../figures/countplot.png')
+p.get_figure().savefig('../../figures/countplot.png')
 ```

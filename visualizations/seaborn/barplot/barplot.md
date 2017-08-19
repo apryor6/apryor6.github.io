@@ -1,5 +1,5 @@
 
-# seaborn.barplot
+# seaborn.countplot
 ---
 Bar graphs are useful for displaying relationships between categorical data and at least one numerical variable. `seaborn.countplot` is a barplot where the dependent variable is the number of instances of each instance of the independent variable.
 
@@ -18,7 +18,7 @@ plt.rcParams['font.family'] = "serif"
 
 
 ```python
-df = pd.read_csv('../../datasets/movie_metadata.csv')
+df = pd.read_csv('../../../datasets/movie_metadata.csv')
 ```
 
 
@@ -239,24 +239,24 @@ df.head()
       <th>director_name</th>
       <th>genres</th>
       <th>duration</th>
-      <th>Crime</th>
+      <th>Western</th>
+      <th>Documentary</th>
+      <th>Animation</th>
+      <th>Fantasy</th>
       <th>Thriller</th>
+      <th>Family</th>
+      <th>War</th>
+      <th>...</th>
+      <th>Horror</th>
+      <th>Biography</th>
+      <th>Action</th>
+      <th>History</th>
+      <th>Musical</th>
+      <th>Comedy</th>
+      <th>Romance</th>
       <th>Adventure</th>
       <th>Mystery</th>
-      <th>Action</th>
-      <th>Fantasy</th>
-      <th>Horror</th>
-      <th>...</th>
-      <th>Family</th>
-      <th>Music</th>
-      <th>Sci-Fi</th>
-      <th>Western</th>
       <th>Game-Show</th>
-      <th>Short</th>
-      <th>Film-Noir</th>
-      <th>Reality-TV</th>
-      <th>History</th>
-      <th>Drama</th>
     </tr>
   </thead>
   <tbody>
@@ -267,10 +267,10 @@ df.head()
       <td>178.0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>1</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
@@ -280,7 +280,7 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -291,20 +291,20 @@ df.head()
       <td>169.0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>1</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -314,8 +314,8 @@ df.head()
       <td>Action|Adventure|Thriller</td>
       <td>148.0</td>
       <td>0</td>
-      <td>1</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
@@ -323,12 +323,12 @@ df.head()
       <td>...</td>
       <td>0</td>
       <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -338,7 +338,7 @@ df.head()
       <td>Action|Thriller</td>
       <td>164.0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
@@ -347,7 +347,7 @@ df.head()
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -362,7 +362,7 @@ df.head()
       <td>Documentary</td>
       <td>NaN</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -439,39 +439,39 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <th>45</th>
-      <td>140.0</td>
-      <td>Crime</td>
+      <th>15129</th>
+      <td>178.0</td>
+      <td>Fantasy</td>
       <td>1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>59</th>
-      <td>91.0</td>
-      <td>Crime</td>
+      <th>15130</th>
+      <td>169.0</td>
+      <td>Fantasy</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>15136</th>
+      <td>100.0</td>
+      <td>Fantasy</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>66</th>
-      <td>152.0</td>
-      <td>Crime</td>
+      <th>15138</th>
+      <td>153.0</td>
+      <td>Fantasy</td>
       <td>1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>100</th>
-      <td>106.0</td>
-      <td>Crime</td>
+      <th>15142</th>
+      <td>151.0</td>
+      <td>Fantasy</td>
       <td>1</td>
       <td>1</td>
-    </tr>
-    <tr>
-      <th>157</th>
-      <td>90.0</td>
-      <td>Crime</td>
-      <td>1</td>
-      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -546,7 +546,7 @@ sns.countplot(data=df,
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f5a0fe74780>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fb7951e8e48>
 
 
 
@@ -756,13 +756,21 @@ leg.get_title().set_color('white')
 for lab in labs:
     lab.set_color('white')
 p.axes.xaxis.label.set_text("Counts")
+plt.text(900,2, "Bar Plot", fontsize = 95, color='white', fontstyle='italic')
 ```
 
 
-![png](output_33_0.png)
+
+
+    <matplotlib.text.Text at 0x7fb794b6e2e8>
+
+
+
+
+![png](output_33_1.png)
 
 
 
 ```python
-p.get_figure().savefig('../figures/barplot.png')
+p.get_figure().savefig('../../figures/barplot.png')
 ```

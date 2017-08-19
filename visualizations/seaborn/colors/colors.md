@@ -1,5 +1,5 @@
 
-# Colors in Seaborn
+# seaborn.countplot
 ---
 Bar graphs are useful for displaying relationships between categorical data and at least one numerical variable. `seaborn.countplot` is a barplot where the dependent variable is the number of instances of each instance of the independent variable.
 
@@ -16,7 +16,7 @@ plt.rcParams['figure.figsize'] = (20.0, 10.0)
 
 
 ```python
-df = pd.read_csv('../../datasets/movie_metadata.csv')
+df = pd.read_csv('../../../datasets/movie_metadata.csv')
 ```
 
 
@@ -237,24 +237,24 @@ df.head()
       <th>director_name</th>
       <th>genres</th>
       <th>duration</th>
-      <th>Mystery</th>
-      <th>Crime</th>
       <th>Biography</th>
-      <th>Musical</th>
-      <th>War</th>
-      <th>Reality-TV</th>
-      <th>Film-Noir</th>
-      <th>...</th>
-      <th>Short</th>
-      <th>Music</th>
-      <th>History</th>
       <th>Western</th>
+      <th>Documentary</th>
+      <th>Adventure</th>
       <th>Drama</th>
+      <th>Musical</th>
+      <th>Reality-TV</th>
+      <th>...</th>
+      <th>Family</th>
       <th>Romance</th>
-      <th>Comedy</th>
-      <th>Fantasy</th>
-      <th>Animation</th>
+      <th>Action</th>
       <th>Thriller</th>
+      <th>History</th>
+      <th>Sport</th>
+      <th>Horror</th>
+      <th>Film-Noir</th>
+      <th>Crime</th>
+      <th>Music</th>
     </tr>
   </thead>
   <tbody>
@@ -266,19 +266,19 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -290,19 +290,19 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -314,21 +314,21 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -345,14 +345,14 @@ df.head()
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -361,7 +361,7 @@ df.head()
       <td>NaN</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -436,37 +436,37 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <th>9</th>
-      <td>153.0</td>
-      <td>Mystery</td>
+      <th>113</th>
+      <td>206.0</td>
+      <td>Biography</td>
       <td>1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>70</th>
-      <td>126.0</td>
-      <td>Mystery</td>
+      <th>257</th>
+      <td>170.0</td>
+      <td>Biography</td>
       <td>1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>88</th>
-      <td>130.0</td>
-      <td>Mystery</td>
+      <th>272</th>
+      <td>165.0</td>
+      <td>Biography</td>
       <td>1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>114</th>
-      <td>138.0</td>
-      <td>Mystery</td>
+      <th>289</th>
+      <td>140.0</td>
+      <td>Biography</td>
       <td>1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>115</th>
-      <td>157.0</td>
-      <td>Mystery</td>
+      <th>290</th>
+      <td>176.0</td>
+      <td>Biography</td>
       <td>1</td>
       <td>1</td>
     </tr>
@@ -864,23 +864,21 @@ help(sns.countplot)
 
 ```python
 p = sns.countplot(data=df, x = 'Category')
+plt.text(9,2000, "Color Palettes", fontsize = 95, color='black', fontstyle='italic')
 ```
 
 
-![png](output_29_0.png)
+
+
+    <matplotlib.text.Text at 0x7f4d2d784f98>
+
+
+
+
+![png](output_29_1.png)
 
 
 
 ```python
-p.get_figure().savefig('../figures/colors.png')
-```
-
-
-```python
-
-```
-
-
-```python
-
+p.get_figure().savefig('../../figures/colors.png')
 ```
