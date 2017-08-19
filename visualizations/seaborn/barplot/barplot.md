@@ -546,7 +546,7 @@ sns.countplot(data=df,
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fb7951e8e48>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7fb79539cdd8>
 
 
 
@@ -736,7 +736,15 @@ sns.set(rc={"font.style":"normal",
             "text.color":"black",
             "xtick.color":"black",
             "ytick.color":"black",
-            "axes.labelcolor":"black"})
+            "axes.labelcolor":"black",
+            "axes.grid":False,
+            'axes.labelsize':30,
+            'figure.figsize':(20.0, 10.0),
+            'xtick.labelsize':25,
+            'ytick.labelsize':20})
+
+
+
 #sns.set_style({'font.family': 'Helvetica'})
 #sns.set(style="white",font_scale=1.25)
 num_categories = df.Category.unique().size
@@ -762,7 +770,7 @@ plt.text(900,2, "Bar Plot", fontsize = 95, color='white', fontstyle='italic')
 
 
 
-    <matplotlib.text.Text at 0x7fb794b6e2e8>
+    <matplotlib.text.Text at 0x7fb794a0fe80>
 
 
 

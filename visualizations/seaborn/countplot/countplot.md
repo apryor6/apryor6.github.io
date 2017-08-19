@@ -545,7 +545,7 @@ sns.countplot(data=df,
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f56109117f0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f5609f2d860>
 
 
 
@@ -735,7 +735,13 @@ sns.set(rc={"font.style":"normal",
             "text.color":"black",
             "xtick.color":"black",
             "ytick.color":"black",
-            "axes.labelcolor":"black"})
+            "axes.labelcolor":"black",
+            "axes.grid":False,
+            'axes.labelsize':30,
+            'figure.figsize':(20.0, 10.0),
+            'xtick.labelsize':25,
+            'ytick.labelsize':20})
+
 #sns.set_style({'font.family': 'Helvetica'})
 #sns.set(style="white",font_scale=1.25)
 num_categories = df.Category.unique().size
@@ -756,13 +762,13 @@ leg.get_title().set_color('white')
 for lab in labs:
     lab.set_color('white')
 p.axes.xaxis.label.set_text("Counts")
-plt.text(00,0, "Count Plot", fontsize = 95, color='white', fontstyle='italic')
+plt.text(900,2.8, "Count Plot", fontsize = 95, color='white', fontstyle='italic')
 ```
 
 
 
 
-    <matplotlib.text.Text at 0x7f560e487710>
+    <matplotlib.text.Text at 0x7f5609d0ac18>
 
 
 

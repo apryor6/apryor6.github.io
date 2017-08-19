@@ -863,6 +863,13 @@ help(sns.countplot)
 
 
 ```python
+sns.set(rc={"axes.facecolor":"#ccddff",
+            "axes.grid":False,
+            'axes.labelsize':30,
+            'figure.figsize':(20.0, 10.0),
+            'xtick.labelsize':25,
+            'ytick.labelsize':20})
+
 p = sns.countplot(data=df, x = 'Category')
 plt.text(9,2000, "Color Palettes", fontsize = 95, color='black', fontstyle='italic')
 ```
@@ -870,7 +877,7 @@ plt.text(9,2000, "Color Palettes", fontsize = 95, color='black', fontstyle='ital
 
 
 
-    <matplotlib.text.Text at 0x7f4d2d784f98>
+    <matplotlib.text.Text at 0x7f4d2d749e80>
 
 
 
