@@ -6,6 +6,7 @@ Table of Contents
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Colors](#colors)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Bar plot](#barplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
+	&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#boxplot)   
 
 <a name="seaborn"></a>
 ## Seaborn
@@ -15,6 +16,8 @@ Table of Contents
 [![png](visualizations/figures/barplot.png)](../visualizations/seaborn/barplot/barplot)
 <a name="countplot"></a>
 [![png](visualizations/figures/countplot.png)](../visualizations/seaborn/countplot/countplot)
+<a name="boxplot"></a>
+[![png](visualizations/figures/boxplot.png)](../visualizations/seaborn/boxplot/boxplot)
 [![png](../tmp/cube.gif)](../publications)
 
 
