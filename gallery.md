@@ -8,6 +8,7 @@ Table of Contents
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#boxplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#violinplot)   
+	&nbsp;&nbsp;&nbsp;&nbsp; - [Scatter Regression plot](#lmplot)   
 
 <a name="seaborn"></a>
 ## Seaborn
@@ -21,6 +22,9 @@ Table of Contents
 [![png](visualizations/figures/boxplot.png)](../visualizations/seaborn/boxplot/boxplot)
 <a name="violinplot"></a>
 [![png](visualizations/figures/violinplot.png)](../visualizations/seaborn/violinplot/violinplot)
+[![png](../tmp/cube.gif)](../publications)
+<a name="lmplot"></a>
+[![png](visualizations/figures/lmplot.png)](../visualizations/seaborn/lmplot/lmplot)
 [![png](../tmp/cube.gif)](../publications)
 
 
