@@ -211,19 +211,21 @@ p = sns.jointplot(data=df,
                   kind='kde',
                   xlim=(-3,3),
                   ylim=(-3,3),
-                  marginal_kws={'lw':3}).set_axis_labels('X','Y')
+                  space=0,
+                  marginal_kws={'lw':3,
+                                'bw':0.2}).set_axis_labels('X','Y')
 p.ax_marg_x.set_facecolor('#ccffccaa')
 p.ax_marg_y.set_facecolor('#ccffccaa')
 for l in chain(p.ax_marg_x.axes.lines,p.ax_marg_y.axes.lines):
     l.set_linestyle('--')
     l.set_color('black')
-plt.text(-2.1,-2.5, "Joint Plot", fontsize = 55, color='Black', fontstyle='italic')
+plt.text(-1.7,-2.7, "Joint Plot", fontsize = 55, color='Black', fontstyle='italic')
 ```
 
 
 
 
-    <matplotlib.text.Text at 0x10cfd0eb8>
+    <matplotlib.text.Text at 0x109371588>
 
 
 
@@ -234,9 +236,4 @@ plt.text(-2.1,-2.5, "Joint Plot", fontsize = 55, color='Black', fontstyle='itali
 
 ```python
 p.savefig('../../figures/jointplot.png')
-```
-
-
-```python
-
 ```
