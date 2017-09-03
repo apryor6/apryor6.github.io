@@ -212,6 +212,7 @@ p = sns.jointplot(data=df,
                   xlim=(-3,3),
                   ylim=(-3,3),
                   space=0,
+                  stat_func=None,
                   marginal_kws={'lw':3,
                                 'bw':0.2}).set_axis_labels('X','Y')
 p.ax_marg_x.set_facecolor('#ccffccaa')
@@ -225,7 +226,7 @@ plt.text(-1.7,-2.7, "Joint Plot", fontsize = 55, color='Black', fontstyle='itali
 
 
 
-    <matplotlib.text.Text at 0x109371588>
+    <matplotlib.text.Text at 0x101815a20>
 
 
 

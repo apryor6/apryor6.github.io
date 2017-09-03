@@ -23,7 +23,11 @@ Table of Contents
 <a name="violinplot"></a>
 [![png](visualizations/figures/violinplot.png)](../visualizations/seaborn/violinplot/violinplot)
 <a name="jointplot"></a>
-[![png](visualizations/figures/jointplot.png)](../visualizations/seaborn/jointplot/jointplot)
+[![png](visualizations/figures/violinplot.png)](../visualizations/seaborn/violinplot/violinplot)
+<a name="heatmap"></a>
+[![png](visualizations/figures/heatmap.png)](../visualizations/seaborn/heatmap/heatmap)
+<a name="stripplot"></a>
+[![png](visualizations/figures/stripplot.png)](../visualizations/seaborn/stripplot/stripplot)
 <a name="colors"></a>
 [![png](visualizations/figures/colors.png)](../visualizations/seaborn/colors/colors)
 [![png](../tmp/cube.gif)](../publications)
