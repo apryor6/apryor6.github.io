@@ -8,6 +8,7 @@ Table of Contents
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#boxplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#violinplot)   
+	&nbsp;&nbsp;&nbsp;&nbsp; - [Joint plot](#jointplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Colors](#colors)   
 
 <a name="seaborn"></a>
@@ -23,7 +24,7 @@ Table of Contents
 <a name="violinplot"></a>
 [![png](visualizations/figures/violinplot.png)](../visualizations/seaborn/violinplot/violinplot)
 <a name="jointplot"></a>
-[![png](visualizations/figures/violinplot.png)](../visualizations/seaborn/violinplot/violinplot)
+[![png](visualizations/figures/jointplot.png)](../visualizations/seaborn/jointplot/jointplot)
 <a name="heatmap"></a>
 [![png](visualizations/figures/heatmap.png)](../visualizations/seaborn/heatmap/heatmap)
 <a name="stripplot"></a>
