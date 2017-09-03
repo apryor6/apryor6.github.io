@@ -22,6 +22,8 @@ Table of Contents
 [![png](visualizations/figures/boxplot.png)](../visualizations/seaborn/boxplot/boxplot)
 <a name="violinplot"></a>
 [![png](visualizations/figures/violinplot.png)](../visualizations/seaborn/violinplot/violinplot)
+<a name="jointplot"></a>
+[![png](visualizations/figures/jointplot.png)](../visualizations/seaborn/jointplot/jointplot)
 <a name="colors"></a>
 [![png](visualizations/figures/colors.png)](../visualizations/seaborn/colors/colors)
 [![png](../tmp/cube.gif)](../publications)
