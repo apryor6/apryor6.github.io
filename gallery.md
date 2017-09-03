@@ -1,15 +1,15 @@
 ## Gallery (Under Construction)
-A collection of data visualizations. Each final image below links to the markdown output of a Jupyter notebook with the corresponding code. Each section is designed to explore mainly the parameters that are specific to one type of plot to avoid repetition (e.g. adjusting labels or titles is the same for all), and at the last cell all of the extra modifications are made to make the final result look nice.
+Below is a collection of data visualizations. Each final image below links to the markdown output of a Jupyter notebook with the code required to make that image as well as exploration of other adjustable parameters for that type of plot. Each notebook is designed to explore mainly the parameters that are specific to that type of plot in the corresponding library in order to avoid repetition (e.g. adjusting labels or titles is usually the same for all types of plots within a library), and at the very end extra modifications are made to make the final result look nice.
 
 Table of Contents   
 	- [Seaborn](#seaborn)  
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Scatter Regression plot](#lmplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Bar plot](#barplot)   
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
+        &nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#boxplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#violinplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Joint plot](#jointplot)   
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Colors](#colors)   
+[comment]: <> (	&nbsp;&nbsp;&nbsp;&nbsp; - [Colors](#colors) )  
 
 <a name="seaborn"></a>
 ## Seaborn
@@ -29,8 +29,8 @@ Table of Contents
 [![png](visualizations/figures/heatmap.png)](../visualizations/seaborn/heatmap/heatmap)
 <a name="stripplot"></a>
 [![png](visualizations/figures/stripplot.png)](../visualizations/seaborn/stripplot/stripplot)
-<a name="colors"></a>
-[![png](visualizations/figures/colors.png)](../visualizations/seaborn/colors/colors)
-[![png](../tmp/cube.gif)](../publications)
+[comment]: <> (<a name="colors"></a>
+[comment]: <> ([![png](visualizations/figures/colors.png)](../visualizations/seaborn/colors/colors)
+[![png](figures/cube.gif)](../publications)
 
 
