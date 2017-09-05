@@ -9,7 +9,7 @@ Table of Contents
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#boxplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#violinplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Joint plot](#jointplot)   
-[comment]: <> (	&nbsp;&nbsp;&nbsp;&nbsp; - [Colors](#colors) )  
+        &nbsp;&nbsp;&nbsp;&nbsp; - [Colors](#colors)
 
 <a name="seaborn"></a>
 ## Seaborn
