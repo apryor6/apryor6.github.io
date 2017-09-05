@@ -29,8 +29,8 @@ Table of Contents
 [![png](visualizations/figures/heatmap.png)](../visualizations/seaborn/heatmap/heatmap)
 <a name="stripplot"></a>
 [![png](visualizations/figures/stripplot.png)](../visualizations/seaborn/stripplot/stripplot)
-[comment]: <> (<a name="colors"></a>
-[comment]: <> ([![png](visualizations/figures/colors.png)](../visualizations/seaborn/colors/colors)
+<a name="colors"></a>
+[![png](visualizations/figures/colors.png)](../visualizations/seaborn/colors/colors)
 [![png](figures/cube.gif)](../publications)
 
 
