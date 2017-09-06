@@ -1,7 +1,7 @@
 
 # seaborn.stripplot
 ---
-A strip plot is a scatter plot where one of the variables is categorical. They can be combined with other plots to provide additional information. For example, a boxplot with an overlaid strip plot becomes more similar to a violin plot because some additional information about how the underlying data is distributed becomes visible.
+A strip plot is a scatter plot where one of the variables is categorical. They can be combined with other plots to provide additional information. For example, a boxplot with an overlaid strip plot becomes more similar to a violin plot because some additional information about how the underlying data is distributed becomes visible. Seaborn's `swarmplot` is virtually identical except that it prevents datapoints from overlapping.   
 
 dataset: [Kaggle: NBA shot logs](https://www.kaggle.com/dansbecker/nba-shot-logs)
 
