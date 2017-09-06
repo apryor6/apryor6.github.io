@@ -5,6 +5,7 @@ Table of Contents
 	- [Seaborn](#seaborn)  
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Scatter Regression plot](#lmplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Bar plot](#barplot)   
+	&nbsp;&nbsp;&nbsp;&nbsp; - [Strip plot](#stripplot)   
         &nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#boxplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#violinplot)   
@@ -17,6 +18,8 @@ Table of Contents
 [![png](visualizations/figures/lmplot.png)](../visualizations/seaborn/lmplot/lmplot)
 <a name="barplot"></a>
 [![png](visualizations/figures/barplot.png)](../visualizations/seaborn/barplot/barplot)
+<a name="stripplot"></a>
+[![png](visualizations/figures/stripplot.png)](../visualizations/seaborn/stripplot/stripplot)
 <a name="countplot"></a>
 [![png](visualizations/figures/countplot.png)](../visualizations/seaborn/countplot/countplot)
 <a name="boxplot"></a>
