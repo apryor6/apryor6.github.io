@@ -3,7 +3,7 @@
 ---
 A strip plot is a scatter plot where one of the variables is categorical. They can be combined with other plots to provide additional information. For example, a boxplot with an overlaid strip plot becomes more similar to a violin plot because some additional information about how the underlying data is distributed becomes visible.
 
-dataset:
+dataset: [Kaggle: NBA shot logs](https://www.kaggle.com/dansbecker/nba-shot-logs)
 
 
 ```python
@@ -15,6 +15,8 @@ import numpy as np
 plt.rcParams['figure.figsize'] = (20.0, 10.0)
 plt.rcParams['font.family'] = "serif"
 ```
+
+This is a cool dataset that contains information about shot attempts made by professional basketball players.
 
 
 ```python
@@ -101,7 +103,7 @@ p = sns.stripplot(data=df, x='player_name', y='SHOT_DIST')
 ```
 
 
-![png](output_4_0.png)
+![png](output_5_0.png)
 
 
 Change the `color` to represent whether the shot was made or missed
@@ -115,7 +117,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_6_0.png)
+![png](output_7_0.png)
 
 
 Change the `order` in which the names are displayed
@@ -130,7 +132,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_8_0.png)
+![png](output_9_0.png)
 
 
 `jitter` can be used to randomly provide displacements along the horizontal axis, which is useful when there are large clusters of datapoints
@@ -146,7 +148,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_10_0.png)
+![png](output_11_0.png)
 
 
 We see the default behavior is to stack the different hues on top of each other. This can be avoided with `dodge` (formerly called `split`)
@@ -163,7 +165,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_12_0.png)
+![png](output_13_0.png)
 
 
 Flipping x and y inputs and setting `orient` to 'h' can be used to make a horizontal plot
@@ -181,7 +183,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_14_0.png)
+![png](output_15_0.png)
 
 
 For coloring, you can either provide a single color to `color`...
@@ -200,7 +202,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_16_0.png)
+![png](output_17_0.png)
 
 
 ...or you can use one of the many variations of the `palette` parameter
@@ -218,7 +220,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_18_0.png)
+![png](output_19_0.png)
 
 
 Adjust the marker `size`
@@ -237,7 +239,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_20_0.png)
+![png](output_21_0.png)
 
 
 Adjust the `linewidth` of the edges of the circles
@@ -257,7 +259,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_22_0.png)
+![png](output_23_0.png)
 
 
 Change the color of these lines with `edgecolor`
@@ -278,7 +280,7 @@ p = sns.stripplot(data=df,
 ```
 
 
-![png](output_24_0.png)
+![png](output_25_0.png)
 
 
 Swarmplots look good when overlaid on top of another categorical plot, like `boxplot`
@@ -302,7 +304,7 @@ p_box = sns.boxplot(palette=['#BBBBBB','#DDDDDD'],linewidth=6,**params)
 ```
 
 
-![png](output_26_0.png)
+![png](output_27_0.png)
 
 
 Finalize
@@ -350,18 +352,25 @@ p.set_xticklabels(xlabs)
 
 
 
-    [<matplotlib.text.Text at 0x10f7e1c50>,
-     <matplotlib.text.Text at 0x10be33f60>,
-     <matplotlib.text.Text at 0x105cb5e48>,
-     <matplotlib.text.Text at 0x10beff7f0>]
+    [<matplotlib.text.Text at 0x1164fceb8>,
+     <matplotlib.text.Text at 0x113b96588>,
+     <matplotlib.text.Text at 0x113abd4e0>,
+     <matplotlib.text.Text at 0x113abde10>]
 
 
 
 
-![png](output_28_1.png)
+![png](output_29_1.png)
 
 
 
 ```python
 p.get_figure().savefig('../../figures/stripplot.png')
+```
+
+A fair bit of information is conveyed with a plot like this. JJ Redick is a shooting guard, and you see most of his shots are from a significant distances, whereas Lebron James has unsurprisingly a lot more attempts at close range. The median for Lebron's made shots is significantly lower than that for his misses, which is likely a result of him having many points from high percentage close shots/layups. There are a few outlying shots from very high distances, essentially all misses, that most likely are right before a buzzer.
+
+
+```python
+
 ```
