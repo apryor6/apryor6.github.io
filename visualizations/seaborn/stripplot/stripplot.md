@@ -18,49 +18,104 @@ plt.rcParams['font.family'] = "serif"
 
 
 ```python
-from sklearn import datasets
-iris_data = datasets.load_iris()
+df = pd.read_csv('../stripplot/shot_logs.csv',usecols=['player_name','SHOT_DIST','PTS_TYPE','SHOT_RESULT'])
+players_to_use = ['kyrie irving', 'lebron james', 'stephen curry', 'jj redick']
+df = df.loc[df.player_name.isin(players_to_use)]
+df.head()
 ```
 
 
-```python
-iris_data['feature_names']
-```
 
 
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SHOT_DIST</th>
+      <th>PTS_TYPE</th>
+      <th>SHOT_RESULT</th>
+      <th>player_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>14054</th>
+      <td>8.0</td>
+      <td>2</td>
+      <td>missed</td>
+      <td>stephen curry</td>
+    </tr>
+    <tr>
+      <th>14055</th>
+      <td>25.9</td>
+      <td>3</td>
+      <td>missed</td>
+      <td>stephen curry</td>
+    </tr>
+    <tr>
+      <th>14056</th>
+      <td>23.8</td>
+      <td>3</td>
+      <td>made</td>
+      <td>stephen curry</td>
+    </tr>
+    <tr>
+      <th>14057</th>
+      <td>27.5</td>
+      <td>3</td>
+      <td>made</td>
+      <td>stephen curry</td>
+    </tr>
+    <tr>
+      <th>14058</th>
+      <td>29.3</td>
+      <td>3</td>
+      <td>missed</td>
+      <td>stephen curry</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
-    ['sepal length (cm)',
-     'sepal width (cm)',
-     'petal length (cm)',
-     'petal width (cm)']
-
-
-
-
-```python
-df = pd.DataFrame(data=np.column_stack([iris_data['data'],iris_data['target']]),
-                  columns=['Sepal Length (cm)',
-                           'Sepal Width (cm)',
-                           'Petal Length (cm)',
-                           'Petal Width (cm)',
-                           'Species'])
-```
-
-
-```python
-df['Species'] = iris_data['target_names'][df.Species.astype(int)]
-```
 
 Basic plot
 
 
 ```python
-p = sns.stripplot(data=df, x='Species', y='Sepal Length (cm)')
+p = sns.stripplot(data=df, x='player_name', y='SHOT_DIST')
 ```
 
 
-![png](output_7_0.png)
+![png](output_4_0.png)
+
+
+Change the `color` to represent whether the shot was made or missed
+
+
+```python
+p = sns.stripplot(data=df,
+                  x='player_name',
+                  y='SHOT_DIST',
+                  hue='SHOT_RESULT')
+```
+
+
+![png](output_6_0.png)
 
 
 Change the `order` in which the names are displayed
@@ -68,13 +123,14 @@ Change the `order` in which the names are displayed
 
 ```python
 p = sns.stripplot(data=df,
-                  x='Species',
-                  y='Sepal Length (cm)',
-                  order=sorted(df.Species.unique(), reverse=True))
+                  x='player_name',
+                  y='SHOT_DIST',
+                  hue='SHOT_RESULT',
+                  order=sorted(players_to_use))
 ```
 
 
-![png](output_9_0.png)
+![png](output_8_0.png)
 
 
 `jitter` can be used to randomly provide displacements along the horizontal axis, which is useful when there are large clusters of datapoints
@@ -82,32 +138,15 @@ p = sns.stripplot(data=df,
 
 ```python
 p = sns.stripplot(data=df,
-                  x='Species',
-                  y='Sepal Length (cm)',
-                  order=sorted(df.Species.unique(), reverse=True),
-                  jitter=0.1)
+                  x='player_name',
+                  y='SHOT_DIST',
+                  hue='SHOT_RESULT',
+                  order=sorted(players_to_use),
+                  jitter=0.25)
 ```
 
 
-![png](output_11_0.png)
-
-
-To help illustrate some of the other properties, I'll randomly assign a label "Day" or "Night" to all the flowers.
-
-
-```python
-df['Measurement Time'] = 'Night'
-df.loc[np.random.rand(len(df)) > 0.5, 'Measurement Time'] = 'Day'
-p = sns.stripplot(data=df,
-                  x='Species',
-                  y='Sepal Length (cm)',
-                  hue='Measurement Time',
-                  order=sorted(df.Species.unique(), reverse=True),
-                  jitter=0.1)
-```
-
-
-![png](output_13_0.png)
+![png](output_10_0.png)
 
 
 We see the default behavior is to stack the different hues on top of each other. This can be avoided with `dodge` (formerly called `split`)
@@ -115,16 +154,16 @@ We see the default behavior is to stack the different hues on top of each other.
 
 ```python
 p = sns.stripplot(data=df,
-                  x='Species',
-                  y='Sepal Length (cm)',
-                  hue='Measurement Time',
-                  order=sorted(df.Species.unique(), reverse=True),
-                  jitter=0.1,
+                  x='player_name',
+                  y='SHOT_DIST',
+                  hue='SHOT_RESULT',
+                  order=sorted(players_to_use),
+                  jitter=0.25,
                   dodge=True)
 ```
 
 
-![png](output_15_0.png)
+![png](output_12_0.png)
 
 
 Flipping x and y inputs and setting `orient` to 'h' can be used to make a horizontal plot
@@ -132,17 +171,17 @@ Flipping x and y inputs and setting `orient` to 'h' can be used to make a horizo
 
 ```python
 p = sns.stripplot(data=df,
-                  y='Species',
-                  x='Sepal Length (cm)',
-                  hue='Measurement Time',
-                  order=sorted(df.Species.unique(), reverse=True),
-                  jitter=0.1,
+                  y='player_name',
+                  x='SHOT_DIST',
+                  hue='SHOT_RESULT',
+                  order=sorted(players_to_use),
+                  jitter=0.25,
                   dodge=False,
                   orient='h')
 ```
 
 
-![png](output_17_0.png)
+![png](output_14_0.png)
 
 
 For coloring, you can either provide a single color to `color`...
@@ -150,17 +189,18 @@ For coloring, you can either provide a single color to `color`...
 
 ```python
 p = sns.stripplot(data=df,
-                  x='Species',
-                  y='Sepal Length (cm)',
-                  hue='Measurement Time',
-                  color=(.25,.5,.75),
-                  order=sorted(df.Species.unique(), reverse=True),
-                  jitter=0.1,
-                  dodge=False)
+                  y='player_name',
+                  x='SHOT_DIST',
+                  hue='SHOT_RESULT',
+                  order=sorted(players_to_use),
+                  jitter=0.25,
+                  dodge=True,
+                  orient='h',
+                  color=(.25,.5,.75))
 ```
 
 
-![png](output_19_0.png)
+![png](output_16_0.png)
 
 
 ...or you can use one of the many variations of the `palette` parameter
@@ -168,17 +208,17 @@ p = sns.stripplot(data=df,
 
 ```python
 p = sns.stripplot(data=df,
-                  x='Species',
-                  y='Sepal Length (cm)',
-                  hue='Measurement Time',
-                  palette=sns.husl_palette(2, l=0.5, s=.95),
-                  order=sorted(df.Species.unique(), reverse=True),
-                  jitter=0.1,
-                  dodge=False)
+                  x='player_name',
+                  y='SHOT_DIST',
+                  hue='SHOT_RESULT',
+                  order=sorted(players_to_use),
+                  jitter=0.25,
+                  dodge=True,
+                  palette=sns.husl_palette(2, l=0.5, s=.95))
 ```
 
 
-![png](output_21_0.png)
+![png](output_18_0.png)
 
 
 Adjust the marker `size`
@@ -186,18 +226,18 @@ Adjust the marker `size`
 
 ```python
 p = sns.stripplot(data=df,
-                  x='Species',
-                  y='Sepal Length (cm)',
-                  hue='Measurement Time',
+                  x='player_name',
+                  y='SHOT_DIST',
+                  hue='SHOT_RESULT',
+                  order=sorted(players_to_use),
+                  jitter=0.25,
+                  dodge=True,
                   palette=sns.husl_palette(2, l=0.5, s=.95),
-                  order=sorted(df.Species.unique(), reverse=True),
-                  jitter=0.1,
-                  dodge=False,
-                  size=20)
+                  size=8)
 ```
 
 
-![png](output_23_0.png)
+![png](output_20_0.png)
 
 
 Adjust the `linewidth` of the edges of the circles
@@ -205,19 +245,19 @@ Adjust the `linewidth` of the edges of the circles
 
 ```python
 p = sns.stripplot(data=df,
-                  x='Species',
-                  y='Sepal Length (cm)',
-                  hue='Measurement Time',
+                  x='player_name',
+                  y='SHOT_DIST',
+                  hue='SHOT_RESULT',
+                  order=sorted(players_to_use),
+                  jitter=0.25,
+                  dodge=True,
                   palette=sns.husl_palette(2, l=0.5, s=.95),
-                  order=sorted(df.Species.unique(), reverse=True),
-                  jitter=0.1,
-                  dodge=False,
-                  size=20,
+                  size=8,
                   linewidth=3)
 ```
 
 
-![png](output_25_0.png)
+![png](output_22_0.png)
 
 
 Change the color of these lines with `edgecolor`
@@ -225,20 +265,20 @@ Change the color of these lines with `edgecolor`
 
 ```python
 p = sns.stripplot(data=df,
-                  x='Species',
-                  y='Sepal Length (cm)',
-                  hue='Measurement Time',
+                  x='player_name',
+                  y='SHOT_DIST',
+                  hue='SHOT_RESULT',
+                  order=sorted(players_to_use),
+                  jitter=0.25,
+                  dodge=True,
                   palette=sns.husl_palette(2, l=0.5, s=.95),
-                  order=sorted(df.Species.unique(), reverse=True),
-                  jitter=0.1,
-                  dodge=False,
-                  size=20,
-                  edgecolor='blue',
-                  linewidth=3)
+                  size=8,
+                  linewidth=3,
+                  edgecolor='blue')
 ```
 
 
-![png](output_27_0.png)
+![png](output_24_0.png)
 
 
 Swarmplots look good when overlaid on top of another categorical plot, like `boxplot`
@@ -246,22 +286,23 @@ Swarmplots look good when overlaid on top of another categorical plot, like `box
 
 ```python
 params = dict(data=df,
-              x='Species',
-              y='Sepal Length (cm)',
-              hue='Measurement Time',
-              order=sorted(df.Species.unique(), reverse=True),
+              x='player_name',
+              y='SHOT_DIST',
+              hue='SHOT_RESULT',
+              #jitter=0.25,
+              order=sorted(players_to_use),
               dodge=True)
-p = sns.stripplot(size=14,
-                  jitter=0.25,
-                  palette=['#fc8d59','#91bfdb'],
+p = sns.stripplot(size=8,
+                  jitter=0.35,
+                  palette=['#91bfdb','#fc8d59'],
                   edgecolor='black',
-                  linewidth=3,
+                  linewidth=1,
                   **params)
-p_box = sns.boxplot(palette=['#BBBBBB','#DDDDDD'],**params)
+p_box = sns.boxplot(palette=['#BBBBBB','#DDDDDD'],linewidth=6,**params)
 ```
 
 
-![png](output_29_0.png)
+![png](output_26_0.png)
 
 
 Finalize
@@ -269,54 +310,55 @@ Finalize
 
 ```python
 plt.rcParams['font.size'] = 30
-df.Species = df.Species.apply(lambda x: x.capitalize())
 params = dict(data=df,
-              x='Species',
-              y='Sepal Length (cm)',
-              hue='Measurement Time',
-              order=sorted(df.Species.unique(), reverse=True),
+              x='player_name',
+              y='SHOT_DIST',
+              hue='SHOT_RESULT',
+              #jitter=0.25,
+              order=sorted(players_to_use),
               dodge=True)
-p = sns.stripplot(size=14,
-                  jitter=0.25,
-                  palette=['#fc8d59','#91bfdb'],
+p = sns.stripplot(size=8,
+                  jitter=0.35,
+                  palette=['#91bfdb','#fc8d59'],
                   edgecolor='black',
-                  linewidth=3,
+                  linewidth=1,
                   **params)
-p_box = sns.boxplot(palette=['#BBBBBB','#DDDDDD'],**params)
+p_box = sns.boxplot(palette=['#BBBBBB','#DDDDDD'],linewidth=6,**params)
 handles,labels = p.get_legend_handles_labels()
 #for h in handles:
 #    h.set_height(3)
 #handles[2].set_linewidth(33)
-for l in labels:
-    #l.title = "hey"
-    print(l)
+
 plt.legend(handles[2:],
            labels[2:],
-           bbox_to_anchor=(.65,.45),
+           bbox_to_anchor = (.3,.95),
            fontsize = 40,
-           markerscale=5,
+           markerscale = 5,
            frameon=False,
            labelspacing=0.2)
-plt.text(0.85,7.5, "Strip Plot", fontsize = 95, color='Black', fontstyle='italic')
+plt.text(1.85,35, "Strip Plot", fontsize = 95, color='Black', fontstyle='italic')
 plt.xlabel('')
-p
+plt.ylabel('Shot Distance (ft)')
+plt.gca().set_xlim(-0.5,3.5)
+xlabs = p.get_xticklabels()
+xlabs[0].set_text('JJ Redick')
+for l in xlabs[1:]:
+    l.set_text(" ".join(i.capitalize() for i in l.get_text().split() ))
+p.set_xticklabels(xlabs)
 ```
 
-    Night
-    Day
-    Night
-    Day
+
+
+
+    [<matplotlib.text.Text at 0x10f7e1c50>,
+     <matplotlib.text.Text at 0x10be33f60>,
+     <matplotlib.text.Text at 0x105cb5e48>,
+     <matplotlib.text.Text at 0x10beff7f0>]
 
 
 
 
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x10e76c198>
-
-
-
-
-![png](output_31_2.png)
+![png](output_28_1.png)
 
 
 
