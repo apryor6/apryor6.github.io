@@ -29,6 +29,5 @@ Table of Contents
 [![png](visualizations/figures/jointplot.png)](../visualizations/seaborn/jointplot/jointplot)
 <a name="heatmap"></a>
 [![png](visualizations/figures/heatmap.png)](../visualizations/seaborn/heatmap/heatmap)
-[![png](figures/cube.gif)](../publications)
 
 
