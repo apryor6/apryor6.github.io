@@ -10,6 +10,7 @@ Table of Contents
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#boxplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#violinplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Joint plot](#jointplot)   
+	&nbsp;&nbsp;&nbsp;&nbsp; - [Heat map](#heatmap)   
 
 <a name="seaborn"></a>
 ## Seaborn
