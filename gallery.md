@@ -10,7 +10,6 @@ Table of Contents
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#boxplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#violinplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Joint plot](#jointplot)   
-        &nbsp;&nbsp;&nbsp;&nbsp; - [Colors](#colors)
 
 <a name="seaborn"></a>
 ## Seaborn
@@ -30,8 +29,6 @@ Table of Contents
 [![png](visualizations/figures/jointplot.png)](../visualizations/seaborn/jointplot/jointplot)
 <a name="heatmap"></a>
 [![png](visualizations/figures/heatmap.png)](../visualizations/seaborn/heatmap/heatmap)
-<a name="colors"></a>
-[![png](visualizations/figures/colors.png)](../visualizations/seaborn/colors/colors)
 [![png](figures/cube.gif)](../publications)
 
 
