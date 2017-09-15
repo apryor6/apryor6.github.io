@@ -169,7 +169,7 @@ sns.heatmap(df)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x10efafdd8>
+    <matplotlib.axes._subplots.AxesSubplot at 0x10c53b7b8>
 
 
 
@@ -187,7 +187,7 @@ sns.heatmap(df, cmap='coolwarm')
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x10f0e1eb8>
+    <matplotlib.axes._subplots.AxesSubplot at 0x10c65d710>
 
 
 
@@ -206,7 +206,7 @@ sns.heatmap(df, cmap='coolwarm', center=midpoint)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x10fec2048>
+    <matplotlib.axes._subplots.AxesSubplot at 0x10d448860>
 
 
 
@@ -225,7 +225,7 @@ sns.heatmap(df, cmap='coolwarm', center=midpoint, vmin=150, vmax=400)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1104a0e80>
+    <matplotlib.axes._subplots.AxesSubplot at 0x10da59a90>
 
 
 
@@ -242,7 +242,7 @@ sns.heatmap(df, cmap='coolwarm', center=midpoint, vmin=-100, vmax=800)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x110aac6d8>
+    <matplotlib.axes._subplots.AxesSubplot at 0x10e038470>
 
 
 
@@ -250,123 +250,157 @@ sns.heatmap(df, cmap='coolwarm', center=midpoint, vmin=-100, vmax=800)
 ![png](output_12_1.png)
 
 
-
+`robust` sets contrast levels based on quantiles and works like an "auto-contrast" for choosing good values
 
 
 ```python
-midpoint = (df.values.max() - df.values.min()) / 2
-p = sns.heatmap(df, cmap='coolwarm', center=midpoint)
+p = sns.heatmap(df, cmap='coolwarm', robust=True)
 ```
 
 
 ![png](output_14_0.png)
 
 
+Label the rectangles with `annot=True`, which also chooses a suitable text color
+
+
+```python
+p = sns.heatmap(df, cmap='coolwarm', annot=True)
+```
+
+
+![png](output_16_0.png)
+
+
+The format of the annotation can be changed with `fmt`  -- here I'll change from the default scientific notation to one decimal precision
+
+
+```python
+p = sns.heatmap(df, cmap='coolwarm', annot=True, fmt=".1f")
+```
+
+
+![png](output_18_0.png)
+
+
+Any other parameters for the text, such as the font size, can be passed with `annot_kws`. 
+
+
+```python
+p = sns.heatmap(df, cmap='coolwarm', annot=True, fmt=".1f",annot_kws={'size':16})
+```
+
+
+![png](output_20_0.png)
+
+
+`cbar` can be used to turn off the colorbar
+
+
+```python
+p = sns.heatmap(df,
+                cmap='coolwarm',
+                annot=True,
+                fmt=".1f",
+                annot_kws={'size':16},
+                cbar=False)
+```
+
+
+![png](output_22_0.png)
+
+
+`square` forces the aspect ratio of the blocks to be equal
+
+
+```python
+p = sns.heatmap(df,
+                cmap='coolwarm',
+                annot=True,
+                fmt=".1f",
+                annot_kws={'size':10},
+                cbar=False,
+                square=True)
+```
+
+
+![png](output_24_0.png)
+
+
+`xticklabels` and `yticklabels` are booleans to turn off the axis labels
+
+
+```python
+p = sns.heatmap(df,
+                cmap='coolwarm',
+                annot=True,
+                fmt=".1f",
+                annot_kws={'size':10},
+                cbar=False,
+                square=True,
+                xticklabels=False,
+                yticklabels=False)
+```
+
+
+![png](output_26_0.png)
+
+
+If you would like to hide certain values, pass in a binary `mask`
+
+
+```python
+mask = np.zeros(df.shape)
+mask[1::2,1::2] = 1
+p = sns.heatmap(df,
+                cmap='coolwarm',
+                annot=True,
+                fmt=".1f",
+                annot_kws={'size':10},
+                cbar=False,
+                square=True,
+                xticklabels=False,
+                yticklabels=False,
+                mask=mask)
+```
+
+
+![png](output_28_0.png)
+
+
+Finalize
+
+
+```python
+plt.rcParams['font.size'] = 20
+bg_color = (0.88,0.85,0.95)
+plt.rcParams['figure.facecolor'] = bg_color
+plt.rcParams['axes.facecolor'] = bg_color
+fig, ax = plt.subplots(1)
+p = sns.heatmap(df,
+                cmap='coolwarm',
+                annot=True,
+                fmt=".1f",
+                annot_kws={'size':16},
+                ax=ax)
+plt.xlabel('Month')
+plt.ylabel('Year')
+ax.set_ylim((0,15))
+plt.text(5,12.3, "Heat Map", fontsize = 95, color='Black', fontstyle='italic')
+```
+
+
+
+
+    <matplotlib.text.Text at 0x10ec6acf8>
+
+
+
+
+![png](output_30_1.png)
 
 
 
 ```python
 p.get_figure().savefig('../../figures/heatmap.png')
-```
-
-
-
-
-```python
-
-```
-
-
-
-
-```python
-
-```
-
-
-
-
-```python
-
-```
-
-
-
-
-```python
-
-```
-
-
-
-
-```python
-
-```
-
-
-
-
-```python
- flights_long.pivot(index="month", columns="year", values='passengers')
-
-
-```
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-10-ed58a0e1a61a> in <module>()
-    ----> 1 flights_long.pivot(index="month", columns="year", values='passengers')
-          2 
-
-
-    NameError: name 'flights_long' is not defined
-
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
 ```
