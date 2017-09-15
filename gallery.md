@@ -1,7 +1,7 @@
 ## Gallery (Under Construction)
 Below is a collection of data visualizations. Each final image below links to the markdown output of a Jupyter notebook with the code required to make that image as well as exploration of other adjustable parameters for that type of plot. Each notebook is designed to explore mainly the parameters that are specific to that type of plot in the corresponding library in order to avoid repetition (e.g. adjusting labels or titles is usually the same for all types of plots within a library), and at the very end extra modifications are made to make the final result look nice.
 
-Table of Contents   
+## Table of Contents   
 	- [Seaborn](#seaborn)  
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Scatter/Line plot](#lmplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Bar plot](#barplot)   
