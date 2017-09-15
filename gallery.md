@@ -1,16 +1,18 @@
 ## Gallery (Under Construction)
 Below is a collection of data visualizations. Each final image below links to the markdown output of a Jupyter notebook with the code required to make that image as well as exploration of other adjustable parameters for that type of plot. Each notebook is designed to explore mainly the parameters that are specific to that type of plot in the corresponding library in order to avoid repetition (e.g. adjusting labels or titles is usually the same for all types of plots within a library), and at the very end extra modifications are made to make the final result look nice.
 
-## Table of Contents   
-	- [Seaborn](#seaborn)  
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Scatter/Line plot](#lmplot)   
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Bar plot](#barplot)   
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Strip plot](#stripplot)   
-        &nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#boxplot)   
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#violinplot)   
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Joint plot](#jointplot)   
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Heat map](#heatmap)   
+### Table of contents
+
+- [Seaborn](#seaborn)
+- [Scatter/Line plot](#build-your-website-in-3-steps)
+- [Add your own content](#add-your-own-content)
+- [Last important thing: YAML front matter ("parameters" for a page)](#last-important-thing-yaml-front-matter-parameters-for-a-page)
+- [Features](#features)
+- [Creating a User Page vs a Project Page](#creating-a-user-page-vs-a-project-page)
+- [Showcased users (success stories!)](#showcased-users-success-stories)
+- [Advanced: local development](#advanced-local-development-using-docker)
+&nbsp;&nbsp;&nbsp;&nbsp; - [Credits and contributions](#credits)
+
 
 <a name="seaborn"></a>
 ## Seaborn
