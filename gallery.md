@@ -3,40 +3,42 @@ Below is a collection of data visualizations. Each final image below links to th
 
 ### Table of contents
 
-- [Seaborn](#seaborn)
-- [Scatter/Line plot](#build-your-website-in-3-steps)
-- [Add your own content](#add-your-own-content)
-- [Last important thing: YAML front matter ("parameters" for a page)](#last-important-thing-yaml-front-matter-parameters-for-a-page)
-- [Features](#features)
-- [Creating a User Page vs a Project Page](#creating-a-user-page-vs-a-project-page)
-- [Showcased users (success stories!)](#showcased-users-success-stories)
-- [Advanced: local development](#advanced-local-development-using-docker)
-&nbsp;&nbsp;&nbsp;&nbsp; - [Credits and contributions](#credits)
+- [Seaborn](#seaborn)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Scatter/Line plot](#seaborn-lmplot)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Bar plot](#seaborn-barplot)   
+&nbsp;&nbsp;&nbsp;&nbsp; - [Strip plot](#seaborn-stripplot)   
+&nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#seaborn-countplot)   
+&nbsp;&nbsp;&nbsp;&nbsp; - [Box plot](#seaborn-boxplot)   
+&nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#seaborn-violinplot)   
+&nbsp;&nbsp;&nbsp;&nbsp; - [Joint plot](#seaborn-jointplot)   
+&nbsp;&nbsp;&nbsp;&nbsp; - [Heat map](#seaborn-heatmap)  
+- [Plotly](#plotly)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Line plot](#plotly-line)  
 
 
 <a name="seaborn"></a>
 ## Seaborn
-<a name="lmplot"></a>
+<a name="seaborn-lmplot"></a>
 [![png](visualizations/figures/lmplot.png)](../visualizations/seaborn/lmplot/lmplot)
-<a name="barplot"></a>
+<a name="seaborn-barplot"></a>
 [![png](visualizations/figures/barplot.png)](../visualizations/seaborn/barplot/barplot)
-<a name="stripplot"></a>
+<a name="seaborn-stripplot"></a>
 [![png](visualizations/figures/stripplot.png)](../visualizations/seaborn/stripplot/stripplot)
-<a name="countplot"></a>
+<a name="seaborn-countplot"></a>
 [![png](visualizations/figures/countplot.png)](../visualizations/seaborn/countplot/countplot)
-<a name="boxplot"></a>
+<a name="seaborn-boxplot"></a>
 [![png](visualizations/figures/boxplot.png)](../visualizations/seaborn/boxplot/boxplot)
-<a name="violinplot"></a>
+<a name="seaborn-violinplot"></a>
 [![png](visualizations/figures/violinplot.png)](../visualizations/seaborn/violinplot/violinplot)
-<a name="jointplot"></a>
+<a name="seaborn-jointplot"></a>
 [![png](visualizations/figures/jointplot.png)](../visualizations/seaborn/jointplot/jointplot)
-<a name="heatmap"></a>
+<a name="seaborn-heatmap"></a>
 [![png](visualizations/figures/heatmap.png)](../visualizations/seaborn/heatmap/heatmap)
 
+<a name="plotly"></a>
+## Plotly
 
-
-
-
+<a name="plotly-line"<a>
 <html>
     <head><meta charset="utf-8" /></head>
     <body>
