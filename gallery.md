@@ -3,7 +3,7 @@ Below is a collection of data visualizations. Each final image below links to th
 
 Table of Contents   
 	- [Seaborn](#seaborn)  
-	&nbsp;&nbsp;&nbsp;&nbsp; - [Scatter Regression plot](#lmplot)   
+	&nbsp;&nbsp;&nbsp;&nbsp; - [Scatter/Line plot](#lmplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Bar plot](#barplot)   
 	&nbsp;&nbsp;&nbsp;&nbsp; - [Strip plot](#stripplot)   
         &nbsp;&nbsp;&nbsp;&nbsp; - [Count plot](#countplot)   
