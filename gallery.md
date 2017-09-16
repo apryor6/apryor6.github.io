@@ -21,7 +21,7 @@ Below is a collection of data visualizations. Each final image below links to th
 ## Bokeh
 
 <a name="bokeh-glyphs-circle"></a>
-[circle](../visualizations/bokeh/glyphs/circle)
+[circle](../visualizations/bokeh/glyphs/circle/circle)
 
 
 #### Glyphs
