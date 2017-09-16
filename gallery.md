@@ -2,6 +2,8 @@
 Below is a collection of data visualizations. Each final image below links to the markdown output of a Jupyter notebook with the code required to make that image as well as exploration of other adjustable parameters for that type of plot. Each notebook is designed to explore mainly the parameters that are specific to that type of plot in the corresponding library in order to avoid repetition (e.g. adjusting labels or titles is usually the same for all types of plots within a library), and at the very end extra modifications are made to make the final result look nice.
 
 ### Table of contents
+- [Bokeh](#bokeh)  
+&nbsp;&nbsp; - [Glyphs](#bokeh-glyphs)  
 
 - [Seaborn](#seaborn)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Scatter/Line plot](#seaborn-lmplot)  
@@ -15,6 +17,19 @@ Below is a collection of data visualizations. Each final image below links to th
 - [Plotly](#plotly)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Line plot](#plotly-line)  
 
+<a name="bokeh"></a>
+## Bokeh
+
+<a name="bokeh-glyphs-circle"></a>
+[![png](visualizations/bokeh/figures/glyphs-circle.png)](../visualizations/bokeh/glyphs/circle)
+
+<iframe src="visualizations/bokeh/figures/glyphs-circle.html"></iframe>
+
+#### Glyphs
+Glyphs are the fundamental building block of plots in `Bokeh`.
+
+<a name="bokeh-glyphs-lmplot"></a>
+[![png](visualizations/figures/lmplot.png)](../visualizations/seaborn/lmplot/lmplot)
 
 <a name="seaborn"></a>
 ## Seaborn
