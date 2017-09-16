@@ -28,10 +28,36 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-circle"></a>
 [`circle`](../visualizations/bokeh/glyphs/circle/circle)
 
-
-
-
- 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bokeh Plot</title>
+        
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.css" type="text/css" />
+        
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.js"></script>
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+        <style>
+          html {
+            width: 100%;
+            height: 100%;
+          }
+          body {
+            width: 90%;
+            height: 100%;
+            margin: auto;
+          }
+        </style>
+    </head>
+    <body>
+        
+        <div class="bk-root">
+            <div class="bk-plotdiv" id="46e06036-74f5-4719-8589-602f8ff4afac"></div>
+        </div>
+        
         <script type="text/javascript">
             (function() {
           var fn = function() {
@@ -68,12 +94,8 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
         })();
         
         </script>
-
-
-
-
-<a name="bokeh-glyphs-lmplot"></a>
-[![png](visualizations/figures/lmplot.png)](../visualizations/seaborn/lmplot/lmplot)
+    </body>
+</html>
 
 <a name="seaborn"></a>
 ## Seaborn
