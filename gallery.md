@@ -38,7 +38,7 @@ Below is a collection of data visualizations. Each final image below links to th
 <a name="plotly"></a>
 ## Plotly
 
-<a name="plotly-line"<a>
+<a name="plotly-line"></a>
 <html>
     <head><meta charset="utf-8" /></head>
     <body>
