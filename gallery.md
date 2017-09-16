@@ -14,7 +14,10 @@ Below is a collection of data visualizations. Each final image below links to th
 - [**Plotly**](#plotly)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Line plot](#plotly-line)  
 - [**Bokeh**](#bokeh)  
-&nbsp;&nbsp; - [Glyphs](#bokeh-glyphs) 
+&nbsp;&nbsp; - [Glyphs](#bokeh-glyphs)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Circle](#bokeh-glyphs-circle)  
+
+
 
 
 <a name="seaborn"></a>
