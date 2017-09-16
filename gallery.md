@@ -27,8 +27,8 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 
 <a name="bokeh-glyphs-circle"></a>
-[`circle`](../visualizations/bokeh/glyphs/circle/circle)
-<a name="bokeh-glyphs-circle-figure">
+[#####circle](../visualizations/bokeh/glyphs/circle/circle)
+<div id="bokeh-glyphs-circle-figure">
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -96,7 +96,7 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
         </script>
     </body>
 </html>
-</a>
+</div>
 
 <a name="seaborn"></a>
 ## Seaborn
