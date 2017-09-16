@@ -1,5 +1,5 @@
 
-# seaborn.countplot
+# seaborn.barplot
 ---
 Bar graphs are useful for displaying relationships between categorical data and at least one numerical variable. `seaborn.countplot` is a barplot where the dependent variable is the number of instances of each instance of the independent variable.
 
@@ -239,24 +239,24 @@ df.head()
       <th>director_name</th>
       <th>genres</th>
       <th>duration</th>
-      <th>Western</th>
-      <th>Documentary</th>
-      <th>Animation</th>
-      <th>Fantasy</th>
-      <th>Thriller</th>
+      <th>Reality-TV</th>
       <th>Family</th>
-      <th>War</th>
-      <th>...</th>
-      <th>Horror</th>
       <th>Biography</th>
-      <th>Action</th>
-      <th>History</th>
-      <th>Musical</th>
       <th>Comedy</th>
-      <th>Romance</th>
-      <th>Adventure</th>
+      <th>Action</th>
+      <th>Crime</th>
+      <th>Sci-Fi</th>
+      <th>...</th>
       <th>Mystery</th>
-      <th>Game-Show</th>
+      <th>Film-Noir</th>
+      <th>Sport</th>
+      <th>Adventure</th>
+      <th>Drama</th>
+      <th>Romance</th>
+      <th>Western</th>
+      <th>War</th>
+      <th>Animation</th>
+      <th>News</th>
     </tr>
   </thead>
   <tbody>
@@ -268,19 +268,19 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -292,19 +292,19 @@ df.head()
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -323,12 +323,12 @@ df.head()
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -347,7 +347,7 @@ df.head()
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -362,7 +362,7 @@ df.head()
       <td>Documentary</td>
       <td>NaN</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -439,37 +439,37 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <th>15129</th>
-      <td>178.0</td>
-      <td>Fantasy</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>15130</th>
-      <td>169.0</td>
-      <td>Fantasy</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
       <th>15136</th>
       <td>100.0</td>
-      <td>Fantasy</td>
+      <td>Comedy</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>15138</th>
-      <td>153.0</td>
-      <td>Fantasy</td>
+      <th>15148</th>
+      <td>106.0</td>
+      <td>Comedy</td>
       <td>1</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>15142</th>
-      <td>151.0</td>
-      <td>Fantasy</td>
+      <th>15164</th>
+      <td>104.0</td>
+      <td>Comedy</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>15170</th>
+      <td>106.0</td>
+      <td>Comedy</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>15172</th>
+      <td>103.0</td>
+      <td>Comedy</td>
       <td>1</td>
       <td>1</td>
     </tr>
@@ -546,7 +546,7 @@ sns.countplot(data=df,
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7fb79539cdd8>
+    <matplotlib.axes._subplots.AxesSubplot at 0x111017278>
 
 
 
@@ -650,42 +650,6 @@ p = sns.countplot(data=df,
 
 
 ```python
-help(sns.set)
-```
-
-    Help on function set in module seaborn.rcmod:
-    
-    set(context='notebook', style='darkgrid', palette='deep', font='sans-serif', font_scale=1, color_codes=False, rc=None)
-        Set aesthetic parameters in one step.
-        
-        Each set of parameters can be set directly or temporarily, see the
-        referenced functions below for more information.
-        
-        Parameters
-        ----------
-        context : string or dict
-            Plotting context parameters, see :func:`plotting_context`
-        style : string or dict
-            Axes style parameters, see :func:`axes_style`
-        palette : string or sequence
-            Color palette, see :func:`color_palette`
-        font : string
-            Font family, see matplotlib font manager.
-        font_scale : float, optional
-            Separate scaling factor to independently scale the size of the
-            font elements.
-        color_codes : bool
-            If ``True`` and ``palette`` is a seaborn palette, remap the shorthand
-            color codes (e.g. "b", "g", "r", etc.) to the colors from this palette.
-        rc : dict or None
-            Dictionary of rc parameter mappings to override the above.
-    
-
-
-
-
-
-```python
 plt.rcParams['font.family'] = "cursive"
 #sns.set(style="white",font_scale=1.25)
 num_categories = df.Category.unique().size
@@ -698,12 +662,8 @@ p = sns.countplot(data=df,
                   linewidth=2)
 ```
 
-    /usr/local/lib/python3.5/dist-packages/matplotlib/font_manager.py:1297: UserWarning: findfont: Font family ['cursive'] not found. Falling back to DejaVu Sans
-      (prop.get_family(), self.defaultFamily[fontext]))
 
-
-
-![png](output_30_1.png)
+![png](output_28_0.png)
 
 
 
@@ -724,12 +684,12 @@ p = sns.countplot(data=df,
 ```
 
 
-![png](output_32_0.png)
+![png](output_30_0.png)
 
 
 
 ```python
-bg_color = (0.25, 0.25, 0.25)
+bg_color = 'white'
 sns.set(rc={"font.style":"normal",
             "axes.facecolor":bg_color,
             "figure.facecolor":bg_color,
@@ -741,6 +701,7 @@ sns.set(rc={"font.style":"normal",
             'axes.labelsize':30,
             'figure.figsize':(20.0, 10.0),
             'xtick.labelsize':25,
+            'font.size':20,
             'ytick.labelsize':20})
 
 
@@ -756,26 +717,26 @@ p = sns.countplot(data=df,
                   edgecolor=(0,0,0),
                   linewidth=2)
 leg = p.get_legend()
-leg.set_title("Duration")
+leg.set_title("")
 labs = leg.texts
 labs[0].set_text("Short")
+labs[0].set_fontsize(25)
+labs[0].set_size(30)
 labs[1].set_text("Long")
-leg.get_title().set_color('white')
-for lab in labs:
-    lab.set_color('white')
+leg.get_title().set_color('black')
 p.axes.xaxis.label.set_text("Counts")
-plt.text(900,2, "Bar Plot", fontsize = 95, color='white', fontstyle='italic')
+plt.text(900,2, "Bar Plot", fontsize = 95, color='Black', fontstyle='italic')
 ```
 
 
 
 
-    <matplotlib.text.Text at 0x7fb794a0fe80>
+    <matplotlib.text.Text at 0x112bbc400>
 
 
 
 
-![png](output_33_1.png)
+![png](output_31_1.png)
 
 
 
