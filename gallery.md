@@ -2,9 +2,9 @@
 Below is a collection of data visualizations. Each final image below links to the markdown output of a Jupyter notebook with the code required to make that image as well as exploration of other adjustable parameters for that type of plot. Each notebook is designed to explore mainly the parameters that are specific to that type of plot in the corresponding library in order to avoid repetition (e.g. adjusting labels or titles is usually the same for all types of plots within a library), and at the very end extra modifications are made to make the final result look nice.
 
 ### Table of contents
-- [*Bokeh*](#bokeh)  
+- [**Bokeh**](#bokeh)  
 &nbsp;&nbsp; - [Glyphs](#bokeh-glyphs)  
-- [*Seaborn*](#seaborn)  
+- [**Seaborn**](#seaborn)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Scatter/Line plot](#seaborn-lmplot)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Bar plot](#seaborn-barplot)   
 &nbsp;&nbsp;&nbsp;&nbsp; - [Strip plot](#seaborn-stripplot)   
@@ -13,7 +13,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp; - [Violin plot](#seaborn-violinplot)   
 &nbsp;&nbsp;&nbsp;&nbsp; - [Joint plot](#seaborn-jointplot)   
 &nbsp;&nbsp;&nbsp;&nbsp; - [Heat map](#seaborn-heatmap)  
-- [*Plotly*](#plotly)  
+- [**Plotly**](#plotly)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Line plot](#plotly-line)  
 
 <a name="bokeh"></a>
@@ -28,7 +28,6 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-circle"></a>
 [`circle`](../visualizations/bokeh/glyphs/circle/circle)
 
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
