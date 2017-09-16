@@ -21,9 +21,8 @@ Below is a collection of data visualizations. Each final image below links to th
 ## Bokeh
 
 <a name="bokeh-glyphs-circle"></a>
-[![png](visualizations/bokeh/figures/glyphs-circle.png)](../visualizations/bokeh/glyphs/circle)
+[circle](../visualizations/bokeh/glyphs/circle)
 
-<iframe src="visualizations/bokeh/figures/glyphs-circle.html"></iframe>
 
 #### Glyphs
 Glyphs are the fundamental building block of plots in `Bokeh`.
