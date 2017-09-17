@@ -113,6 +113,9 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 #### Diamond Cross [(code)](../visualizations/bokeh/glyphs/hbar/hbar)
 {bokeh_glyphs_hbar}
 
+<a name="bokeh-glyphs-image"></a>
+#### Square [(code)](../visualizations/bokeh/glyphs/image/image)
+{bokeh_glyphs_image}
 
 <a name="bokeh-glyphs-square"></a>
 #### Square [(code)](../visualizations/bokeh/glyphs/square/square)

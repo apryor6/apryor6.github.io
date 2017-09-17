@@ -15,9 +15,12 @@ template_fillers = {
     'bokeh_glyphs_diamond_cross':'glyph-diamond-cross.html',
     'bokeh_glyphs_ellipse':'glyph-ellipse.html',
     'bokeh_glyphs_hbar':'glyph-hbar.html',
+    'bokeh_glyphs_image':'glyph-image.html',
 	'bokeh_glyphs_square':'glyph-square.html',
 	'bokeh_glyphs_triangle':'glyph-triangle.html',
 	'bokeh_glyphs_vbar':'glyph-vbar.html',
+
+	
 	
 }
 template_fillers = {k:base_html_filename+v for (k, v) in template_fillers.items()}
