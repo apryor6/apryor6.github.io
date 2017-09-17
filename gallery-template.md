@@ -23,6 +23,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp; - [Circle Cross](#bokeh-glyphs-circle-cross)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Circle X](#bokeh-glyphs-circle-x)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Cross](#bokeh-glyphs-cross)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Diamond](#bokeh-glyphs-diamond)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)  
 
@@ -94,6 +95,9 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 #### Cross [(code)](../visualizations/bokeh/glyphs/cross/cross)
 {bokeh_glyphs_cross}
 
+<a name="bokeh-glyphs-diamond"></a>
+#### Cross [(code)](../visualizations/bokeh/glyphs/diamond/diamond)
+{bokeh_glyphs_diamond}
 
 <a name="bokeh-glyphs-square"></a>
 #### Square [(code)](../visualizations/bokeh/glyphs/square/square)
