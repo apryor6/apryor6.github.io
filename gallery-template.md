@@ -16,6 +16,7 @@ Below is a collection of data visualizations. Each final image below links to th
 - [**Bokeh**](#bokeh)  
 &nbsp;&nbsp; - [Glyphs](#bokeh-glyphs)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Annular Wedge](#bokeh-glyphs-annular-wedge) 
+&nbsp;&nbsp;&nbsp;&nbsp; - [Annulus](#bokeh-glyphs-annulus) 
 &nbsp;&nbsp;&nbsp;&nbsp; - [Circle](#bokeh-glyphs-circle)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)  
@@ -60,6 +61,9 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 #### Circle [(code)](../visualizations/bokeh/glyphs/annular-wedge/annular_wedge)
 {bokeh_glyphs_annular_wedge}
 
+<a name="bokeh-glyphs-annulus"></a>
+#### Circle [(code)](../visualizations/bokeh/glyphs/annulus/annulus)
+{bokeh_glyphs_annulus}
 
 <a name="bokeh-glyphs-circle"></a>
 #### Circle [(code)](../visualizations/bokeh/glyphs/circle/circle)
