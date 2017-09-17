@@ -127,5 +127,5 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 {bokeh_glyphs_triangle}
 
 <a name="bokeh-glyphs-vbar"></a>
-#### Diamond Cross [(code)](../visualizations/bokeh/glyphs/vbar/vbar)
+#### Vbar [(code)](../visualizations/bokeh/glyphs/vbar/vbar)
 {bokeh_glyphs_vbar}
