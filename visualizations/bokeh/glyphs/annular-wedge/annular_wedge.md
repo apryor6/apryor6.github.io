@@ -7,8 +7,8 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.models import Range1d
 from math import radians
 
-fill_color = '#66bd63'
-line_color = '#d73027'
+fill_color = '#a1d99b'
+line_color = '#525252'
 output_file("../../figures/glyph-annular-wedge.html")
 
 p = figure(plot_width=400, plot_height=400)

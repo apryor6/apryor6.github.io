@@ -24,10 +24,12 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp; - [Circle X](#bokeh-glyphs-circle-x)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Cross](#bokeh-glyphs-cross)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Diamond](#bokeh-glyphs-diamond)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Diamond Cross](#bokeh-glyphs-diamond-cross)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Ellipse](#bokeh-glyphs-ellipse)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Hbar](#bokeh-glyphs-hbar) 
 &nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)  
-
-
+&nbsp;&nbsp;&nbsp;&nbsp; - [Vbar](#bokeh-glyphs-vbar) 
 
 
 <a name="seaborn"></a>
@@ -103,6 +105,15 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 #### Diamond Cross [(code)](../visualizations/bokeh/glyphs/diamond-cross/diamond_cross)
 {bokeh_glyphs_diamond_cross}
 
+<a name="bokeh-glyphs-ellipse"></a>
+#### Diamond Cross [(code)](../visualizations/bokeh/glyphs/ellipse/ellipse)
+{bokeh_glyphs_ellipse}
+
+<a name="bokeh-glyphs-hbar"></a>
+#### Diamond Cross [(code)](../visualizations/bokeh/glyphs/hbar/hbar)
+{bokeh_glyphs_hbar}
+
+
 <a name="bokeh-glyphs-square"></a>
 #### Square [(code)](../visualizations/bokeh/glyphs/square/square)
 {bokeh_glyphs_square}
@@ -110,3 +121,7 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-triangle"></a>
 #### Triangle [(code)](../visualizations/bokeh/glyphs/triangle/triangle)
 {bokeh_glyphs_triangle}
+
+<a name="bokeh-glyphs-vbar"></a>
+#### Diamond Cross [(code)](../visualizations/bokeh/glyphs/vbar/vbar)
+{bokeh_glyphs_vbar}
