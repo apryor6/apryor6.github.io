@@ -7,8 +7,9 @@ template_fillers = {
     'bokeh_glyphs_annulus':'glyph-annulus.html',
     'bokeh_glyphs_arc':'glyph-arc.html',
     'bokeh_glyphs_asterisk':'glyph-asterisk.html',
-    'bokeh_glyphs_circle_cross':'glyph-circle-cross.html',
 	'bokeh_glyphs_circle':'glyph-circle.html',
+    'bokeh_glyphs_circle_cross':'glyph-circle-cross.html',
+    'bokeh_glyphs_circle_x':'glyph-circle-x.html',
 	'bokeh_glyphs_square':'glyph-square.html',
 	'bokeh_glyphs_triangle':'glyph-triangle.html'
 }
