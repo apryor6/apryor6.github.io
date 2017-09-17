@@ -20,6 +20,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp; - [Arc](#bokeh-glyphs-arc) 
 &nbsp;&nbsp;&nbsp;&nbsp; - [Asterisk](#bokeh-glyphs-asterisk) 
 &nbsp;&nbsp;&nbsp;&nbsp; - [Circle](#bokeh-glyphs-circle)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Circle Cross](#bokeh-glyphs-circle-cross)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)  
 
@@ -78,6 +79,10 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-circle"></a>
 #### Circle [(code)](../visualizations/bokeh/glyphs/circle/circle)
 {bokeh_glyphs_circle}
+
+<a name="bokeh-glyphs-circle-cross"></a>
+#### Circle Cross [(code)](../visualizations/bokeh/glyphs/circle-cross/circle_cross)
+{bokeh_glyphs_circle_cross}
 
 <a name="bokeh-glyphs-square"></a>
 #### Square [(code)](../visualizations/bokeh/glyphs/square/square)
