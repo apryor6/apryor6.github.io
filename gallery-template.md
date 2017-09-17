@@ -15,6 +15,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp; - [Line plot](#plotly-line)  
 - [**Bokeh**](#bokeh)  
 &nbsp;&nbsp; - [Glyphs](#bokeh-glyphs)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Annular Wedge](#bokeh-glyphs-annular-wedge) 
 &nbsp;&nbsp;&nbsp;&nbsp; - [Circle](#bokeh-glyphs-circle)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)  
@@ -53,6 +54,11 @@ Below is a collection of data visualizations. Each final image below links to th
 
 #### Glyphs
 Glyphs are the fundamental building block of plots in `Bokeh`.
+
+
+<a name="bokeh-glyphs-annular-wedge"></a>
+#### Circle [(code)](../visualizations/bokeh/glyphs/annular-wedge/annular_wedge)
+{bokeh_glyphs_annular_wedge}
 
 
 <a name="bokeh-glyphs-circle"></a>
