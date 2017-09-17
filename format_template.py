@@ -6,6 +6,7 @@ template_fillers = {
     'bokeh_glyphs_annular_wedge':'glyph-annular-wedge.html',
     'bokeh_glyphs_annulus':'glyph-annulus.html',
     'bokeh_glyphs_arc':'glyph-arc.html',
+    'bokeh_glyphs_asterisk':'glyph-asterisk.html',
 	'bokeh_glyphs_circle':'glyph-circle.html',
 	'bokeh_glyphs_square':'glyph-square.html',
 	'bokeh_glyphs_triangle':'glyph-triangle.html'
