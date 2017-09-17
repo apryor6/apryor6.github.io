@@ -16,6 +16,8 @@ Below is a collection of data visualizations. Each final image below links to th
 - [**Bokeh**](#bokeh)  
 &nbsp;&nbsp; - [Glyphs](#bokeh-glyphs)  
 &nbsp;&nbsp;&nbsp;&nbsp; - [Circle](#bokeh-glyphs-circle)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
+&nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)  
 
 
 
@@ -57,10 +59,10 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 #### Circle [(code)](../visualizations/bokeh/glyphs/circle/circle)
 {bokeh_glyphs_circle}
 
-<a name="bokeh-glyphs-triangle"></a>
-#### Triangle [(code)](../visualizations/bokeh/glyphs/triangle/triangle)
-{bokeh_glyphs_triangle}
-
 <a name="bokeh-glyphs-square"></a>
 #### Square [(code)](../visualizations/bokeh/glyphs/square/square)
 {bokeh_glyphs_square}
+
+<a name="bokeh-glyphs-triangle"></a>
+#### Triangle [(code)](../visualizations/bokeh/glyphs/triangle/triangle)
+{bokeh_glyphs_triangle}
