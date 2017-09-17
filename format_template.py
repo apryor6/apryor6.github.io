@@ -22,4 +22,4 @@ with open(template_file,'r') as fi, open(output_filename, 'w') as fo:
 	# print(fi.read())
 	# print(fi.read().format(**format_dict))
 	# print(fi.read())
-	fo.write(fi.read().format(**format_dict))
+	fo.write(fi.read().replace('<!DOCTYPE html>','').format(**format_dict))
