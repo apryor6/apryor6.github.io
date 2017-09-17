@@ -12,6 +12,7 @@ template_fillers = {
     'bokeh_glyphs_circle_x':'glyph-circle-x.html',
     'bokeh_glyphs_cross':'glyph-cross.html',
     'bokeh_glyphs_diamond':'glyph-diamond.html',
+    'bokeh_glyphs_diamond_cross':'glyph-diamond-cross.html',
 	'bokeh_glyphs_square':'glyph-square.html',
 	'bokeh_glyphs_triangle':'glyph-triangle.html'
 	

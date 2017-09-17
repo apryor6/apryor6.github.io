@@ -96,8 +96,12 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 {bokeh_glyphs_cross}
 
 <a name="bokeh-glyphs-diamond"></a>
-#### Cross [(code)](../visualizations/bokeh/glyphs/diamond/diamond)
+#### Diamond [(code)](../visualizations/bokeh/glyphs/diamond/diamond)
 {bokeh_glyphs_diamond}
+
+<a name="bokeh-glyphs-diamond-cross"></a>
+#### Diamond Cross [(code)](../visualizations/bokeh/glyphs/diamond-cross/diamond_cross)
+{bokeh_glyphs_diamond_cross}
 
 <a name="bokeh-glyphs-square"></a>
 #### Square [(code)](../visualizations/bokeh/glyphs/square/square)
