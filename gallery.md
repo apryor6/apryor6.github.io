@@ -31,6 +31,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Image RGBA](#bokeh-glyphs-image_rgba)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Image URL](#bokeh-glyphs-image_url)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Line](#bokeh-glyphs-line) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Oval](#bokeh-glyphs-oval) 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Vbar](#bokeh-glyphs-vbar) 
@@ -162,6 +163,12 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-line"></a>
 #### Line ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/line)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/line/line)
 ![Line](../visualizations/bokeh/figures/line.png)
+
+
+
+<a name="bokeh-glyphs-oval"></a>
+#### Oval ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/oval)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/oval/oval)
+![Oval](../visualizations/bokeh/figures/oval.png)
 
 
 

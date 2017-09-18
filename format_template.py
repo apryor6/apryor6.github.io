@@ -6,7 +6,8 @@ base_image_filename  = '../visualizations/'
 key_base = "bokeh_glyphs_{}"
 glyph_names = ['annular_wedge', 'annulus','arc','asterisk','circle',
 'circle_cross','circle_x','cross','diamond','diamond_cross','ellipse',
-'hbar','image','image_rgba', 'image_url', 'line', 'square','triangle','vbar']
+'hbar','image','image_rgba', 'image_url', 'line', 'oval','square',
+'triangle','vbar']
 
 glyph_format_dict = dict(glyph_base_code_filename=base_filename+'bokeh/glyphs/',
 	                     glyph_base_html_filename=base_filename+'bokeh/figures/',
