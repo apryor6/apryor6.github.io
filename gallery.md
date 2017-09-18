@@ -67,96 +67,96 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 
 <a name="bokeh-glyphs-annular_wedge"></a>
-#### Annular_wedge [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/annular_wedge) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/annular_wedge/annular_wedge)
+#### Annular_wedge ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/annular_wedge)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/annular_wedge/annular_wedge)
 ![Annular_wedge](../visualizations/bokeh/figures/annular_wedge.png)
 
 
 
 <a name="bokeh-glyphs-annulus"></a>
-#### Annulus [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/annulus) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/annulus/annulus)
+#### Annulus ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/annulus)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/annulus/annulus)
 ![Annulus](../visualizations/bokeh/figures/annulus.png)
 
 
 
 <a name="bokeh-glyphs-arc"></a>
-#### Arc [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/arc) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/arc/arc)
+#### Arc ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/arc)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/arc/arc)
 ![Arc](../visualizations/bokeh/figures/arc.png)
 
 
 
 <a name="bokeh-glyphs-asterisk"></a>
-#### Asterisk [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/asterisk) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/asterisk/asterisk)
+#### Asterisk ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/asterisk)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/asterisk/asterisk)
 ![Asterisk](../visualizations/bokeh/figures/asterisk.png)
 
 
 
 <a name="bokeh-glyphs-circle"></a>
-#### Circle [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle/circle)
+#### Circle ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle/circle)
 ![Circle](../visualizations/bokeh/figures/circle.png)
 
 
 
 <a name="bokeh-glyphs-circle_cross"></a>
-#### Circle_cross [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle_cross) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle_cross/circle_cross)
+#### Circle_cross ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle_cross)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle_cross/circle_cross)
 ![Circle_cross](../visualizations/bokeh/figures/circle_cross.png)
 
 
 
 <a name="bokeh-glyphs-circle_x"></a>
-#### Circle_x [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle_x) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle_x/circle_x)
+#### Circle_x ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle_x)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle_x/circle_x)
 ![Circle_x](../visualizations/bokeh/figures/circle_x.png)
 
 
 
 <a name="bokeh-glyphs-cross"></a>
-#### Cross [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/cross) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/cross/cross)
+#### Cross ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/cross)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/cross/cross)
 ![Cross](../visualizations/bokeh/figures/cross.png)
 
 
 
 <a name="bokeh-glyphs-diamond"></a>
-#### Diamond [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/diamond) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/diamond/diamond)
+#### Diamond ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/diamond)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/diamond/diamond)
 ![Diamond](../visualizations/bokeh/figures/diamond.png)
 
 
 
 <a name="bokeh-glyphs-diamond_cross"></a>
-#### Diamond_cross [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/diamond_cross) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/diamond_cross/diamond_cross)
+#### Diamond_cross ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/diamond_cross)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/diamond_cross/diamond_cross)
 ![Diamond_cross](../visualizations/bokeh/figures/diamond_cross.png)
 
 
 
 <a name="bokeh-glyphs-ellipse"></a>
-#### Ellipse [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/ellipse) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/ellipse/ellipse)
+#### Ellipse ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/ellipse)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/ellipse/ellipse)
 ![Ellipse](../visualizations/bokeh/figures/ellipse.png)
 
 
 
 <a name="bokeh-glyphs-hbar"></a>
-#### Hbar [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/hbar) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/hbar/hbar)
+#### Hbar ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/hbar)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/hbar/hbar)
 ![Hbar](../visualizations/bokeh/figures/hbar.png)
 
 
 
 <a name="bokeh-glyphs-image"></a>
-#### Image [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/image) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/image/image)
+#### Image ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/image)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/image/image)
 ![Image](../visualizations/bokeh/figures/image.png)
 
 
 
 <a name="bokeh-glyphs-square"></a>
-#### Square [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/square) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/square/square)
+#### Square ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/square)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/square/square)
 ![Square](../visualizations/bokeh/figures/square.png)
 
 
 
 <a name="bokeh-glyphs-triangle"></a>
-#### Triangle [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/triangle) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/triangle/triangle)
+#### Triangle ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/triangle)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/triangle/triangle)
 ![Triangle](../visualizations/bokeh/figures/triangle.png)
 
 
 
 <a name="bokeh-glyphs-vbar"></a>
-#### Vbar [Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/vbar) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/vbar/vbar)
+#### Vbar ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/vbar)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/vbar/vbar)
 ![Vbar](../visualizations/bokeh/figures/vbar.png)
 
