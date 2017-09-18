@@ -39,7 +39,8 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Quadratic](#bokeh-glyphs-quadratic)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Ray](#bokeh-glyphs-ray)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Segment](#bokeh-glyphs-segment)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square Cross](#bokeh-glyphs-square_cross)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Vbar](#bokeh-glyphs-vbar)  
 
@@ -224,6 +225,12 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-square"></a>
 #### Square ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/square)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/square/square)
 ![Square](../visualizations/bokeh/figures/square.png)
+
+
+
+<a name="bokeh-glyphs-square_cross"></a>
+#### Square Cross ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/square_cross)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/square_cross/square_cross)
+![Square Cross](../visualizations/bokeh/figures/square_cross.png)
 
 
 
