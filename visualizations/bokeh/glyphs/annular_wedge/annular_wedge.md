@@ -6,10 +6,11 @@
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import Range1d
 from math import radians
+from bokeh.io import export_png
 
 fill_color = '#a1d99b'
 line_color = '#525252'
-output_file("../../figures/glyph-annular-wedge.html")
+output_file("../../figures/annular_wedge.html")
 
 p = figure(plot_width=400, plot_height=400)
 p.annular_wedge(inner_radius=0.1, outer_radius=0.2, start_angle=0, end_angle=radians(360),
@@ -27,4 +28,5 @@ p.annular_wedge(inner_radius=0.35, outer_radius=0.4, start_angle=0, end_angle=ra
 p.x_range = Range1d(-0.5,1.5, bounds=(-1,2))
 p.y_range = Range1d(-0.5,1.5, bounds=(-1,2))
 show(p)
+export_png(p, filename="../../figures/annular_wedge.png");
 ```

@@ -1,34 +1,29 @@
 
 template_file = 'gallery-template.md'
 output_filename = 'gallery.md'
-base_html_filename = 'visualizations/bokeh/figures/'
-template_fillers = {
-    'bokeh_glyphs_annular_wedge':'glyph-annular-wedge.html',
-    'bokeh_glyphs_annulus':'glyph-annulus.html',
-    'bokeh_glyphs_arc':'glyph-arc.html',
-    'bokeh_glyphs_asterisk':'glyph-asterisk.html',
-	'bokeh_glyphs_circle':'glyph-circle.html',
-    'bokeh_glyphs_circle_cross':'glyph-circle-cross.html',
-    'bokeh_glyphs_circle_x':'glyph-circle-x.html',
-    'bokeh_glyphs_cross':'glyph-cross.html',
-    'bokeh_glyphs_diamond':'glyph-diamond.html',
-    'bokeh_glyphs_diamond_cross':'glyph-diamond-cross.html',
-    'bokeh_glyphs_ellipse':'glyph-ellipse.html',
-    'bokeh_glyphs_hbar':'glyph-hbar.html',
-    'bokeh_glyphs_image':'glyph-image.html',
-	'bokeh_glyphs_square':'glyph-square.html',
-	'bokeh_glyphs_triangle':'glyph-triangle.html',
-	'bokeh_glyphs_vbar':'glyph-vbar.html',
+base_filename = 'http://alanpryorjr.com/visualizations/'
+base_image_filename  = '../visualizations/'
+key_base = "bokeh_glyphs_{}"
+glyph_names = ['annular_wedge', 'annulus','arc','asterisk','circle',
+'circle_cross','circle_x','cross','diamond','diamond_cross','ellipse',
+'hbar','image','square','triangle','vbar']
 
-	
-	
-}
-template_fillers = {k:base_html_filename+v for (k, v) in template_fillers.items()}
+glyph_format_dict = dict(glyph_base_code_filename=base_filename+'bokeh/glyphs/',
+	                     glyph_base_html_filename=base_filename+'bokeh/figures/',
+	                     glyph_base_image_filename=base_image_filename+'bokeh/figures/')
 
+filler_template = """
+<a name="bokeh-glyphs-{glyph_name}"></a>
+#### {Glyph_name} [(code)]({glyph_base_code_filename}{glyph_name}/{glyph_name})
+[![{Glyph_name}]({glyph_img_file})]({glyph_base_html_filename}{glyph_name})
+"""
 format_dict = {}
-for k,v in template_fillers.items():
-    with open(v, 'r') as fid:
-    	format_dict.update({k:fid.read()})
+for glyph_name in glyph_names:
+	key = key_base.format(glyph_name)
+	glyph_format_dict['Glyph_name'] = glyph_name.capitalize()
+	glyph_format_dict['glyph_name'] = glyph_name
+	glyph_format_dict['glyph_img_file'] = glyph_format_dict['glyph_base_image_filename'] + glyph_name + '.png'
+	format_dict[key] = filler_template.format(**glyph_format_dict)
 
 with open(template_file,'r') as fi, open(output_filename, 'w') as fo:
 	fo.write(fi.read().format(**format_dict).replace('<!DOCTYPE html>',''))

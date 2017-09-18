@@ -65,67 +65,34 @@ Below is a collection of data visualizations. Each final image below links to th
 #### Glyphs
 Glyphs are the fundamental building block of plots in `Bokeh`.
 
-
-<a name="bokeh-glyphs-annular-wedge"></a>
-#### Annular Wedge [(code)](../visualizations/bokeh/glyphs/annular-wedge/annular_wedge)
 {bokeh_glyphs_annular_wedge}
 
-<a name="bokeh-glyphs-annulus"></a>
-#### Annulus [(code)](../visualizations/bokeh/glyphs/annulus/annulus)
 {bokeh_glyphs_annulus}
 
-<a name="bokeh-glyphs-arc"></a>
-#### Arc [(code)](../visualizations/bokeh/glyphs/arc/arc)
 {bokeh_glyphs_arc}
 
-<a name="bokeh-glyphs-asterisk"></a>
-#### Asterisk [(code)](../visualizations/bokeh/glyphs/asterisk/asterisk)
 {bokeh_glyphs_asterisk}
 
-<a name="bokeh-glyphs-circle"></a>
-#### Circle [(code)](../visualizations/bokeh/glyphs/circle/circle)
 {bokeh_glyphs_circle}
 
-<a name="bokeh-glyphs-circle-cross"></a>
-#### Circle Cross [(code)](../visualizations/bokeh/glyphs/circle-cross/circle_cross)
 {bokeh_glyphs_circle_cross}
 
-<a name="bokeh-glyphs-circle-x"></a>
-#### Circle X [(code)](../visualizations/bokeh/glyphs/circle-x/circle_x)
 {bokeh_glyphs_circle_x}
 
-<a name="bokeh-glyphs-cross"></a>
-#### Cross [(code)](../visualizations/bokeh/glyphs/cross/cross)
 {bokeh_glyphs_cross}
 
-<a name="bokeh-glyphs-diamond"></a>
-#### Diamond [(code)](../visualizations/bokeh/glyphs/diamond/diamond)
 {bokeh_glyphs_diamond}
 
-<a name="bokeh-glyphs-diamond-cross"></a>
-#### Diamond Cross [(code)](../visualizations/bokeh/glyphs/diamond-cross/diamond_cross)
 {bokeh_glyphs_diamond_cross}
 
-<a name="bokeh-glyphs-ellipse"></a>
-#### Ellipse [(code)](../visualizations/bokeh/glyphs/ellipse/ellipse)
 {bokeh_glyphs_ellipse}
 
-<a name="bokeh-glyphs-hbar"></a>
-#### Hbar [(code)](../visualizations/bokeh/glyphs/hbar/hbar)
 {bokeh_glyphs_hbar}
 
-<a name="bokeh-glyphs-image"></a>
-#### Image [(code)](../visualizations/bokeh/glyphs/image/image)
 {bokeh_glyphs_image}
 
-<a name="bokeh-glyphs-square"></a>
-#### Square [(code)](../visualizations/bokeh/glyphs/square/square)
 {bokeh_glyphs_square}
 
-<a name="bokeh-glyphs-triangle"></a>
-#### Triangle [(code)](../visualizations/bokeh/glyphs/triangle/triangle)
 {bokeh_glyphs_triangle}
 
-<a name="bokeh-glyphs-vbar"></a>
-#### Vbar [(code)](../visualizations/bokeh/glyphs/vbar/vbar)
 {bokeh_glyphs_vbar}
