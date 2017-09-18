@@ -144,6 +144,18 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 
 
+<a name="bokeh-glyphs-image_rgba"></a>
+#### Image_rgba ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/image_rgba)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/image_rgba/image_rgba)
+![Image_rgba](../visualizations/bokeh/figures/image_rgba.png)
+
+
+
+<a name="bokeh-glyphs-image_url"></a>
+#### Image_url ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/image_url)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/image_url/image_url)
+![Image_url](../visualizations/bokeh/figures/image_url.png)
+
+
+
 <a name="bokeh-glyphs-square"></a>
 #### Square ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/square)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/square/square)
 ![Square](../visualizations/bokeh/figures/square.png)

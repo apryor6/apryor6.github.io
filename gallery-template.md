@@ -91,6 +91,10 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 {bokeh_glyphs_image}
 
+{bokeh_glyphs_image_rgba}
+
+{bokeh_glyphs_image_url}
+
 {bokeh_glyphs_square}
 
 {bokeh_glyphs_triangle}
