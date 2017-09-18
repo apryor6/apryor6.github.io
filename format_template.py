@@ -8,7 +8,7 @@ glyph_names = ['annular_wedge', 'annulus','arc','asterisk','circle',
 'circle_cross','circle_x','cross','diamond','diamond_cross','ellipse',
 'hbar','image','image_rgba', 'image_url', 'inverted_triangle','line', 
 'oval','patch','patches','quad', 'quadratic', 'ray', 'square', 'square_cross',
-'square_x', 'segment', 'triangle', 'vbar']
+'square_x', 'segment', 'text', 'triangle', 'vbar', 'wedge', 'x']
 
 glyph_format_dict = dict(glyph_base_code_filename=base_filename+'bokeh/glyphs/',
 	                     glyph_base_html_filename=base_filename+'bokeh/figures/',

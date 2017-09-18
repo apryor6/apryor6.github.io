@@ -42,8 +42,11 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square Cross](#bokeh-glyphs-square_cross)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square X](#bokeh-glyphs-square_x)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Text](#bokeh-glyphs-text)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Vbar](#bokeh-glyphs-vbar)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Wedge](#bokeh-glyphs-wedge)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [X](#bokeh-glyphs-x)  
 
 
 <a name="seaborn"></a>
@@ -132,6 +135,12 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 {bokeh_glyphs_square_x}
 
+{bokeh_glyphs_text}
+
 {bokeh_glyphs_triangle}
 
 {bokeh_glyphs_vbar}
+
+{bokeh_glyphs_wedge}
+
+{bokeh_glyphs_x}

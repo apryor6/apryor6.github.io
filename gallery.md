@@ -42,8 +42,11 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square Cross](#bokeh-glyphs-square_cross)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square X](#bokeh-glyphs-square_x)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Text](#bokeh-glyphs-text)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Vbar](#bokeh-glyphs-vbar)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Wedge](#bokeh-glyphs-wedge)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [X](#bokeh-glyphs-x)  
 
 
 <a name="seaborn"></a>
@@ -241,6 +244,12 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 
 
+<a name="bokeh-glyphs-text"></a>
+#### Text ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/text)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/text/text)
+![Text](../visualizations/bokeh/figures/text.png)
+
+
+
 <a name="bokeh-glyphs-triangle"></a>
 #### Triangle ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/triangle)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/triangle/triangle)
 ![Triangle](../visualizations/bokeh/figures/triangle.png)
@@ -250,4 +259,16 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-vbar"></a>
 #### Vbar ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/vbar)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/vbar/vbar)
 ![Vbar](../visualizations/bokeh/figures/vbar.png)
+
+
+
+<a name="bokeh-glyphs-wedge"></a>
+#### Wedge ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/wedge)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/wedge/wedge)
+![Wedge](../visualizations/bokeh/figures/wedge.png)
+
+
+
+<a name="bokeh-glyphs-x"></a>
+#### X ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/x)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/x/x)
+![X](../visualizations/bokeh/figures/x.png)
 
