@@ -14,8 +14,8 @@ glyph_format_dict = dict(glyph_base_code_filename=base_filename+'bokeh/glyphs/',
 
 filler_template = """
 <a name="bokeh-glyphs-{glyph_name}"></a>
-#### {Glyph_name} [(code)]({glyph_base_code_filename}{glyph_name}/{glyph_name})
-[![{Glyph_name}]({glyph_img_file})]({glyph_base_html_filename}{glyph_name})
+#### {Glyph_name} [Interactive]({glyph_base_html_filename}{glyph_name}) [(code)]({glyph_base_code_filename}{glyph_name}/{glyph_name})
+![{Glyph_name}]({glyph_img_file})
 """
 format_dict = {}
 for glyph_name in glyph_names:
