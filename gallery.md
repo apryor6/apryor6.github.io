@@ -30,6 +30,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Image](#bokeh-glyphs-image)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Image RGBA](#bokeh-glyphs-image_rgba)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Image URL](#bokeh-glyphs-image_url)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Inverted Triangle](#bokeh-glyphs-inverted_triangle) 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Line](#bokeh-glyphs-line) 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Oval](#bokeh-glyphs-oval) 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Patch](#bokeh-glyphs-patch)
@@ -158,6 +159,12 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-image_url"></a>
 #### Image Url ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/image_url)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/image_url/image_url)
 ![Image Url](../visualizations/bokeh/figures/image_url.png)
+
+
+
+<a name="bokeh-glyphs-inverted_triangle"></a>
+#### Inverted Triangle ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/inverted_triangle)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/inverted_triangle/inverted_triangle)
+![Inverted Triangle](../visualizations/bokeh/figures/inverted_triangle.png)
 
 
 
