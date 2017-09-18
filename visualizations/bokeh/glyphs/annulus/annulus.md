@@ -5,11 +5,11 @@
 ```python
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import Range1d
-from math import radians
+from bokeh.io import export_png
 
 fill_color = '#dfc27d'
 line_color = '#35978f'
-output_file("../../figures/glyph-annulus.html")
+output_file("../../figures/annulus.html")
 
 p = figure(plot_width=400, plot_height=400)
 p.annulus(inner_radius=0.1, outer_radius=0.2,
@@ -27,4 +27,5 @@ p.annulus(inner_radius=0.35, outer_radius=0.4,
 p.x_range = Range1d(-0.5,1.5, bounds=(-1,2))
 p.y_range = Range1d(-0.5,1.5, bounds=(-1,2))
 show(p)
+export_png(p, filename="../../figures/annulus.png");
 ```

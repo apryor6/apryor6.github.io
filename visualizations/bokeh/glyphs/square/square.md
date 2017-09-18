@@ -5,11 +5,11 @@
 ```python
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import Range1d
-from math import radians
+from bokeh.io import export_png
 
 fill_color = '#af8dc3'
 line_color = '#7fbf7b'
-output_file("../../figures/glyph-square.html")
+output_file("../../figures/square.html")
 
 p = figure(plot_width=400, plot_height=400)
 p.square(x=0,y=0,size=100, fill_alpha=1,fill_color=fill_color,
@@ -23,4 +23,5 @@ p.square(x=1,y=1,size=100, fill_alpha=0.4, fill_color = fill_color,
 p.x_range = Range1d(-0.5,1.5, bounds=(-1,2))
 p.y_range = Range1d(-0.5,1.5, bounds=(-1,2))
 show(p)
+export_png(p, filename="../../figures/square.png");
 ```

@@ -5,10 +5,10 @@
 ```python
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import Range1d
-from math import radians
+from bokeh.io import export_png
 
 line_color = '#91bfdb'
-output_file("../../figures/glyph-asterisk.html")
+output_file("../../figures/asterisk.html")
 
 p = figure(plot_width=400, plot_height=400)
 p.asterisk(x=0,y=0,size=100,line_alpha=1,
@@ -22,4 +22,5 @@ p.asterisk(x=1,y=1,size=100, line_alpha=1,
 p.x_range = Range1d(-0.5,1.5, bounds=(-1,2))
 p.y_range = Range1d(-0.5,1.5, bounds=(-1,2))
 show(p)
+export_png(p, filename="../../figures/asterisk.png");
 ```

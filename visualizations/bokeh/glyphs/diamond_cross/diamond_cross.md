@@ -6,10 +6,11 @@
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import Range1d
 from math import radians
+from bokeh.io import export_png
 
 fill_color = '#b38f00'
 line_color = 'black'
-output_file("../../figures/glyph-diamond-cross.html")
+output_file("../../figures/diamond_cross.html")
 
 p = figure(plot_width=400, plot_height=400)
 p.diamond_cross(x=0,y=0,size=100, fill_alpha=1,fill_color=fill_color, angle=radians(0),
@@ -23,4 +24,5 @@ p.diamond_cross(x=1,y=1,size=100, fill_alpha=0.4, fill_color = fill_color, angle
 p.x_range = Range1d(-0.5,1.5, bounds=(-1,2))
 p.y_range = Range1d(-0.5,1.5, bounds=(-1,2))
 show(p)
+export_png(p, filename="../../figures/diamond_cross.png");
 ```

@@ -5,11 +5,11 @@
 ```python
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import Range1d
-from math import radians
+from bokeh.io import export_png
 
 fill_color = '#e08214'
 line_color = '#fdb863'
-output_file("../../figures/glyph-circle-x.html")
+output_file("../../figures/circle_x.html")
 
 p = figure(plot_width=400, plot_height=400)
 p.circle_x(x=0,y=0,size=100, fill_alpha=1,fill_color=fill_color,
@@ -23,4 +23,5 @@ p.circle_x(x=1,y=1,size=100, fill_alpha=0.4, fill_color = fill_color,
 p.x_range = Range1d(-0.5,1.5, bounds=(-1,2))
 p.y_range = Range1d(-0.5,1.5, bounds=(-1,2))
 show(p)
+export_png(p, filename="../../figures/circle_x.png");
 ```
