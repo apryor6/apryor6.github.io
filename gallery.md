@@ -36,6 +36,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Patch](#bokeh-glyphs-patch)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Patches](#bokeh-glyphs-patches)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Quad](#bokeh-glyphs-quad)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Quadratic](#bokeh-glyphs-quadratic)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Vbar](#bokeh-glyphs-vbar) 
@@ -197,6 +198,12 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-quad"></a>
 #### Quad ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/quad)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/quad/quad)
 ![Quad](../visualizations/bokeh/figures/quad.png)
+
+
+
+<a name="bokeh-glyphs-quadratic"></a>
+#### Quadratic ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/quadratic)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/quadratic/quadratic)
+![Quadratic](../visualizations/bokeh/figures/quadratic.png)
 
 
 
