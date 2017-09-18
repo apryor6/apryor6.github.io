@@ -20,7 +20,7 @@ filler_template = """
 format_dict = {}
 for glyph_name in glyph_names:
 	key = key_base.format(glyph_name)
-	glyph_format_dict['Glyph_name'] = glyph_name.capitalize()
+	glyph_format_dict['Glyph_name'] = ''.join(g.capitalize() for g in glyph_name.split()) 
 	glyph_format_dict['glyph_name'] = glyph_name
 	glyph_format_dict['glyph_img_file'] = glyph_format_dict['glyph_base_image_filename'] + glyph_name + '.png'
 	format_dict[key] = filler_template.format(**glyph_format_dict)
