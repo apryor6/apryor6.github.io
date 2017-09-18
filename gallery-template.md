@@ -41,6 +41,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Segment](#bokeh-glyphs-segment)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square](#bokeh-glyphs-square)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square Cross](#bokeh-glyphs-square_cross)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Square X](#bokeh-glyphs-square_x)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Triangle](#bokeh-glyphs-triangle)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Vbar](#bokeh-glyphs-vbar)  
 
@@ -128,6 +129,8 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 {bokeh_glyphs_square}
 
 {bokeh_glyphs_square_cross}
+
+{bokeh_glyphs_square_x}
 
 {bokeh_glyphs_triangle}
 
