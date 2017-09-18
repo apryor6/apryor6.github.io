@@ -31,7 +31,7 @@ xdr = DataRange1d()
 ydr = DataRange1d()
 
 plot = Plot(
-    title=None, x_range=xdr, y_range=ydr, plot_width=300, plot_height=300,
+    title=None, x_range=xdr, y_range=ydr, plot_width=400, plot_height=400,
     h_symmetry=False, v_symmetry=False, min_border=0, toolbar_location=None)
 
 glyph = Bezier(x0="x", y0="y", x1="xp02", y1="y", cx0="xp01", cy0="yp01", cx1="xm01", cy1="ym01", line_color="#D95F02", line_width=2)
