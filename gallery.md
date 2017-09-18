@@ -67,8 +67,8 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 
 <a name="bokeh-glyphs-annular_wedge"></a>
-#### AnnularWedge ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/annular_wedge)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/annular_wedge/annular_wedge)
-![AnnularWedge](../visualizations/bokeh/figures/annular_wedge.png)
+#### Annular Wedge ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/annular_wedge)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/annular_wedge/annular_wedge)
+![Annular Wedge](../visualizations/bokeh/figures/annular_wedge.png)
 
 
 
@@ -97,14 +97,14 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 
 <a name="bokeh-glyphs-circle_cross"></a>
-#### CircleCross ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle_cross)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle_cross/circle_cross)
-![CircleCross](../visualizations/bokeh/figures/circle_cross.png)
+#### Circle Cross ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle_cross)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle_cross/circle_cross)
+![Circle Cross](../visualizations/bokeh/figures/circle_cross.png)
 
 
 
 <a name="bokeh-glyphs-circle_x"></a>
-#### CircleX ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle_x)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle_x/circle_x)
-![CircleX](../visualizations/bokeh/figures/circle_x.png)
+#### Circle X ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/circle_x)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/circle_x/circle_x)
+![Circle X](../visualizations/bokeh/figures/circle_x.png)
 
 
 
@@ -121,8 +121,8 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 
 <a name="bokeh-glyphs-diamond_cross"></a>
-#### DiamondCross ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/diamond_cross)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/diamond_cross/diamond_cross)
-![DiamondCross](../visualizations/bokeh/figures/diamond_cross.png)
+#### Diamond Cross ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/diamond_cross)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/diamond_cross/diamond_cross)
+![Diamond Cross](../visualizations/bokeh/figures/diamond_cross.png)
 
 
 
@@ -145,14 +145,14 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 
 
 <a name="bokeh-glyphs-image_rgba"></a>
-#### ImageRgba ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/image_rgba)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/image_rgba/image_rgba)
-![ImageRgba](../visualizations/bokeh/figures/image_rgba.png)
+#### Image Rgba ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/image_rgba)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/image_rgba/image_rgba)
+![Image Rgba](../visualizations/bokeh/figures/image_rgba.png)
 
 
 
 <a name="bokeh-glyphs-image_url"></a>
-#### ImageUrl ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/image_url)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/image_url/image_url)
-![ImageUrl](../visualizations/bokeh/figures/image_url.png)
+#### Image Url ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/image_url)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/image_url/image_url)
+![Image Url](../visualizations/bokeh/figures/image_url.png)
 
 
 
