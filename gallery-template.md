@@ -19,6 +19,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Annulus](#bokeh-glyphs-annulus)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Arc](#bokeh-glyphs-arc)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Asterisk](#bokeh-glyphs-asterisk)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Bezier](#bokeh-glyphs-bezier)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Circle](#bokeh-glyphs-circle)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Circle Cross](#bokeh-glyphs-circle_cross)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Circle X](#bokeh-glyphs-circle_x)  
@@ -88,6 +89,8 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 {bokeh_glyphs_arc}
 
 {bokeh_glyphs_asterisk}
+
+{bokeh_glyphs_bezier}
 
 {bokeh_glyphs_circle}
 

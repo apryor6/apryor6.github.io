@@ -19,6 +19,7 @@ Below is a collection of data visualizations. Each final image below links to th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Annulus](#bokeh-glyphs-annulus)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Arc](#bokeh-glyphs-arc)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Asterisk](#bokeh-glyphs-asterisk)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Bezier](#bokeh-glyphs-bezier)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Circle](#bokeh-glyphs-circle)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Circle Cross](#bokeh-glyphs-circle_cross)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - [Circle X](#bokeh-glyphs-circle_x)  
@@ -103,6 +104,12 @@ Glyphs are the fundamental building block of plots in `Bokeh`.
 <a name="bokeh-glyphs-asterisk"></a>
 #### Asterisk ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/asterisk)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/asterisk/asterisk)
 ![Asterisk](../visualizations/bokeh/figures/asterisk.png)
+
+
+
+<a name="bokeh-glyphs-bezier"></a>
+#### Bezier ([Interactive](http://alanpryorjr.com/visualizations/bokeh/figures/bezier)) [(code)](http://alanpryorjr.com/visualizations/bokeh/glyphs/bezier/bezier)
+![Bezier](../visualizations/bokeh/figures/bezier.png)
 
 
 

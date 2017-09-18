@@ -4,7 +4,7 @@ output_filename = 'gallery.md'
 base_filename = 'http://alanpryorjr.com/visualizations/'
 base_image_filename  = '../visualizations/'
 key_base = "bokeh_glyphs_{}"
-glyph_names = ['annular_wedge', 'annulus','arc','asterisk','circle',
+glyph_names = ['annular_wedge', 'annulus','arc','asterisk','bezier', 'circle',
 'circle_cross','circle_x','cross','diamond','diamond_cross','ellipse',
 'hbar','image','image_rgba', 'image_url', 'inverted_triangle','line', 
 'oval','patch','patches','quad', 'quadratic', 'ray', 'square', 'square_cross',
