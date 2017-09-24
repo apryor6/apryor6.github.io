@@ -4,7 +4,7 @@ title: Building an interactive, data-driven web-application using Amazon EC2 and
 subtitle: Python Bokeh + PostgreSQL through psycopg2
 ---
 
-Modern data is generated massively and flows constantly. We want to understand that data, and often we want to understand that data *right now*. Being familiar with methods to produce infrastructure that is capable of processing data on the fly is a useful skill, and a great example of this is building visualization tools that display data as it is generated, allowing you to visualize changes in real time. In this post I'll use Python build such a data visualization tool, specifically a stock ticker. Using [IEX trading's API](https://iextrading.com), we will create a multithreaded service that constantly queries information about stock prices and stores it in a PostgreSQL database. We'll then build an interactive Python application that fetches data from this database using `psychopg2` and visualizes it interactively with `Bokeh`. Finally, we will deploy this application on the Cloud using Amazon Web Services EC2, making our visualization publicly accessible through an elastic ip. All of the code for this can be found [on Github](https://github.com/apryor6/stockstreamer), and you can view the application live [here](http://13.59.160.9:5006/stockstreamer).
+Modern data is generated massively and flows constantly. We want to understand that data, and often we want to understand that data *right now*. Being familiar with methods to produce infrastructure that is capable of processing data on the fly is a useful skill, and a great example of this is building visualization tools that display data as it is generated, allowing you to visualize changes in real time. In this post I'll use Python build such a data visualization tool, specifically a stock ticker. Using [IEX trading's API](https://iextrading.com), we will create a multithreaded service that constantly queries information about stock prices and stores it in a PostgreSQL database. We'll then build an interactive Python application that fetches data from this database using `psychopg2` and visualizes it interactively with `Bokeh`. Finally, we will deploy this application on the Cloud using Amazon Web Services EC2, making our visualization publicly accessible through an elastic IP. All of the code for this can be found [on Github](https://github.com/apryor6/stockstreamer), and you can view the application live [here](http://13.59.160.9:5006/stockstreamer).
 
 ## Application Structure
 
@@ -16,11 +16,11 @@ A data fetching program written in Python will repeatedly request information fr
 
 ## Setting up the EC2 instance
 
-First we want to get our remote server up and running on the cloud. If you don't already have an account with AWS, create one and then login to the console [here](https://aws.amazon.com/console/). Go to `Services -> EC2` and select `Instances` and click `Launch Instance`. Choose the Ubuntu disk image. Next you'll select the hardware. The free tier is sufficient for this demo, but be aware that such a server won't be particularly responsive with only one core to handle all of the work. This can be improved by upgrading the machine, but be aware that you will be liable for any charges. Click next until "Configure Security Group". Click "Add rule" and choose type "All TCP" and then set Source to "anywhere". This will allow all network traffic to reach our web application. In a proper business application one should take more care with network security, but for this use case it's fine. Click "Launch", then select the drop down and create a new key pair, download it, and launch the instance. This key pair is for authentication purposes, and must be kept secret. You'll need the private key in order to ssh into the EC2 instance, and if you lose it you will be forced to launch a new instance from scratch and recreate the key pair. After a few minutes the Instance State should indicate running from the instance dashboard, and the machine is good to go. 
+First we want to get our remote server up and running on the cloud. If you don't already have an account with AWS, create one and then login to the console [here](https://aws.amazon.com/console/). Go to "Services" -> "EC2" and select "Instances" and click "Launch Instance". Choose the Ubuntu disk image. Next you'll select the hardware. The free tier is sufficient for this demo, but be aware that such a server won't be particularly responsive with only one core to handle all of the work. This can be improved by upgrading the machine, but be aware that you will be liable for any charges. Click next until "Configure Security Group". Click "Add rule" and choose type "All TCP" and then set Source to "anywhere". This will allow all network traffic to reach our web application. In a proper business application one should take more care with network security, but for this use case it's fine. Click "Launch", then select the drop down and create a new key pair, download it, and launch the instance. This key pair is for authentication purposes, and must be kept secret. You'll need the private key in order to ssh into the EC2 instance, and if you lose it you will be forced to launch a new instance from scratch and recreate the key pair. After a few minutes the Instance State should indicate running from the instance dashboard, and the machine is good to go. 
 
 ## Establishing a static ("elastic") IP
 
-Amazon automatically assigns an IP address to each EC2 instance whenever they are started, but by default this is a different dynamically allocated address each time the instance is started. For our web application to be permanently accessible from the same IP, we will need to allocate a static address -- Amazon uses the term elastic IP. From the dashboard, go to "Elastic IP's" and click Allocate new address. Click the newly allocated elastic IP, choose Actions -> Associate address and then select the EC2 instance from the dropdown, and accept. Now if you return to the Instance tab and click the EC2 instance you should see the IPv4 Public IP in the bottom right to reflect the new elastic IP, and even if you stop/start the instance this should remain the same.
+Amazon automatically assigns an IP address to each EC2 instance, but by default this is a different dynamically allocated address each time the instance is started. For our web application to be permanently accessible from the same IP, we will need to allocate a static address -- Amazon uses the term elastic IP. From the dashboard, go to "Elastic IP's" and click Allocate new address. Click the newly allocated elastic IP, choose Actions -> Associate address and then select the EC2 instance from the dropdown, and accept. Now if you return to the Instance tab and click the EC2 instance you should see the IPv4 Public IP in the bottom right to reflect the new elastic IP, and even if you stop/start the instance this should remain the same.
 
 ## Accessing the instance
 
@@ -36,7 +36,7 @@ Where mykey.pem will be replaced with whatever you named the private key file we
 ssh ubuntu@[ip-address] -i mykey.pem
 ~~~
 
-Where [ip-address] should be replaced with the elastic IP of the EC2 instance.
+Where [ip-address] should be replaced with the elastic IP of the EC2 instance. The -i flag indicates the keyfile to use for authentication. If everything worked you should see a different terminal prompt like `ubuntu@######` (on the first connection you may get asked a yes/no question about host keys before proceeding).
 
 ## Configuring the instance
 
@@ -185,9 +185,9 @@ class IEXStockFetcher(StockFetcher):
 			return self.fetchStockHighLow(stock)
 ~~~
 
-So for each property, an HTTP request is created and JSON data is returned from IEX Trading, which then gets parsed into the right format. The try-except loops are to handle any errors with the request by simply retrying. In production code, there should be a counter that will only retry a finite amount of times before throwing a more dramatic exception.
+So for each property, an HTTP request is created and JSON data is returned from IEX Trading, which then gets parsed into the right format. The try-except loops are to handle any errors with the request by simply retrying. In production code, there should be a counter that will only retry a finite amount of times before throwing a more dramatic exception. But here this is okay.
 
-We will also want some functionality to be able to obtain the values for many stocks. A trivial way to do this would be to loop through the stocks and call `fetchPrice`, but there is a performance issue with that. Each HTTP request will block until it receives a result. If we instead make multiple requests across multiple threads then it is possible for the scheduler to switch to another thread context while waiting for the response, which will dramatically increase the performance of our i/o. So we will loop through the stocks and create a new thread for each that will make the request. Because returning values from Python threads is kind of tricky, we'll instead pass a dictionary into each thread where the result will be placed by a helper function. The full class implementation follows.
+We will also want some functionality to be able to obtain the values for many stocks. A trivial way to do this would be to loop through the stocks and call `fetchPrice` on each, but there is a performance issue with that. Each HTTP request will block until it receives a result, and only then proceed to making the next request. If we instead make multiple requests across multiple threads then it is possible for the scheduler to switch to another thread context while waiting for the response, which will dramatically increase the performance of our i/o. So we will loop through the stocks and create a new thread for each that will make the request. Because returning values from Python threads is kind of tricky, we'll instead pass a dictionary into each thread where the result will be placed by a helper function. The full class implementation follows.
 
 ~~~ python
 class IEXStockFetcher(StockFetcher):
@@ -368,9 +368,9 @@ class PostgreSQLStockManager():
 			time.sleep(sleeptime)
 ~~~
 
-We want to check the stock price pretty frequently, but the 52-week high/low value and logo URL are much less likely to change, so by using the `sleeptime` parameter in our `PostgreSQLStockManager` class we can create a fast and slow loop so that some tasks occur more often as needed.  
+We want to check the stock price pretty frequently, but the 52-week high/low value and logo URL are much less likely to change, so by using the `sleeptime` parameter in our `PostgreSQLStockManager` class we can create a fast and slow loop so that some tasks occur more often than others as needed.  
 
-To actually use our data fetcher, we now choose a list of stocks, create a couple of objects, and launch the main worker threads.
+To actually use our data fetcher, we now choose a list of stocks, create a couple of objects, and launch the main worker threads. The use of `functools.partial` is just to bind arguments to functions for passing into `Thread`.
 
 ~~~ python 
 def main():
@@ -406,7 +406,6 @@ Now that we have a growing database, we can use that data to produce a visualiza
 To start with, we import a bunch of packages and create a `figure`
 
 ~~~ python
-
 from bokeh.plotting import figure, curdoc, show
 from bokeh.models.sources import ColumnDataSource
 from bokeh.models import Range1d, Legend, NumeralTickFormatter, DatetimeTickFormatter, Title
@@ -563,7 +562,7 @@ update_figure()
 curdoc().add_periodic_callback(update_figure, 5000)
 ~~~
 
-and that's it! We now have a data fetcher that will perpetually add new entries to a database, and a visualiazation tool that will check every five seconds for new data and update accordingly. A real-time, data-driven web application with relatively few lines of code.
+and that's it! We now have a data fetcher that will perpetually add new entries to a database, and a visualization tool that will check every five seconds for new data and update accordingly. A real-time, data-driven web application with relatively few lines of code.
 
 To actually run this application as a `Bokeh` server, you just use the `bokeh serve` command rather than running this as a normal python script. You will also need to add the `--allow-websocket-origin` flag so that the `Bokeh` server lets web traffic through because by default it blocks incoming connections. The actual master script I use to launch this follows
 ~~~
@@ -574,7 +573,7 @@ nohup bokeh serve stockstreamer.py  --allow-websocket-origin=13.59.160.9:5006 </
 
 The "&" at the end of each line runs the command as a background process, and the business with `nohup` and redirecting input/output with /dev/null is because I found sometimes the background application would die after I had disconnected SSH from the EC2 instance. You should update the IP address to reflect whatever the elastic IP is of your instance.
 
-Once you execute this command, you should be able to connect to the application by entering the IP:Port into a browser. The plot is interactive, and you can pan or zoom around. If you look at the end of one of the lines, you should see that periodically a new point is drawn.. pretty cool! 
+Once you execute this command, you should be able to connect to the application by entering the IP:Port into a browser (link again [here](http://13.59.160.9:5006/stockstreamer)). The plot is interactive, and you can pan or zoom around. If you look at the end of one of the lines, you should see that periodically a new point is drawn.. pretty cool! 
 
 ## Summary
 
