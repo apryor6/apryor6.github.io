@@ -575,7 +575,9 @@ python data_fetcher.py &
 nohup bokeh serve stockstreamer.py  --allow-websocket-origin=13.59.160.9:5006 </dev/null >/dev/null 2>&1 &
 ~~~
 
-The "&" at the end of each line runs the command as a background process, and the business with `nohup` and redirecting input/output with /dev/null is because I found sometimes the background application would die after I had disconnected SSH from the EC2 instance. 
+The "&" at the end of each line runs the command as a background process, and the business with `nohup` and redirecting input/output with /dev/null is because I found sometimes the background application would die after I had disconnected SSH from the EC2 instance. You should update the IP address to reflect whatever the elastic IP is of your instance.
+
+Once you execute this command, you should be able to connect to the application by entering the IP:Port into a browser. The plot is interactive, and you can pan or zoom around. If you look at the end of one of the lines, you should see that periodically a new point is drawn.. pretty cool! 
 
 ## Summary
 
