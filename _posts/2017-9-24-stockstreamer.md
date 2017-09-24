@@ -502,7 +502,7 @@ for i, (x, y, max_y, name) in enumerate(zip(xs, ys, max_ys, unique_names)):
 	circles.append(p.circle(x=x,
 	    y=y,
 	    line_alpha=1,
-	    radius=0.1,
+	    radius=1000,
 	    line_color=line_colors[i],
 	    fill_color=line_colors[i],
 	    line_dash=line_dashes[i],
