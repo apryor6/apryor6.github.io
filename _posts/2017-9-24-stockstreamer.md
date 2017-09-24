@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Building an interactive, data-driven web-application using Amazon EC2 and Python
-subtitle: [Python/PostgreSQL]
+subtitle: Python `Bokeh` + PostgreSQL through `psycopg2`
 ---
 
 Modern data is generated massively and flows constantly. We want to understand that data, and often we want to understand that data *right now*. Being familiar with methods to produce infrastructure that is capable of processing data on the fly is a useful skill, and a great example of this is building visualization tools that display data as it is generated, allowing you to visualize changes in real time. In this post I'll use Python build such a data visualization tool, specifically a stock ticker. Using [IEX trading's API](https://iextrading.com), we will create a multithreaded service that constantly queries information about stock prices and stores it in a PostgreSQL database. We'll then build an interactive Python application that fetches data from this database using `psychopg2` and visualizes it interactively with `Bokeh`. Finally, we will deploy this application on the Cloud using Amazon Web Services EC2, making our visualization publicly accessible through an elastic ip. All of the code for this can be found [on Github](https://github.com/apryor6/stockstreamer), and you can view the application live [here](http://13.59.160.9:5006/stockstreamer).
