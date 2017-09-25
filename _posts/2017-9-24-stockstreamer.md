@@ -419,7 +419,12 @@ import pandas as pd
 import numpy as np
 
 # Interactive tools to use
-tools = [PanTool(), BoxZoomTool(), ResetTool(), WheelZoomTool()]
+hover =  HoverTool(tooltips=[('Stock Name', '@stock_name'),
+							('Time','@timestamp'),
+				            ('Price', '@y')])
+tools = [PanTool(), BoxZoomTool(), ResetTool(), WheelZoomTool(), hover]
+									
+name_mapper = dict(NFLX='Netflix', GE='General Electric', NVDA='NVIDIA',INTC='Intel Corporation',AAPL='Apple', AMZN='Amazon')
 
 # The timestamps are represented graphically as the total seconds since the start of 1970.
 # Choose some values close to the current time to set a reasonable window
@@ -489,32 +494,41 @@ lines = []
 circles = []
 recs = []
 for i, (x, y, max_y, name) in enumerate(zip(xs, ys, max_ys, unique_names)):
-	lines.append(p.line(x=x,
-	    y=y,
+	source = ColumnDataSource(dict(x=x,
+								   y=y,
+   								   timestamp = ['{}/{}/{} {:02d}:{:02d}:{:02d}'.format(a.month, a.day, a.year, a.hour, a.minute, a.second) for a in x],
+								   stock_name=[name_mapper[name]]*len(x)))
+
+	lines.append(p.line(x='x',
+	    y='y',
 	    line_alpha=1,
 	    line_color=line_colors[i],
 	    line_dash=line_dashes[i],
-	    line_width=2))
-	circles.append(p.circle(x=x,
-	    y=y,
+	    line_width=2,
+    	source=source))
+
+	circles.append(p.circle(x='x',
+	    y='y',
 	    line_alpha=1,
 	    radius=1000,
 	    line_color=line_colors[i],
 	    fill_color=line_colors[i],
 	    line_dash=line_dashes[i],
-	    line_width=1))
+	    line_width=1,
+	    source=source))
 
 	# The `hbar` parameters are scalars instead of lists, but we create a ColumnDataSource so they can be easily modified later
-	source = ColumnDataSource(dict(y=[(stock_highlow.loc[name, 'high_val52wk'] + stock_highlow.loc[name, 'low_val52wk'])/2],
+	hbar_source = ColumnDataSource(dict(y=[(stock_highlow.loc[name, 'high_val52wk'] + stock_highlow.loc[name, 'low_val52wk'])/2],
 							   left=[0],
 		                       right=[x.max()],
 		                       height=[[(stock_highlow.loc[name, 'high_val52wk'] - stock_highlow.loc[name, 'low_val52wk'])]],
 		                       fill_alpha=[0.1],
 		                       fill_color=[line_colors[i]],
 		                       line_color=[line_colors[i]]))
+		                       # stock_name=[name_mapper[name]]))
 
 	recs.append(p.hbar(y='y', left='left', right='right', height='height', fill_alpha='fill_alpha',fill_color='fill_color',
-		line_alpha=0.1, line_color='line_color', line_dash='solid', line_width=0.1, source=source))
+		line_alpha=0.1, line_color='line_color', line_dash='solid', line_width=0.1, source=hbar_source))
 ~~~
 
 Lastly we create a legend and display the stock logo at the beginning of each line. An annotation at the bottom of the plot is useful to explain what the background boxes indicate.
@@ -554,8 +568,10 @@ curdoc().add_root(p)
 def update_figure():
 	xs, ys, max_ys, unique_names = get_data()
 	for i, (x, y, max_y) in enumerate(zip(xs, ys, max_ys)):
-		lines[i].data_source.data.update(x=x, y=y)
-		circles[i].data_source.data.update(x=x, y=y)
+		lines[i].data_source.data.update(x=x,
+										 y=y,
+										 stock_name=[name_mapper[name]]*len(x),
+										 timestamp=['{}/{}/{} {:02d}:{:02d}:{:02d}'.format(a.month, a.day, a.year, a.hour, a.minute, a.second) for a in x])
 		recs[i].data_source.data.update(left=[0], right=[x.max()])
 
 update_figure()
