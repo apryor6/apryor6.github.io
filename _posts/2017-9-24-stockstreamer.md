@@ -12,15 +12,15 @@ The following diagram illustrates roughly how the logic of our application will 
 
 ![Diagram of application structure](../images/stockstreamer/diagram.png)
 
-A data fetching program written in Python will repeatedly request information from IEX Trading, which provides [a useful API](https://iextrading.com/developer/) for querying information about stocks over the internet. The program will then store this information in a PostgreSQL database, where a second Python application will use that data to generate an interactive visualiation using [`Bokeh`](https://bokeh.pydata.org/en/latest/). `Bokeh` is a powerful visualization framework that links Javascript and Python, allowing objects to be created with relatively simple Python code that are then viewable in a web browser. In its basic form, `Bokeh` uses Python to create HTML and then leaves the Python ecosystem behind. However, we want there to be ongoing communication link between Python and our visualization so that the data can be updated constantly, and this can be accomplished with the additional of a [`Bokeh` server](https://bokeh.pydata.org/en/latest/docs/user_guide/server.html). All of these components can be created in just a few hundred lines of Python and will be contained within a cloud machine on Amazon EC2.
+A data fetching program written in `Python` will repeatedly request information from IEX Trading, which provides [a useful API](https://iextrading.com/developer/) for querying information about stocks over the internet. The program will then store this information in a PostgreSQL database, where a second Python application will use that data to generate an interactive visualiation using [`Bokeh`](https://bokeh.pydata.org/en/latest/). `Bokeh` is a powerful visualization framework that links Javascript and Python, allowing objects to be created with relatively simple Python code that are then viewable in a web browser. In its basic form, `Bokeh` uses Python to create HTML and then leaves the Python ecosystem behind. However, we want there to be ongoing communication link between Python and our visualization so that the data can be updated constantly, and this can be accomplished with the additional of a [`Bokeh` server](https://bokeh.pydata.org/en/latest/docs/user_guide/server.html). All of these components can be created in just a few hundred lines of Python and will be contained within a cloud machine on Amazon EC2.
 
 ## Setting up the EC2 instance
 
-First we want to get our remote server up and running on the cloud. If you don't already have an account with AWS, create one and then login to the console [here](https://aws.amazon.com/console/). Go to "Services" -> "EC2" and select "Instances" and click "Launch Instance". Choose the Ubuntu disk image. Next you'll select the hardware. The free tier is sufficient for this demo, but be aware that such a server won't be particularly responsive with only one core to handle all of the work. This can be improved by upgrading the machine, but be aware that you will be liable for any charges. Click next until "Configure Security Group". Click "Add rule" and choose type "All TCP" and then set Source to "anywhere". This will allow all network traffic to reach our web application. In a proper business application one should take more care with network security, but for this use case it's fine. Click "Launch", then select the drop down and create a new key pair, download it, and launch the instance. This key pair is for authentication purposes, and must be kept secret. You'll need the private key in order to ssh into the EC2 instance, and if you lose it you will be forced to launch a new instance from scratch and recreate the key pair. After a few minutes the Instance State should indicate running from the instance dashboard, and the machine is good to go. 
+First we want to get our remote server up and running on the cloud. If you don't already have an account with AWS, create one and then login to the console [here](https://aws.amazon.com/console/). Go to "Services" -> "EC2" and select "Instances" and click "Launch Instance". Choose the Ubuntu disk image. Next you'll select the hardware. The free tier is sufficient for this demo, but be aware that such a server won't be particularly responsive with only one core to handle all of the work. This can be improved by upgrading the machine, but be aware that you will be liable for any charges. Click next until "Configure Security Group". Click "Add rule" and choose type "All TCP" and then set Source to "anywhere". This will allow all network traffic to reach our web application. In a proper business application one should take more care with network security, but for this use case it's fine. Click "Launch", then select the drop down and create a new key pair, download it, and launch the instance. This key pair is for authentication purposes, and must be kept secret. You'll need the private key in order to ssh into the EC2 instance, and if you lose it you will be forced to launch a new instance from scratch and recreate the key pair. After a few minutes the "Instance State" should indicate running from the instance dashboard, and the machine is good to go. 
 
 ## Establishing a static ("elastic") IP
 
-Amazon automatically assigns an IP address to each EC2 instance, but by default this is a different dynamically allocated address each time the instance is started. For our web application to be permanently accessible from the same IP, we will need to allocate a static address -- Amazon uses the term elastic IP. From the dashboard, go to "Elastic IP's" and click Allocate new address. Click the newly allocated elastic IP, choose Actions -> Associate address and then select the EC2 instance from the dropdown, and accept. Now if you return to the Instance tab and click the EC2 instance you should see the IPv4 Public IP in the bottom right to reflect the new elastic IP, and even if you stop/start the instance this should remain the same.
+Amazon automatically assigns an IP address to each EC2 instance, but by default this is a different dynamically allocated address each time the instance is started. For our web application to be permanently accessible from the same IP, we will need to allocate a static address. Amazon uses the term "elastic". From the dashboard, go to "Elastic IP's" and click Allocate new address. Click the newly allocated elastic IP, choose Actions -> Associate address and then select the EC2 instance from the dropdown, and accept. Now if you return to the Instance tab and click the EC2 instance you should see the IPv4 Public IP in the bottom right to reflect the new elastic IP, and even if you stop/start the instance this should remain the same.
 
 ## Accessing the instance
 
@@ -30,13 +30,13 @@ To ssh into the instance, the permissions of the first private key file must be 
 chmod 400 mykey.pem
 ~~~
 
-Where mykey.pem will be replaced with whatever you named the private key file we downloaded earlier. Then we can reach the EC2 instance with 
+Where mykey.pem will be replaced with whatever you named the private key file we downloaded earlier. Then we can reach the EC2 instance using the default username "ubuntu" with 
 
 ~~~
 ssh ubuntu@[ip-address] -i mykey.pem
 ~~~
 
-Where [ip-address] should be replaced with the elastic IP of the EC2 instance. The -i flag indicates the keyfile to use for authentication. If everything worked you should see a different terminal prompt like `ubuntu@######` (on the first connection you may get asked a yes/no question about host keys before proceeding).
+Where [ip-address] should be replaced with the elastic IP of the EC2 instance. The -i flag indicates the keyfile to use for authentication. If everything worked you should see a different terminal prompt like `ubuntu@######` (on the first connection you may get asked a yes/no question about host keys before proceeding). The changed prompt indicates we have now tunneled into the cloud machine and can execute commands remotely.
 
 ## Configuring the instance
 
@@ -53,7 +53,7 @@ pip3 install psycopg2
 pip3 install pandas
 ~~~
 
-Next create a virtualenv and activate it. 
+Next create a Python virtualenv and activate it. 
 ~~~
 virtualenv -p python3 py3
 source py3/bin/activate
@@ -77,15 +77,20 @@ From within `psql`, create a new user and adjust the privileges.
 CREATE ROLE ubuntu WITH CREATEDB;
 ALTER ROLE ubuntu WITH LOGIN;
 \password ubuntu;
+~~~
+
+You'll then be prompted to create a password for the user "ubuntu". Then we create a new database for our stock application.
+
+~~~ sql
 CREATE DATABASE stocks;
 ~~~
 
-You'll then be prompted to create a password for the user "ubuntu". Next exit `psql` with "\q", and logout of the superuser with ctr+d so that your prompt returns to something like `ubuntu@#######`. Now if you type `psql stocks` you should be able to login to the new database, and this time under the new account.  
+Next exit `psql` with "\q", and logout of the superuser with ctr+d so that your prompt returns to something like `ubuntu@#######`. Now if you type `psql stocks`you should be able to login to the new database, and this time under the new account.  
 
 Now we want to create three tables:
 
 	1. stock_price: contains records of stock prices with timestamps
-	2. image_url: contains a URL where the company logo for each stock may be found
+	2. stock_image_urls: contains a URL where the company logo for each stock may be found
 	3. stock_highlow: contains the 52-week high and low values for the stock 
 
 ~~~ sql
@@ -108,7 +113,9 @@ and that's all we need to do to setup the database - now to build some Python co
 
 ## Building the data fetcher
 
-First we will need an object that is capable of fetching stock information. Although we are specifically using IEX Trading here, good software practice suggests to encapsulate this behavior in a generalized interface so that if we wanted to support a different API later we could easily drop in a replacement. Here's the basic interface
+*The documentation for the API we'll use can be found [here](https://iextrading.com/developer/docs/)*
+
+First we will need an object that is capable of fetching stock information. Although we are specifically using IEX Trading here, good software practice suggests to encapsulate this behavior in a generalized interface so that if we wanted to support a different API later we could easily drop in a replacement. So we begin by creating a pure abstract `StockFetcher` class with some key methods like `fetchPrice` that must be implemented by any concrete version of that class. Here's the basic interface
 
 ~~~ python
 class StockFetcher(metaclass=abc.ABCMeta):
@@ -141,7 +148,7 @@ class StockFetcher(metaclass=abc.ABCMeta):
 ~~~
 
 
-And now we can create a class that concretely implements these methods specifically for IEX trading
+And now we can create a class that concretely implements these methods specifically for IEX trading.
 
 ~~~ python
 class IEXStockFetcher(StockFetcher):
@@ -185,7 +192,7 @@ class IEXStockFetcher(StockFetcher):
 			return self.fetchStockHighLow(stock)
 ~~~
 
-So for each property, an HTTP request is created and JSON data is returned from IEX Trading, which then gets parsed into the right format. The try-except loops are to handle any errors with the request by simply retrying. In production code, there should be a counter that will only retry a finite amount of times before throwing a more dramatic exception. But here this is okay.
+For each property, an HTTP request is created and JSON data is returned from IEX Trading, which then gets parsed into the right format. The try-except loops are to handle any errors with the request by simply retrying. In production code, there should be a counter that will only retry a finite amount of times before throwing a more dramatic exception. But here this is okay.
 
 We will also want some functionality to be able to obtain the values for many stocks. A trivial way to do this would be to loop through the stocks and call `fetchPrice` on each, but there is a performance issue with that. Each HTTP request will block until it receives a result, and only then proceed to making the next request. If we instead make multiple requests across multiple threads then it is possible for the scheduler to switch to another thread context while waiting for the response, which will dramatically increase the performance of our i/o. So we will loop through the stocks and create a new thread for each that will make the request. Because returning values from Python threads is kind of tricky, we'll instead pass a dictionary into each thread where the result will be placed by a helper function. The full class implementation follows.
 
@@ -294,9 +301,9 @@ class PostgreSQLStockManager():
 		"""
 		cur = self.conn.cursor()
 		query = """
-		INSERT INTO {} (time, stock_name, price) VALUES(
-		\'{}\',
-		\'{}\',
+		  INSERT INTO {} (time, stock_name, price) VALUES(
+		  \'{}\',
+		  \'{}\',
 		{});
 		""".format(table, timestamp, stock, price)
 		cur.execute(query)
@@ -308,13 +315,14 @@ class PostgreSQLStockManager():
 		"""
 		cur = self.conn.cursor()
 		delete_query = """
-		DELETE FROM {}
-		WHERE stock_name=\'{}\';
+		  DELETE FROM {}
+		  WHERE stock_name=\'{}\';
 		""".format(table, stock)
+
 		query = """
-		INSERT INTO {} (stock_name, image_url) VALUES(
-		\'{}\',
-		\'{}\');
+		  INSERT INTO {} (stock_name, image_url) VALUES(
+		  \'{}\',
+		  \'{}\');
 		""".format(table, stock, url)
 		cur.execute(delete_query)
 		cur.execute(query)
@@ -326,12 +334,13 @@ class PostgreSQLStockManager():
 		"""
 		cur = self.conn.cursor()
 		delete_query = """
-		DELETE FROM {}
-		WHERE stock_name=\'{}\';
+		  DELETE FROM {}
+		  WHERE stock_name=\'{}\';
 		""".format(table, stock)
+
 		query = """
-		INSERT INTO {} (stock_name, high_val52wk, low_val52wk) VALUES(
-		\'{}\', {}, {});
+		  INSERT INTO {} (stock_name, high_val52wk, low_val52wk) VALUES(
+		  \'{}\', {}, {});
 		""".format(table, stock, high_price, low_price)
 		cur.execute(delete_query)
 		cur.execute(query)
@@ -370,7 +379,7 @@ class PostgreSQLStockManager():
 
 We want to check the stock price pretty frequently, but the 52-week high/low value and logo URL are much less likely to change, so by using the `sleeptime` parameter in our `PostgreSQLStockManager` class we can create a fast and slow loop so that some tasks occur more often than others as needed.  
 
-To actually use our data fetcher, we now choose a list of stocks, create a couple of objects, and launch the main worker threads. The use of `functools.partial` is just to bind arguments to functions for passing into `Thread`.
+To actually use our data fetcher, we now choose a list of stocks, create a couple of objects, and launch the main worker threads. The use of `functools.partial` is just to bind arguments to functions for passing into `Thread`. I've just hardcoded a list of six stocks, but it would be very easy to adapt this application to allow users to dynamically add/remove stocks.
 
 ~~~ python 
 def main():
@@ -401,7 +410,7 @@ This program is an infinite loop and will insert query/insert stock data until t
 
 Now that we have a growing database, we can use that data to produce a visualization of stock prices over time. Our `Bokeh` application will make a query to the database and then draw separate lines for each stock. Through use of `curdoc` and `add_periodic_callback`, we can trigger a periodic update of the data so that the plot will adjust to include any new datapoints. 
 
-*As an aside, Bokeh also supports a `stream` method that can be used to update data for a figure. One could alter this code to move the HTTP requests for stock information into a callback function and just have the visualization application fetch its own data, bypassing the database entirely. This could be more performant but at the cost of no longer storing data over time.*
+*As an aside, Bokeh also supports a `stream` method that can be used to update data for a figure. One could alter this code to move the HTTP requests for stock information into a callback function and just have the visualization application fetch its own data, bypassing the database entirely. This could be more performant but at the cost of no longer storing data over time. In any case, that's not the purpose of this demo but is still worth mentioning.*
 
 To start with, we import a bunch of packages and create a `figure`
 
@@ -433,7 +442,7 @@ p = figure(title="STOCKSTREAMER v0.0", tools=tools, plot_width=1000,
  plot_height=680,toolbar_location='below', toolbar_sticky=False)
 ~~~
 
-The list of tools determines what the user will be able to manipulate the figure with. The x-axis corresponds to a timestamp, but for display purposes times are converted into the absolute number of seconds since Jan. 1, 1970. Setting the display correctly requires a little bit of manipulation that we will get to in a second, but the important part here is that `x_range` must be instantiated with a `Range1d` in order to manipulate it later.
+The list of tools determines what the user will be able to manipulate the figure with. The x-axis corresponds to a timestamp, but for display purposes times are converted into the absolute number of seconds since Jan. 1, 1970. Setting the display ranges for this axis correctly requires a little bit of manipulation that we will get to in a second, but the important part here is that `x_range` must be instantiated with a `Range1d` in order to reach in and manipulate it later.
 
 Next we fiddle with some of the basic properties. The `NumeralTickFormatter` and `DatetimeTickFormatter` are particularly nice tools that create nice looking tick labels from numeric data.
 ~~~ python
@@ -486,7 +495,7 @@ def get_data():
 	return (xs, ys, max_ys, unique_names)
 ~~~
 
-Now we will build the `Bokeh` glyphs, capturing each into a list so that we can reach in later and update their data properties. The one goofy thing about this is that the `hbar` glyphs take scalar values as inputs, which are immutable and thus cannot be updated. My solution was just to create a `ColumnDataSource` with only one row and to pass it in. There is probably a better solution, but this works for now.
+Now we will build the `Bokeh` glyphs, capturing each into a list so that we can reach in later and update their data properties. The one goofy thing about this is that the `hbar` glyphs take scalar values as inputs, which are immutable and cannot be updated the same way as the line and circle. My solution was just to create a `ColumnDataSource` with only one row and to pass it in. 
 ~~~ python
 # Create the various glyph
 xs, ys, max_ys, unique_names = get_data()
@@ -593,7 +602,7 @@ Once you execute this command, you should be able to connect to the application 
 
 ## Summary
 
-We built a pretty cool streaming-data visualization containing a full database to web hosting pipeline using just a little bit of Python/PostgreSQL knowledge. These tools are really powerful, and it goes without saying that the kinds of applications you can create with this kind of setup are essentially unbounded. For example, a big data problem could be visualized in a similar way through use of `PySpark`. You could have a similar style of visualization tool here, and a callback function could be used in conjunction with a `Spark` context to run a big data job on a Spark cluster across many machines, and then display the results. You could train and deploy a machine learning model where coworkers/customers could input raw data values and have the model predictions returned instantly. The list goes on and on.  
+We built a streaming-data visualization containing a full database-to-web pipeline using just a little bit of Python/PostgreSQL knowledge. These tools are really powerful, and it goes without saying that the kinds of applications you can create with this kind of setup are essentially unbounded. For example, a big data problem could be visualized in a similar way through use of `PySpark` by having a similar style of visualization tool here and a callback function could be used in conjunction with the `Spark` context to run a big data job on a Spark cluster across many machines and then display the results. You could train and deploy a machine learning model where coworkers/customers could input raw data values and have the model predictions returned instantly. A price-checker could search for a given item across multiple places on the internet and display a link to the cheapest one. The list goes on and on.  
 
 This was a fun little weekend project. I hope you found this interesting, and good luck coming up with your own app ideas!
 
