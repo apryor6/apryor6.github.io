@@ -16,11 +16,11 @@ A data fetching program written in Python will repeatedly request information fr
 
 ## Setting up the EC2 instance
 
-First we want to get our remote server up and running on the cloud. If you don't already have an account with AWS, create one and then login to the console [here](https://aws.amazon.com/console/). Go to "Services" -> "EC2" and select "Instances" and click "Launch Instance". Choose the Ubuntu disk image. Next you'll select the hardware. The free tier is sufficient for this demo, but be aware that such a server won't be particularly responsive with only one core to handle all of the work. This can be improved by upgrading the machine, but be aware that you will be liable for any charges. Click next until "Configure Security Group". Click "Add rule" and choose type "All TCP" and then set Source to "anywhere". This will allow all network traffic to reach our web application. In a proper business application one should take more care with network security, but for this use case it's fine. Click "Launch", then select the drop down and create a new key pair, download it, and launch the instance. This key pair is for authentication purposes, and must be kept secret. You'll need the private key in order to ssh into the EC2 instance, and if you lose it you will be forced to launch a new instance from scratch and recreate the key pair. After a few minutes the Instance State should indicate running from the instance dashboard, and the machine is good to go. 
+First we want to get our remote server up and running on the cloud. If you don't already have an account with AWS, create one and then login to the console [here](https://aws.amazon.com/console/). Go to "Services" -> "EC2" and select "Instances" and click "Launch Instance". Choose the Ubuntu disk image. Next you'll select the hardware. The free tier is sufficient for this demo, but be aware that such a server won't be particularly responsive with only one core to handle all of the work. This can be improved by upgrading the machine, but be aware that you will be liable for any charges. Click next until "Configure Security Group". Click "Add rule" and choose type "All TCP" and then set Source to "anywhere". This will allow all network traffic to reach our web application. In a proper business application one should take more care with network security, but for this use case it's fine. Click "Launch", then select the drop down and create a new key pair, download it, and launch the instance. This key pair is for authentication purposes, and must be kept secret. You'll need the private key in order to ssh into the EC2 instance, and if you lose it you will be forced to launch a new instance from scratch and recreate the key pair. After a few minutes the "Instance State" should indicate running from the instance dashboard, and the machine is good to go. 
 
 ## Establishing a static ("elastic") IP
 
-Amazon automatically assigns an IP address to each EC2 instance, but by default this is a different dynamically allocated address each time the instance is started. For our web application to be permanently accessible from the same IP, we will need to allocate a static address -- Amazon uses the term elastic IP. From the dashboard, go to "Elastic IP's" and click Allocate new address. Click the newly allocated elastic IP, choose Actions -> Associate address and then select the EC2 instance from the dropdown, and accept. Now if you return to the Instance tab and click the EC2 instance you should see the IPv4 Public IP in the bottom right to reflect the new elastic IP, and even if you stop/start the instance this should remain the same.
+Amazon automatically assigns an IP address to each EC2 instance, but by default this is a different dynamically allocated address each time the instance is started. For our web application to be permanently accessible from the same IP, we will need to allocate a static address. Amazon uses the term "elastic". From the dashboard, go to "Elastic IP's" and click Allocate new address. Click the newly allocated elastic IP, choose Actions -> Associate address and then select the EC2 instance from the dropdown, and accept. Now if you return to the Instance tab and click the EC2 instance you should see the IPv4 Public IP in the bottom right to reflect the new elastic IP, and even if you stop/start the instance this should remain the same.
 
 ## Accessing the instance
 
@@ -30,13 +30,13 @@ To ssh into the instance, the permissions of the first private key file must be 
 chmod 400 mykey.pem
 ~~~
 
-Where mykey.pem will be replaced with whatever you named the private key file we downloaded earlier. Then we can reach the EC2 instance with 
+Where mykey.pem will be replaced with whatever you named the private key file we downloaded earlier. Then we can reach the EC2 instance using the default username "ubuntu" with 
 
 ~~~
 ssh ubuntu@[ip-address] -i mykey.pem
 ~~~
 
-Where [ip-address] should be replaced with the elastic IP of the EC2 instance. The -i flag indicates the keyfile to use for authentication. If everything worked you should see a different terminal prompt like `ubuntu@######` (on the first connection you may get asked a yes/no question about host keys before proceeding).
+Where [ip-address] should be replaced with the elastic IP of the EC2 instance. The -i flag indicates the keyfile to use for authentication. If everything worked you should see a different terminal prompt like `ubuntu@######` (on the first connection you may get asked a yes/no question about host keys before proceeding). The changed prompt indicates we have now tunneled into the cloud machine and can execute commands remotely.
 
 ## Configuring the instance
 
@@ -53,7 +53,7 @@ pip3 install psycopg2
 pip3 install pandas
 ~~~
 
-Next create a virtualenv and activate it. 
+Next create a Python virtualenv and activate it. 
 ~~~
 virtualenv -p python3 py3
 source py3/bin/activate
@@ -77,15 +77,20 @@ From within `psql`, create a new user and adjust the privileges.
 CREATE ROLE ubuntu WITH CREATEDB;
 ALTER ROLE ubuntu WITH LOGIN;
 \password ubuntu;
+~~~
+
+You'll then be prompted to create a password for the user "ubuntu". Then we create a new database for our stock application.
+
+~~~ sql
 CREATE DATABASE stocks;
 ~~~
 
-You'll then be prompted to create a password for the user "ubuntu". Next exit `psql` with "\q", and logout of the superuser with ctr+d so that your prompt returns to something like `ubuntu@#######`. Now if you type `psql stocks` you should be able to login to the new database, and this time under the new account.  
+Next exit `psql` with "\q", and logout of the superuser with ctr+d so that your prompt returns to something like `ubuntu@#######`. Now if you type `psql stocks`you should be able to login to the new database, and this time under the new account.  
 
 Now we want to create three tables:
 
 	1. stock_price: contains records of stock prices with timestamps
-	2. image_url: contains a URL where the company logo for each stock may be found
+	2. stock_image_urls: contains a URL where the company logo for each stock may be found
 	3. stock_highlow: contains the 52-week high and low values for the stock 
 
 ~~~ sql
@@ -107,6 +112,8 @@ low_val52wk decimal);
 and that's all we need to do to setup the database - now to build some Python code that will feed it data from the internet.
 
 ## Building the data fetcher
+
+*details of the API we'll use can be found [here](https://iextrading.com/developer/docs/)*
 
 First we will need an object that is capable of fetching stock information. Although we are specifically using IEX Trading here, good software practice suggests to encapsulate this behavior in a generalized interface so that if we wanted to support a different API later we could easily drop in a replacement. Here's the basic interface
 
