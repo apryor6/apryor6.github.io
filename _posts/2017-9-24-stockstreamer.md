@@ -113,9 +113,9 @@ and that's all we need to do to setup the database - now to build some Python co
 
 ## Building the data fetcher
 
-*details of the API we'll use can be found [here](https://iextrading.com/developer/docs/)*
+*The documentation for the API we'll use can be found [here](https://iextrading.com/developer/docs/)*
 
-First we will need an object that is capable of fetching stock information. Although we are specifically using IEX Trading here, good software practice suggests to encapsulate this behavior in a generalized interface so that if we wanted to support a different API later we could easily drop in a replacement. Here's the basic interface
+First we will need an object that is capable of fetching stock information. Although we are specifically using IEX Trading here, good software practice suggests to encapsulate this behavior in a generalized interface so that if we wanted to support a different API later we could easily drop in a replacement. So we begin by creating a pure abstract `StockFetcher` class with some key methods like `fetchPrice` that must be implemented by any concrete version of that class. Here's the basic interface
 
 ~~~ python
 class StockFetcher(metaclass=abc.ABCMeta):
@@ -148,7 +148,7 @@ class StockFetcher(metaclass=abc.ABCMeta):
 ~~~
 
 
-And now we can create a class that concretely implements these methods specifically for IEX trading
+And now we can create a class that concretely implements these methods specifically for IEX trading.
 
 ~~~ python
 class IEXStockFetcher(StockFetcher):
@@ -192,7 +192,7 @@ class IEXStockFetcher(StockFetcher):
 			return self.fetchStockHighLow(stock)
 ~~~
 
-So for each property, an HTTP request is created and JSON data is returned from IEX Trading, which then gets parsed into the right format. The try-except loops are to handle any errors with the request by simply retrying. In production code, there should be a counter that will only retry a finite amount of times before throwing a more dramatic exception. But here this is okay.
+For each property, an HTTP request is created and JSON data is returned from IEX Trading, which then gets parsed into the right format. The try-except loops are to handle any errors with the request by simply retrying. In production code, there should be a counter that will only retry a finite amount of times before throwing a more dramatic exception. But here this is okay.
 
 We will also want some functionality to be able to obtain the values for many stocks. A trivial way to do this would be to loop through the stocks and call `fetchPrice` on each, but there is a performance issue with that. Each HTTP request will block until it receives a result, and only then proceed to making the next request. If we instead make multiple requests across multiple threads then it is possible for the scheduler to switch to another thread context while waiting for the response, which will dramatically increase the performance of our i/o. So we will loop through the stocks and create a new thread for each that will make the request. Because returning values from Python threads is kind of tricky, we'll instead pass a dictionary into each thread where the result will be placed by a helper function. The full class implementation follows.
 
