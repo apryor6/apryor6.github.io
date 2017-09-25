@@ -12,7 +12,7 @@ The following diagram illustrates roughly how the logic of our application will 
 
 ![Diagram of application structure](../images/stockstreamer/diagram.png)
 
-A data fetching program written in Python will repeatedly request information from IEX Trading, which provides [a useful API](https://iextrading.com/developer/) for querying information about stocks over the internet. The program will then store this information in a PostgreSQL database, where a second Python application will use that data to generate an interactive visualiation using [`Bokeh`](https://bokeh.pydata.org/en/latest/). `Bokeh` is a powerful visualization framework that links Javascript and Python, allowing objects to be created with relatively simple Python code that are then viewable in a web browser. In its basic form, `Bokeh` uses Python to create HTML and then leaves the Python ecosystem behind. However, we want there to be ongoing communication link between Python and our visualization so that the data can be updated constantly, and this can be accomplished with the additional of a [`Bokeh` server](https://bokeh.pydata.org/en/latest/docs/user_guide/server.html). All of these components can be created in just a few hundred lines of Python and will be contained within a cloud machine on Amazon EC2.
+A data fetching program written in `Python` will repeatedly request information from IEX Trading, which provides [a useful API](https://iextrading.com/developer/) for querying information about stocks over the internet. The program will then store this information in a PostgreSQL database, where a second Python application will use that data to generate an interactive visualiation using [`Bokeh`](https://bokeh.pydata.org/en/latest/). `Bokeh` is a powerful visualization framework that links Javascript and Python, allowing objects to be created with relatively simple Python code that are then viewable in a web browser. In its basic form, `Bokeh` uses Python to create HTML and then leaves the Python ecosystem behind. However, we want there to be ongoing communication link between Python and our visualization so that the data can be updated constantly, and this can be accomplished with the additional of a [`Bokeh` server](https://bokeh.pydata.org/en/latest/docs/user_guide/server.html). All of these components can be created in just a few hundred lines of Python and will be contained within a cloud machine on Amazon EC2.
 
 ## Setting up the EC2 instance
 
@@ -301,9 +301,9 @@ class PostgreSQLStockManager():
 		"""
 		cur = self.conn.cursor()
 		query = """
-		INSERT INTO {} (time, stock_name, price) VALUES(
-		\'{}\',
-		\'{}\',
+		  INSERT INTO {} (time, stock_name, price) VALUES(
+		  \'{}\',
+		  \'{}\',
 		{});
 		""".format(table, timestamp, stock, price)
 		cur.execute(query)
@@ -315,13 +315,14 @@ class PostgreSQLStockManager():
 		"""
 		cur = self.conn.cursor()
 		delete_query = """
-		DELETE FROM {}
-		WHERE stock_name=\'{}\';
+		  DELETE FROM {}
+		  WHERE stock_name=\'{}\';
 		""".format(table, stock)
+
 		query = """
-		INSERT INTO {} (stock_name, image_url) VALUES(
-		\'{}\',
-		\'{}\');
+		  INSERT INTO {} (stock_name, image_url) VALUES(
+		  \'{}\',
+		  \'{}\');
 		""".format(table, stock, url)
 		cur.execute(delete_query)
 		cur.execute(query)
@@ -333,12 +334,13 @@ class PostgreSQLStockManager():
 		"""
 		cur = self.conn.cursor()
 		delete_query = """
-		DELETE FROM {}
-		WHERE stock_name=\'{}\';
+		  DELETE FROM {}
+		  WHERE stock_name=\'{}\';
 		""".format(table, stock)
+
 		query = """
-		INSERT INTO {} (stock_name, high_val52wk, low_val52wk) VALUES(
-		\'{}\', {}, {});
+		  INSERT INTO {} (stock_name, high_val52wk, low_val52wk) VALUES(
+		  \'{}\', {}, {});
 		""".format(table, stock, high_price, low_price)
 		cur.execute(delete_query)
 		cur.execute(query)
