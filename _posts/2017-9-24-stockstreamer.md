@@ -379,7 +379,7 @@ class PostgreSQLStockManager():
 
 We want to check the stock price pretty frequently, but the 52-week high/low value and logo URL are much less likely to change, so by using the `sleeptime` parameter in our `PostgreSQLStockManager` class we can create a fast and slow loop so that some tasks occur more often than others as needed.  
 
-To actually use our data fetcher, we now choose a list of stocks, create a couple of objects, and launch the main worker threads. The use of `functools.partial` is just to bind arguments to functions for passing into `Thread`.
+To actually use our data fetcher, we now choose a list of stocks, create a couple of objects, and launch the main worker threads. The use of `functools.partial` is just to bind arguments to functions for passing into `Thread`. I've just hardcoded a list of six stocks, but it would be very easy to adapt this application to allow users to dynamically add/remove stocks.
 
 ~~~ python 
 def main():
@@ -410,7 +410,7 @@ This program is an infinite loop and will insert query/insert stock data until t
 
 Now that we have a growing database, we can use that data to produce a visualization of stock prices over time. Our `Bokeh` application will make a query to the database and then draw separate lines for each stock. Through use of `curdoc` and `add_periodic_callback`, we can trigger a periodic update of the data so that the plot will adjust to include any new datapoints. 
 
-*As an aside, Bokeh also supports a `stream` method that can be used to update data for a figure. One could alter this code to move the HTTP requests for stock information into a callback function and just have the visualization application fetch its own data, bypassing the database entirely. This could be more performant but at the cost of no longer storing data over time.*
+*As an aside, Bokeh also supports a `stream` method that can be used to update data for a figure. One could alter this code to move the HTTP requests for stock information into a callback function and just have the visualization application fetch its own data, bypassing the database entirely. This could be more performant but at the cost of no longer storing data over time. In any case, that's not the purpose of this demo but is still worth mentioning.*
 
 To start with, we import a bunch of packages and create a `figure`
 
