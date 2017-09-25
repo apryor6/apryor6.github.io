@@ -437,7 +437,7 @@ p = figure(title="STOCKSTREAMER v0.0", tools=tools, plot_width=1000,
  plot_height=680,toolbar_location='below', toolbar_sticky=False)
 ~~~
 
-The list of tools determines what the user will be able to manipulate the figure with. The x-axis corresponds to a timestamp, but for display purposes times are converted into the absolute number of seconds since Jan. 1, 1970. Setting the display correctly requires a little bit of manipulation that we will get to in a second, but the important part here is that `x_range` must be instantiated with a `Range1d` in order to manipulate it later.
+The list of tools determines what the user will be able to manipulate the figure with. The x-axis corresponds to a timestamp, but for display purposes times are converted into the absolute number of seconds since Jan. 1, 1970. Setting the display ranges for this axis correctly requires a little bit of manipulation that we will get to in a second, but the important part here is that `x_range` must be instantiated with a `Range1d` in order to reach in and manipulate it later.
 
 Next we fiddle with some of the basic properties. The `NumeralTickFormatter` and `DatetimeTickFormatter` are particularly nice tools that create nice looking tick labels from numeric data.
 ~~~ python
