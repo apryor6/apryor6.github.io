@@ -428,9 +428,7 @@ import pandas as pd
 import numpy as np
 
 # Interactive tools to use
-hover =  HoverTool(tooltips=[('Stock Name', '@stock_name'),
-							('Time','@timestamp'),
-				            ('Price', '@y')])
+hover =  HoverTool(tooltips=[('Stock Name', '@stock_name'), ('Time','@timestamp'), ('Price', '@y')])
 tools = [PanTool(), BoxZoomTool(), ResetTool(), WheelZoomTool(), hover]
 									
 name_mapper = dict(NFLX='Netflix', GE='General Electric', NVDA='NVIDIA',INTC='Intel Corporation',AAPL='Apple', AMZN='Amazon')
