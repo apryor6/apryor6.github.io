@@ -502,9 +502,9 @@ circles = []
 recs = []
 for i, (x, y, max_y, name) in enumerate(zip(xs, ys, max_ys, unique_names)):
 	source = ColumnDataSource(dict(x=x,
-								   y=y,
-   								   timestamp = ['{}/{}/{} {:02d}:{:02d}:{:02d}'.format(a.month, a.day, a.year, a.hour, a.minute, a.second) for a in x],
-								   stock_name=[name_mapper[name]]*len(x)))
+	 y=y,
+	 timestamp = ['{}/{}/{} {:02d}:{:02d}:{:02d}'.format(a.month, a.day, a.year, a.hour, a.minute, a.second) for a in x],
+   stock_name=[name_mapper[name]]*len(x)))
 
 	lines.append(p.line(x='x',
 	    y='y',
