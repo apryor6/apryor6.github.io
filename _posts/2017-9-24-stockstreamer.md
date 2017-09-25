@@ -490,7 +490,7 @@ def get_data():
 	return (xs, ys, max_ys, unique_names)
 ~~~
 
-Now we will build the `Bokeh` glyphs, capturing each into a list so that we can reach in later and update their data properties. The one goofy thing about this is that the `hbar` glyphs take scalar values as inputs, which are immutable and thus cannot be updated. My solution was just to create a `ColumnDataSource` with only one row and to pass it in. There is probably a better solution, but this works for now.
+Now we will build the `Bokeh` glyphs, capturing each into a list so that we can reach in later and update their data properties. The one goofy thing about this is that the `hbar` glyphs take scalar values as inputs, which are immutable and cannot be updated the same way as the line and circle. My solution was just to create a `ColumnDataSource` with only one row and to pass it in. 
 ~~~ python
 # Create the various glyph
 xs, ys, max_ys, unique_names = get_data()
