@@ -485,6 +485,11 @@ def get_data():
 	WHERE time >= NOW() - '7 day'::INTERVAL
 	""", conn)
 
+	# Plot only data points where the price changes
+	df['important_indices'] = df.groupby('stock_name')['price'].diff() != 0 
+	df['important_indices'] = (df['important_indices'] != 0) | (df.groupby('stock_name')['important_indices'].shift(-1))
+	df = df.loc[df.important_indices, ]
+
 	grouped = df.groupby('stock_name')
 	unique_names = df.stock_name.unique()
 	ys = [grouped.get_group(stock)['price'] for stock in unique_names]
@@ -492,6 +497,8 @@ def get_data():
 	max_ys = [np.max(y) for y in ys]
 	return (xs, ys, max_ys, unique_names)
 ~~~
+
+The lines with `important_indices` need some explaining. We are acquiring data every few seconds, but often there will be long periods of time where the price does not change at all. Plotting these extra datapoints could affect performance, so one way to counteract that is to only plot datapoints where the price changes. This can be done with `diff`, but if we just look for nonzero values returned by `diff` following a period of price stagnation then there will be one datapoint at the beginning of the stagnant period and then the next after the change, resulting in a long, slowly sloping connecting line which is misleading because the price was constant. What we want to do is grab the point where the price changed and the one right before it, which is the purpose of the statement with `shift(-1)`. The end result is the plot looks exactly the same but is more responsive.
 
 Now we will build the `Bokeh` glyphs, capturing each into a list so that we can reach in later and update their data properties. The one goofy thing about this is that the `hbar` glyphs take scalar values as inputs, which are immutable and cannot be updated the same way as the line and circle. My solution was just to create a `ColumnDataSource` with only one row and to pass it in. 
 ~~~ python
