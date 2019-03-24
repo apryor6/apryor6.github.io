@@ -10,6 +10,14 @@ Recently, I've been writing a lot of Jasmine tests for Angular apps based in rxj
 
 _The full code for this example project can be found on Github [here](https://github.com/apryor6/flask_testing_examples)_
 
+## Test location
+
+There are a number of schools of thought regarding where tests should be located. Most commonly tests are either a) placed alongside the code they are testing or b) lumped all together in a single tests/ directory. I have worked extensively with both practices, and I strongly advocate for placing test code alongside the production code. This has a number of advantages, a few of which I will mention:
+
+        1. If you have a large project, it becomes progressively harder to find the test code for a piece of production code as you must essentially navigate two directory structures constantly.
+        2. Placing test code alongside production code increases modularity. If I want to copy or remove an entire section of my app, I just have to do so for a single directory rather than hunting down many individual files.
+        3. Testing gaps are more obvious when the test (or lack thereof) is right next to the production code. In a perfect world, for every widget.py there is a widget_test.py in the same location, and using this pattern makes it easy to see what lacks testing.
+
 ```python
 import pytest
 
