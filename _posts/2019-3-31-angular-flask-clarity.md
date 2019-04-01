@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Setting up a FANG monorepo (Flask + angular)
+title: Setting up a FANG monorepo (Flask + Angular + Nx)
 subtitle: Building full stack applications with nrwl/nx
 ---
 
