@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Simplified Flask + SQLAlchemy Testing with Pytest Fixtures
+title: (Work in progress...) Simplified Flask + SQLAlchemy Testing with Pytest Fixtures
 subtitle: Writing better tests with less code
 ---
 
