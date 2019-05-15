@@ -24,7 +24,7 @@ Pretend that the source observable is your boss, and you are the flattening oper
 
 - `mergeMap` - The overachieving multitasker. You immediately begin working on everything your boss gives you as soon as he/she assigns it.
 
-- `exhaustMap` - You have tunnel vision and completely ignore new requests from your boss until you are done with what you are working on, and only then do you beging listening for new tasks.
+- `exhaustMap` - You have tunnel vision and completely ignore new requests from your boss until you are done with what you are working on, and only then do you begin listening for new tasks.
 
 ### Use cases
 
