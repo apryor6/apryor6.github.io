@@ -36,6 +36,6 @@ In real-world development, when might you use each of these?
 
 - `mergeMap` - This is like drinking from a firehose -- use this when you don't care about the order of operations and just want all of the things to happen ASAP, such as an alert system.
 
-- `exhaustMap` - A common use-case here is login requests; usually there is no reason to send another authentication request until you have received the status of the first, so if the user types in their credentials and spammed the login button you would only send the first login request and not send another until it returns with success or failure. Separately, you would normally disable the login button, but that is a separate concern to how this operator works.
+- `exhaustMap` - A common use-case here is login requests; usually there is no reason to send another authentication request until you have received the status of the first, so if the user types in their credentials and spammed the login button you would only send the first login request and not send another until it returns with success or failure. Yes, you would normally disable the login button during the request, but that is a separate concern to how this operator works.
 
 I hope this helps make things more clear. Happy (reactive) programming!
