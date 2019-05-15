@@ -30,7 +30,7 @@ Pretend that the source observable is your boss, and you are the flattening oper
 
 In real-world development, when might you use each of these?
 
-- `switchMap` - This is commonly used with HTTP requests where a new source emission means you no longer care about or need the previous inflight request
+- `switchMap` - This is commonly used with HTTP requests where a new source emission means you no longer care about or need the previous inflight request. The current inner observable is canceled and only the new one is active.
 
 - `concatMap` - Use this when the order of operations is important such as if you were calculating updates to a financial transaction where you needed to add money and add an interest payment, in which case the order that the addition and multiplication happen matters and transactions occur in order.
 
