@@ -16,7 +16,7 @@ If there is only one value emitted from the source or there is a long time betwe
 
 ### An analogy
 
-Pretend that the source observable is your boss, and you are the flattening operator. Each time your boss gives you some work (source emits a new value), you do some work. If you are still in the middle of one task and your boss gives you something else to do, how do you handle the situation?
+Pretend that the source observable is your boss, and you are the flattening operator. Each time your boss gives you some work (source emits a new value), you begin to work on a new task (creating a new inner observable). If you are still in the middle of one task and your boss gives you something else to do, how do you handle the situation?
 
 - `switchMap` - Drop everything you were already doing and immediately begin the new task. This means only the latest and greatest values are provided.
 
