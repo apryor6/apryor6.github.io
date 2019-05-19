@@ -43,7 +43,7 @@ An entity consists of (at least) the following pieces:
 
 * Model: Python representation of entities
 * Interface: Defines types that make an entity
-* Controller: Orchestrates routes, services, schemas for entites
+* Controller: Orchestrates routes, services, schemas for entities
 * Schema: Serialization/deserialization of entities
 * Service: Performs CRUD and manipulation of entities
 
