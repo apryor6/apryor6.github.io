@@ -103,7 +103,7 @@ def db(app):
 
 ```
 
-test/ folder:
+This takes advantage of the dependency injection capabilities of pytest and makes working with database testing very clean. These are just examples, and you will likely find yourself adding additional fixtures to this file depending on your application.
 
 ### Model
 The model is where the entity itself is defined in a Python representation. If you are using SQLAlchemy, this will be a class that inherits from `db.Model`. However, the model does not necessarily need to be an object from an ORM with an underlying database table; it just needs to be a python representation of a thing regardless of how you create a thing. An example:
