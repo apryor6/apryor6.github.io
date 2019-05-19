@@ -161,7 +161,7 @@ class WidgetInterface(TypedDict, total=False):
 
 ### Testing interfaces
 
-Testing an interface is trivial: verify that it can be constructued and that it can be used to construct it's corresponding model. Nothing interesting here, and I use tools like [flaskerize](https://github.com/apryor6/flaskerize) to generate this kind of code.
+Testing an interface is trivial: verify that it can be constructed and that it can be used to construct it's corresponding model. Nothing interesting here, and I use tools like [flaskerize](https://github.com/apryor6/flaskerize) to generate this kind of code.
 
 ```python
 from pytest import fixture
