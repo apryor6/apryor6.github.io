@@ -10,12 +10,12 @@ _I have created a full sample project with this pattern that you can find [here]
 
 After much trial-and-error, I have come up with a set of patterns that work really well, allowing you to build highly modular and scalable Flask APIs. This pattern has been battle-tested (double emphasis on the word "test"!) and works well for a big project with a large team and can easily scale to a project of any size. Although the design is tech-stack agnostic, throughout this project I use the following technologies:
 
-	- `Flask` (d'oh)
-	- `pytest`, for testing
-	- Marshmallow for data serialization/deserialization and input validation
-	- SQLAlchemy as an ORM
-	- Flast-RESTplus for Swagger documentation
-	- [flask_accepts](https://github.com/apryor6/flask_accepts), a library I wrote that marries Marshmallow with Flask-RESTplus, giving you the control of marshmallow with the awesome Swagger documentation from flask-RESTplus.
+* `Flask` (d'oh)
+* `pytest`, for testing
+* Marshmallow for data serialization/deserialization and input validation
+* SQLAlchemy as an ORM
+* Flast-RESTplus for Swagger documentation
+* [flask_accepts](https://github.com/apryor6/flask_accepts), a library I wrote that marries Marshmallow with Flask-RESTplus, giving you the control of marshmallow with the awesome Swagger documentation from flask-RESTplus.
 
 In a nutshell, Flask requests are routed using RESTplus Resources, input data is validated with a Marshmallow schema, some data processing occurs via a service interacting with a model, and then the output is serialized back to JSON on the way out, again using Marshmallow. All of this is documented via interactive Swagger docs, and [`flask_accepts`](https://github.com/apryor6/flask_accepts) serves as glue that under-the-hood maps each Marshmallow schema into an equivalent Flask-RESTplus API model so that these two amazing-but-somewhat-incompatible technologies can happily be used together.
 
@@ -41,11 +41,11 @@ The basic unit of an API is called an entity. An entity is a thing that you want
 
 An entity consists of (at least) the following pieces:
 
-	- Model: Python representation of entities
-	- Interface: Defines types that make an entity
-	- Controller: Orchestrates routes, services, schemas for entites
-	- Schema: Serialization/deserialization of entities
-	- Service: Performs CRUD and manipulation of entities
+* Model: Python representation of entities
+* Interface: Defines types that make an entity
+* Controller: Orchestrates routes, services, schemas for entites
+* Schema: Serialization/deserialization of entities
+* Service: Performs CRUD and manipulation of entities
 
 Note how each of these pieces is focused on only one thing. If you cannot describe a class in one sentence, it probably should be broken up.
 
