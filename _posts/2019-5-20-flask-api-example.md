@@ -28,3 +28,52 @@ If you are more bullish on your features and cannot imagine a world where your b
 If the answer to either of these questions is "Not very long, because I just need to grab the `foo/` folder and update one or two configurations", then you are probably doing thing correctly.
 
 The problem with having a `services/`, `tests/`, `controllers/` folder is that when your project scales it becomes cumbersome to sift through each of these large folders to find the code that you are working on. As the project continues to grow, this problem gets worse. Conversely, if I have a `widgets/` folder where I can find a `service.py`, `controller.py`, `model.py`, etc and all of the associated tests, everything is there in one place.
+
+### Terminology
+
+The basic unit of an API is called an entity. An entity is a thing that you want to be able to get, create, update, or edit (REST). An entity might have an underlying database table, but it does not necessarily. It could also be a derived join of several tables, data fetched from a third-party API, predictions from a machine learning model, etc.
+
+An entity consists of (at least) the following pieces:
+
+	- Model: Python representation of entities
+	- Interface: Defines types that make an entity
+	- Controller: Orchestrates routes, services, schemas for entites
+	- Schema: Serialization/deserialization of entities
+	- Service: Performs CRUD and manipulation of entities
+
+Note how each of these pieces is focused on only one thing. If you cannot describe a class in one sentence, it probably should be broken up.
+
+Test files for the entity live in the same folder, and are named identically to the file they test with the addition of `_test` appended to the name (prior to the `.py`)
+
+This means a basic entity contains the following files.
+
+```
+├── __init__.py
+├── controller.py
+├── controller_test.py
+├── interface.py
+├── interface_test.py
+├── model.py
+├── model_test.py
+├── schema.py
+├── schema_test.py
+├── service.py
+└── service_test.py
+```
+
+In practice, I often do not have a `schema_test` or `interface_test` because these files are purely Marshmallow schemas and python types, respectively, and thus testing them would be equivalent to testing code from another project, which you should never do.
+
+### Model
+The model is
+
+### Interface
+The interface is
+
+### Schema
+The schema is
+
+### Service
+The service is
+
+### Controller
+The controller is
