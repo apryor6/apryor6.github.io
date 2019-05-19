@@ -73,6 +73,36 @@ In practice, I often do not have a `schema_test` or `interface_test` because the
 ### General testing comments
 
 Fixtures:
+
+Although I advocate that there _not_ be a top-level `tests/` folder containing all of the projects tests for the reasons of modularity, there can be a such-named folder that contains general testing utilities. For example, I create a `tests.fixtures` module that defines reusable test fixtures used throughout the app, such as a `db` fixture that creates a fresh database instance for every test. Here's what might be in that file:
+
+```python
+import pytest
+
+from app import create_app
+
+
+@pytest.fixture
+def app():
+    return create_app('test')
+
+
+@pytest.fixture
+def client(app):
+    return app.test_client()
+
+
+@pytest.fixture
+def db(app):
+    from app import db
+    with app.app_context():
+        db.create_all()
+        yield db
+        db.drop_all()
+        db.session.commit()
+
+```
+
 test/ folder:
 
 ### Model
