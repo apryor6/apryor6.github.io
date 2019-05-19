@@ -71,7 +71,15 @@ This means a basic entity contains the following files.
 
 ### General testing comments
 
-Although I advocate that there _not_ be a top-level `tests/` folder containing all of the projects tests for the reasons of modularity, there can be a such-named folder that contains general testing utilities. For example, I create a `tests.fixtures` module that defines reusable test fixtures used throughout the app, such as a `db` fixture that creates a fresh database instance for every test. Here's what might be in that file:
+Tests are incredibly important because they allow you to refactor aggressively. A nice side-effect is that you verify that your code works. I am being completely serious -- the verification that your code works is _just a side effect_ of why you test. The test is there so that if we decide we want to change every single route in the application to drop the plural "s", I can do so in 10 minutes and be sure everything is good to go, as opposed to booting up the app and poking around for 45 minutes to confirm that I am comfortable with pushing changes.
+
+Often, testing gets cast aside as being an additional time investment on top of writing production code, and I argue strongly against this based on two points. The first is that testing is a time investment for the future: the longer the project runs and/or the more people that touch the code, the greater the benefit is from testing due to reduction of technical debt. The second point I argue is that the additional time taken to write tests should be essentially negligible if you are familiar with writing tests. Writing tests requires an entirely different line of thinking, and often it requires learning new libraries, so, sure, it is no surprise when a group that does no testing is hesitant to pick it up because it will require some slogging through documentation and trial-and-error at first. However, once you are comfortable with writing tests it really becomes second nature. Furthermore, the time at which you are writing the production code for a feature is when the topic is freshest in your mind, and at no point in the future is it easier to write the test then right then.
+
+I love testing. It makes me feel safe and warm and fuzzy. Have I made my case yet?
+
+For Python testing, you should use `pytest`. Even if you use `unittest` style test cases with classes, you should still use `pytest` to run them as it understands a wide variety of testing structures and will run anything. It is also better than unittest. 
+
+Don't put your tests in a `tests/` folder. They should be alongside the production code. Although I advocate that there _not_ be a top-level `tests/` folder containing all of the projects tests for the reasons of modularity, there can be a such-named folder that contains general testing utilities. For example, I create a `tests.fixtures` module that defines reusable test fixtures used throughout the app, such as a `db` fixture that creates a fresh database instance for every test. Here's what might be in that file:
 
 ```python
 import pytest
