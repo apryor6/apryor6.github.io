@@ -9,12 +9,13 @@ I love Flask. It is simple and unopinionated. A consequence of this is that as y
 _I have created a full sample project with this pattern that you can find [here](https://github.com/apryor6/flask_api_example). This includes an API with 1) multiple, modular namespaces within the same RESTplus API, 2) a standalone RESTplus API attached to a blueprint with its own Swagger documentation, and 3) A third-party/installable blueprint-based API demonstrating how you might share a modular API across apps, such as if your organization has a core API that you want to reuse._
 
 After much trial-and-error, I have come up with a set of patterns that work really well, allowing you to build highly modular and scalable Flask APIs. This pattern has been battle-tested (double emphasis on the word "test"!) and works well for a big project with a large team and can easily scale to a project of any size. Although the design is tech-stack agnostic, throughout this project I use the following technologies:
-		- `Flask` (d'oh)
-		- `pytest`, for testing
-		- Marshmallow for data serialization/deserialization and input validation
-		- SQLAlchemy as an ORM
-		- Flast-RESTplus for Swagger documentation
-		- [`flask_accepts`](https://github.com/apryor6/flask_accepts), a library I wrote that marries Marshmallow with Flask-RESTplus, giving you the control of marshmallow with the awesome Swagger documentation from flask-RESTplus.
+
+	- `Flask` (d'oh)
+	- `pytest`, for testing
+	- Marshmallow for data serialization/deserialization and input validation
+	- SQLAlchemy as an ORM
+	- Flast-RESTplus for Swagger documentation
+	- [`flask_accepts`](https://github.com/apryor6/flask_accepts), a library I wrote that marries Marshmallow with Flask-RESTplus, giving you the control of marshmallow with the awesome Swagger documentation from flask-RESTplus.
 
 In a nutshell, Flask requests are routed using RESTplus Resources, input data is validated with a Marshmallow schema, some data processing occurs via a service interacting with a model, and then the output is serialized back to JSON on the way out, again using Marshmallow. All of this is documented via interactive Swagger docs, and [`flask_accepts`](https://github.com/apryor6/flask_accepts) serves as glue that under-the-hood maps each Marshmallow schema into an equivalent Flask-RESTplus API model so that these two amazing-but-somewhat-incompatible technologies can happily be used together.
 
