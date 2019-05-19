@@ -67,7 +67,6 @@ This means a basic entity contains the following files.
 └── service_test.py
 ```
 
-In practice, I often do not have a `schema_test` or `interface_test` because these files are purely Marshmallow schemas and python types, respectively, and thus testing them would be equivalent to testing code from another project, which you should never do.
 
 
 ### General testing comments
