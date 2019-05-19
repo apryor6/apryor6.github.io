@@ -71,8 +71,6 @@ This means a basic entity contains the following files.
 
 ### General testing comments
 
-Fixtures:
-
 Although I advocate that there _not_ be a top-level `tests/` folder containing all of the projects tests for the reasons of modularity, there can be a such-named folder that contains general testing utilities. For example, I create a `tests.fixtures` module that defines reusable test fixtures used throughout the app, such as a `db` fixture that creates a fresh database instance for every test. Here's what might be in that file:
 
 ```python
