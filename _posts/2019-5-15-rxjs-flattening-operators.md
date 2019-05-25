@@ -2,6 +2,19 @@
 layout: post
 title: Demystifying Flattening Operators in RXJS without Code
 subtitle: What's the difference in switchMap, concatMap, mergeMap, and exhaustMap?
+tags:
+  [
+    rxjs,
+    angular,
+    angular2,
+    reactive programming,
+    flattening operators,
+    switchmap,
+    concatmap,
+    mergemap,
+    flatmap,
+    exhaustmap,
+  ]
 ---
 
 Like it or not, `rxjs` is a critical component of modern Angular development. Although it is perfectly possible to use Angular 2+ without using observables, you lose out on an enormous amount of functionality. The reactive pattern is extremely powerful, and once you get over the, admittedly rather high, learning curve the grass is definitely greener on the other side.
