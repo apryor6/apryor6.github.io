@@ -80,6 +80,7 @@ We then setup a minimal flask app. In general, I strongly prefer and recommend t
 
 ```python
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 
 def create_app():
