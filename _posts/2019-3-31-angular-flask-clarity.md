@@ -13,7 +13,7 @@ _The source code for this project can be found [here](https://github.com/apryor6
 ### Setup nx and Angular
 
 ```
-npm install -g @angular/cli @nrwl/schematics
+npm install -g @angular/cli @nrwl/schematics create-nx-workspace
 ```
 
 First, create a new workspace with nx. This command only has to be executed once for the entire lifetime of the monorepo.
