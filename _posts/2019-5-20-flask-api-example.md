@@ -2,6 +2,8 @@
 layout: post
 title: Flask best practices
 subtitle: Patterns for building testable, scalable, and maintainable APIs
+tags:
+  [flask, python, backend development, api, data science, software engineering]
 ---
 
 I love Flask. It is simple and unopinionated. A consequence of this is that as you look to scale your Flask applications, there are an infinite number of ways you could choose to structure your application. Although there will always be a subset of developers who want to tinker with new design patterns outside of what is considered "standard", by and large my experience is that developers want to focus more on _what_ they are building and less on _how_ they need to build it. The lack of a well-formed application structure simply adds technical debt to the developer's brain, and this housekeeping need takes away from his/her ability to create features. Therefore, I have become increasingly in favor of being opinionated about application design.
@@ -10,12 +12,12 @@ _I have created a full sample project with this pattern that you can find [here]
 
 After much trial-and-error, I have come up with a set of patterns that work really well, allowing you to build highly modular and scalable Flask APIs. This pattern has been battle-tested (double emphasis on the word "test"!) and works well for a big project with a large team and can easily scale to a project of any size. Although the design is tech-stack agnostic, throughout this project I use the following technologies:
 
-* `Flask` (d'oh)
-* `pytest`, for testing
-* Marshmallow for data serialization/deserialization and input validation
-* SQLAlchemy as an ORM
-* Flast-RESTplus for Swagger documentation
-* [flask_accepts](https://github.com/apryor6/flask_accepts), a library I wrote that marries Marshmallow with Flask-RESTplus, giving you the control of marshmallow with the awesome Swagger documentation from flask-RESTplus.
+- `Flask` (d'oh)
+- `pytest`, for testing
+- Marshmallow for data serialization/deserialization and input validation
+- SQLAlchemy as an ORM
+- Flast-RESTplus for Swagger documentation
+- [flask_accepts](https://github.com/apryor6/flask_accepts), a library I wrote that marries Marshmallow with Flask-RESTplus, giving you the control of marshmallow with the awesome Swagger documentation from flask-RESTplus.
 
 In a nutshell, Flask requests are routed using RESTplus Resources, input data is validated with a Marshmallow schema, some data processing occurs via a service interacting with a model, and then the output is serialized back to JSON on the way out, again using Marshmallow. All of this is documented via interactive Swagger docs, and [`flask_accepts`](https://github.com/apryor6/flask_accepts) serves as glue that under-the-hood maps each Marshmallow schema into an equivalent Flask-RESTplus API model so that these two amazing-but-somewhat-incompatible technologies can happily be used together.
 
@@ -41,11 +43,11 @@ The basic unit of an API is called an entity. An entity is a thing that you want
 
 An entity consists of (at least) the following pieces:
 
-* Model: Python representation of entities
-* Interface: Defines types that make an entity
-* Controller: Orchestrates routes, services, schemas for entities
-* Schema: Serialization/deserialization of entities
-* Service: Performs CRUD and manipulation of entities
+- Model: Python representation of entities
+- Interface: Defines types that make an entity
+- Controller: Orchestrates routes, services, schemas for entities
+- Schema: Serialization/deserialization of entities
+- Service: Performs CRUD and manipulation of entities
 
 Note how each of these pieces is focused on only one thing. If you cannot describe a class in one sentence, it probably should be broken up.
 
@@ -67,8 +69,6 @@ This means a basic entity contains the following files.
 └── service_test.py
 ```
 
-
-
 ### General testing comments
 
 Tests are incredibly important because they allow you to refactor aggressively. A nice side-effect is that you verify that your code works. I am being completely serious -- the verification that your code works is _just a side effect_ of why you test. The test is there so that if we decide we want to change every single route in the application to drop the plural "s", I can do so in 10 minutes and be sure everything is good to go, as opposed to booting up the app and poking around for 45 minutes to confirm that I am comfortable with pushing changes.
@@ -77,7 +77,7 @@ Often, testing gets cast aside as being an additional time investment on top of 
 
 I love testing. It makes me feel safe and warm and fuzzy. Have I made my case yet?
 
-For Python testing, you should use `pytest`. Even if you use `unittest` style test cases with classes, you should still use `pytest` to run them as it understands a wide variety of testing structures and will run anything. It is also better than unittest. 
+For Python testing, you should use `pytest`. Even if you use `unittest` style test cases with classes, you should still use `pytest` to run them as it understands a wide variety of testing structures and will run anything. It is also better than unittest.
 
 Don't put your tests in a `tests/` folder. They should be alongside the production code. Although I advocate that there _not_ be a top-level `tests/` folder containing all of the projects tests for the reasons of modularity, there can be a such-named folder that contains general testing utilities. For example, I create a `tests.fixtures` module that defines reusable test fixtures used throughout the app, such as a `db` fixture that creates a fresh database instance for every test. Here's what might be in that file:
 
@@ -111,6 +111,7 @@ def db(app):
 This takes advantage of the dependency injection capabilities of pytest and makes working with database testing very clean. These are just examples, and you will likely find yourself adding additional fixtures to this file depending on your application.
 
 ### Model
+
 The model is where the entity itself is defined in a Python representation. If you are using SQLAlchemy, this will be a class that inherits from `db.Model`. However, the model does not necessarily need to be an object from an ORM with an underlying database table; it just needs to be a python representation of a thing regardless of how you create a thing. An example:
 
 ```python
@@ -144,6 +145,7 @@ def test_Widget_create(widget: Widget):
 ```
 
 ### Interface
+
 The interface is a typed definition of what is needed to create an entity. You might ask why there is a separate need for an interface if you have already defined a model, and the reason is twofold. First, the model may be built upon constructs from a third-party library that are not directly typeable. SQLAlchemy is an immediate example: you declare fields in the model that map to underlying database tables, but when I want to construct an entity itself I just need to pass in the types of data that correspond to those underlying columns. Therefore, it makes sense to separately define _what is it_ (model) vs _what makes it_ (interface). In addition, if you want to create an entity using packing/unpacking with `Widget(**params)` syntax, you need to provide a type definition for `params` so that mypy knows what is compatible for the constructor.
 
 Here's a basic example. I have recently moved to defining these with `TypedDict` from `mypy_extensions`. I imagine this will eventually make its way into the Python core library, and there is currently [an open pep](https://www.python.org/dev/peps/pep-0589/) for this. The advantage of `TypedDict` is that it allows you to explicitly declare what the names of the keys are. The inclusion of `total=False` makes all of the parameters optional. You can omit this if you would prefer to always provide all parameters. If you are a TypeScript user, using `total=False` is essentially the same as declaring a `Partial<Widget>`, and it allows you to create a `Widget(**params)` without explicitly providing every parameter, such as when you want to rely on default values. Note, you will still get type errors of you put an invalid type for a key or mistype a key, so there is a lot of benefit all around.
@@ -161,7 +163,7 @@ class WidgetInterface(TypedDict, total=False):
 
 ### Testing interfaces
 
-Testing an interface is trivial: verify that it can be constructued and that it can be used to construct it's corresponding model. Nothing interesting here, and I use tools like [flaskerize](https://github.com/apryor6/flaskerize) to generate this kind of code.
+Testing an interface is trivial: verify that it can be constructed and that it can be used to construct it's corresponding model. Nothing interesting here, and I use tools like [flaskerize](https://github.com/apryor6/flaskerize) to generate this kind of code.
 
 ```python
 from pytest import fixture
@@ -186,6 +188,7 @@ def test_WidgetInterface_works(interface: WidgetInterface):
 ```
 
 ### Schema
+
 Marshmallow chemas are responsible for handling input/output operations for the API and are where renaming conventions are handled. JavaScript is the language of the web, and in JavaScript the preferred style for variables is lowerCamelCase, whereas in python snake_case is preferred. The schema is the perfect place to handle this translation as it is the layer between your API and the outside world. Marshmallow is an amazing technology that you can learn more about [here](https://marshmallow.readthedocs.io/en/3.0/), and it can do an enormous number of tasks that are much more complicated than the example I give below. For example, you can use the `post_load` hook from Marshmallow to declare what object(s) to create when the `Schema.load` method is invoked, which will automatically synergize with `flask_accepts` to provide a fully-instantiated object in `request.parsed_obj`, for example.
 
 ```python
@@ -241,6 +244,7 @@ def test_WidgetSchema_works(schema: WidgetSchema):
 ```
 
 ### Service
+
 The service is responsible for interacting with the entity. This includes managing CRUD (Create, Read, Update, Delete) operations, fetching data via a query, performing some pandas DataFrame manipulation, getting predictions from a machine learning model, hitting an external API, etc. The service should be the meat-and-potatoes of data processing inside of a route. Your services should be kept modular. Services can (and often, should) depend on other services. When you begin to have interservice dependencies you must use dependency injection (DI) or your system will not be maintainable or testable. I will not go into the details of DI in this post, but I will refer you to [Flask-Injector](https://github.com/alecthomas/flask_injector). You could also roll your own simple system by attaching services to the app object at configuration time ([here](https://speakerdeck.com/mitsuhiko/advanced-flask-patterns) is a very nice presentation on this topic).
 
 ```python
@@ -291,7 +295,7 @@ The exact methods for services will differ depending upon the situation; however
 
 ### Testing services
 
-Testing services is still relatively simple but important.  We want to verify that the service is perform CRUD operations correctly, so for most of the tests we will want to use our `db` fixture so that we have a clean database. We then do some arranging to setup any objects we need, make a service call, and then assert that the result is what we expect. For example, in `test_delete_by_id` below we first add a pair of objects to the database (arrange) then delete one using it's ID (act) and finally assert that only one object remains and that it is the one we did not delete.
+Testing services is still relatively simple but important. We want to verify that the service is perform CRUD operations correctly, so for most of the tests we will want to use our `db` fixture so that we have a clean database. We then do some arranging to setup any objects we need, make a service call, and then assert that the result is what we expect. For example, in `test_delete_by_id` below we first add a pair of objects to the database (arrange) then delete one using it's ID (act) and finally assert that only one object remains and that it is the one we did not delete.
 
 ```python
 
@@ -360,7 +364,8 @@ def test_create(db: SQLAlchemy):  # noqa
 There's a lot of different ways to do this assertions for object equality. You can manually add assertions for each, iterate over key-value pairs in dicts, implement a `__eq__` method in the underlying model and directly use `==`, etc. I think all of these are fine as long as verbosity is limited and you are only testing one concept per test.
 
 ### Controller
-The controller is responsible for coordinating a Flask route(s), services, schemas, and other components that are needed to produce a response. Because we are using Flask-RESTplus for Swagger, this means the controller is also responsible for providing documentation. In order to prevent controllers to become cluttered with a high number of routes (which is hard to maintain), it is important that each entity be scoped such that it has its own Flask-RESTplus namespace. This namespace is used to attach routes to each of the resources. Although it is not necessary for the routes to be Flask-RESTplus Resources (meaning it is a class that inherits from Resource and implements get/post/put/delete methods), I would strongly recommend it for several reasons. Firstly, Swagger is amazing and you miss out on it if you use `@app.route` directly. Second, if you only provide a single function per route with Flask, but want to support multiple HTTP methods, you have to implement some if-else logic to check which method has been invoked. Flask-RESTplus abstracts this away, and, sure, you could also do that yourself, but why bother reinventing the wheel?
+
+The controller is responsible for coordinating a Flask route(s), services, schemas, and other components that are needed to produce a response. Because we are using Flask-RESTplus for Swagger, this means the controller is also responsible for providing documentation. In order to prevent controllers from becoming cluttered with a high number of routes (which is hard to maintain), it is important that each entity be scoped such that it has its own Flask-RESTplus namespace. This namespace is used to attach routes to each of the resources. Although it is not necessary for the routes to be Flask-RESTplus Resources (meaning it is a class that inherits from Resource and implements get/post/put/delete methods), I would strongly recommend it for several reasons. Firstly, Swagger is amazing and you miss out on it if you use `@app.route` directly. Second, if you only provide a single function per route with Flask, but want to support multiple HTTP methods, you have to implement some if-else logic to check which method has been invoked. Flask-RESTplus abstracts this away, and, sure, you could also do that yourself, but why bother reinventing the wheel?
 
 ```python
 from flask import request
@@ -428,9 +433,9 @@ The one inconvenience about `flask_accepts` is that you have to pass the api obj
 
 ### Testing controllers
 
-Testing controllers is trickier than the previous testing tasks as it requires mocking a service. Why do we need to mock a service? So that we can keep the test focused on a single concept. The controller is responsible for telling the service what to do, what to do it with, and what to do with the response, but it is _not_ responsible for the functionality of the service itself -- that should be tested in service_test.py. Therefore, we want to mock the values provided by the service so that we can control them and then verify that the controller is doing what it is supposed to _given that the service works as expected_. 
+Testing controllers is trickier than the previous testing tasks as it requires mocking a service. Why do we need to mock a service? So that we can keep the test focused on a single concept. The controller is responsible for telling the service what to do, what to do it with, and what to do with the response, but it is _not_ responsible for the functionality of the service itself -- that should be tested in service*test.py. Therefore, we want to mock the values provided by the service so that we can control them and then verify that the controller is doing what it is supposed to \_given that the service works as expected*.
 
-I'll walkthrough a single test here in detail, but you can find a full set of examples for each CRUD operation in the [full example project]([here](https://github.com/apryor6/flask_api_example)).
+I'll walkthrough a single test here in detail, but you can find a full set of examples for each CRUD operation in the [full example project](<[here](https://github.com/apryor6/flask_api_example)>).
 
 ```python
 
@@ -476,12 +481,11 @@ If you glance back at the previous section, you'll see that this route simply ca
 
 For the expected result, I manually create the relevant schema and dump out the same result as what is returned from my mock. Note that this test is dependent upon the fact that `@responds` is working as expected, which is totally fine. Remember, don't test other people's code. So our final test here is asserting that if a user makes a get request that they will in fact receive the properly serialized version of `WidgetService.get_all()`, which is a single concept despite the complexity of the controller.
 
-
 ## Apis, Namespaces, Blueprints.. oh my
 
 #### Comments on app configuration, route registration, and Swagger
 
-Route declaration in large Flask apps is tricky if you do not do it correctly. For one, it is very generate circular import situations. For example, this occurs if you declare an Api or Namespace at the top of a module and then try to import that api into submodules that implement functionality that is to be barreled-up and re-exported at the top-level. A terrible workaround for this is to define the Api/namespace _prior_ to importing the dependent functionality, resulting in fragile and confusing declaration of variables sandwhiched in between sets of imports. This is actually what is suggested in one example [here](https://flask-restplus.readthedocs.io/en/stable/scaling.html#multiple-apis-with-reusable-namespaces), but I would not recommend it. There is a better way!
+Route declaration in large Flask apps is tricky if you do not do it correctly. For one, it is very easy to generate circular import situations. For example, this occurs if you declare an Api or Namespace at the top of a module and then try to import that api into submodules that implement functionality that is to be barreled-up and re-exported at the top-level. A terrible workaround for this is to define the Api/namespace _prior_ to importing the dependent functionality, resulting in fragile and confusing declaration of variables sandwiched in between sets of imports. This is actually what is suggested in one example [here](https://flask-restplus.readthedocs.io/en/stable/scaling.html#multiple-apis-with-reusable-namespaces), but I would not recommend it. There is a better way!
 
 To allow for clean route registration, you should use the factory method for creating your Flask apps (which you are already doing because you are testing everything, right!?), and then following the same line of thinking we want to delay route registration until the app is created. After all, that's the point of the lazy factory pattern -- we want to allow for our application to be configurable by telling it how to behave at the last second, _after_ all of the other code has been defined. Same idea here. To do this, I add a `register_routes` method in the `__init__.py` file for each of the entities. This function imports the various Namespaces from each controller and attaches them to the parent application, which is passed in the parameters.
 
@@ -498,10 +502,11 @@ def register_routes(api, app, root='api'):
 
     api.add_namespace(widget_api, path=f'/{root}/{BASE_ROUTE}')
 ```
+
 My preferred `register_routes` function takes in a Flask-RESTplus api, the Flask app itself, and a root url to attach the routes at. I chose these arguments because depending upon the type of attachment (blueprint vs namespace-only), you need different pieces, and I prefer to have the same API for all registration even if, for example, I am registering a blueprint with its own Api and need the `app` instead of the `api`. Feel free to change it if you feel strongly, but I prefer consistency as it lowers mental baggage.
 
-
 Then, within the top-level `create_app` function the `register_routes` functions for all of the various entites/modules I want to attach are imported (with helpful aliases) and applied sequentially. To prevent these calls from cluttering up the root `__init__.py`, I move them into a separate `routes.py` file, which becomes the master routing configuration of the entire application.
+
 ```python
 
 # routes.py -- where the main app is configured for routing

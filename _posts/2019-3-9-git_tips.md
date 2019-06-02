@@ -2,6 +2,7 @@
 layout: post
 title: 10 Advanced Git Tips
 subtitle: Improve your developer workflow
+tags: [git, tips, tutorial]
 ---
 
 Git is an amazing piece of technology. It's a tool that we use every day, but many people just scratch the surface of what Git can do in their day-to-day routines. Here's a list of 10 useful tips and tricks that are more advanced.

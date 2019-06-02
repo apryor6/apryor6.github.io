@@ -2,6 +2,18 @@
 layout: post
 title: Setting up a FANG monorepo (Flask + Angular + Nx)
 subtitle: Building full stack applications with nrwl/nx
+tags:
+  [
+    flask,
+    angular,
+    angular2,
+    nx,
+    nrwl,
+    monorepo,
+    structure,
+    project,
+    project structure,
+  ]
 ---
 
 # Nx monorepos with the FANG stack
