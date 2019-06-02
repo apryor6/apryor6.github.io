@@ -37,6 +37,7 @@ create-nx-workspace fang
 At this point the workspace is empty. We can add then add the first angular app with
 
 ```
+cd fang
 ng generate app flangular
 ```
 
