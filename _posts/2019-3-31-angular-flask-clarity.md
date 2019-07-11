@@ -115,7 +115,7 @@ Navigate to `http://127.0.0.1:5000/` and you should see the message "FANG online
 To connect the front and backend, we will make a service that can make HTTP requests to our Flask endpoint and display some data. For generating components within an nx monorepo, I _strongly_ recommend using the Angular console. Usually I am the type of person that prefers the command line in almost every situation, however, the Angular console is so useful that I make an exception. Go to Generate and select component, name it flask-service, and select `flangular` as the project. This will generate a `--dry-run` command so you can see where the files will be generated. It also shows you the actual command that is being executed, so alternatively you could execute the following to setup our service:
 
 ```
-ng generate @schematics/angular:component flask-service --project=flangular --module=app.module.ts
+ng generate @schematics/angular:service flask-service --project=flangular --module=app.module.ts
 ```
 
 The service itself will contain one method that makes an API request to the Flask app. Here I am hardcoding the URL/port, but in a "real" app you should use environment variables.
