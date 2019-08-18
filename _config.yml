@@ -45,16 +45,17 @@ navbar-links:
 # Important: you must keep the "name" parameter, everything else you can remove
 author:
   name: Alan (AJ) Pryor, Jr.
-  email: "apryor6@gmail.com"
+  email: apryor6@gmail.com
   github: apryor6    # eg. daattali
   linkedin: alan-pryor-02a52b57  # eg. daattali
+  twitter: pryor_aj
 
 # Select which links to show in the footer
 footer-links-active:
   rss: false
   facebook: false
   email: true
-  twitter: false
+  twitter: true
   google-plus: false
   github: true
   reddit: false
