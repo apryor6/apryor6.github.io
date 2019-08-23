@@ -3,7 +3,17 @@ layout: post
 title: Forward-migratability over backwards compatibility - a proposal for update schematics in Python
 subtitle: Moving towards seamless updates across breaking APIs
 tags:
-  [flask, python, backend development, api, data science, software engineering]
+  [
+    flask,
+    python,
+    backend development,
+    flaskerize,
+    angular cli,
+    schematics,
+    api,
+    data science,
+    software engineering,
+  ]
 ---
 
 An incredibly useful feature of the Angular CLI is [ng-update](https://angular.io/cli/update), which provides a modification schematic for rewriting broken APIs as you upgrade across version of a library. The mechanism by which it works is that third party libraries provide a schematic with a special name, and then the `ng-update` command looks into the project for that schematic and executes it.
