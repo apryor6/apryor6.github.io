@@ -437,7 +437,7 @@ The one inconvenience about `flask_accepts` is that you have to pass the api obj
 
 Testing controllers is trickier than the previous testing tasks as it requires mocking a service. Why do we need to mock a service? So that we can keep the test focused on a single concept. The controller is responsible for telling the service what to do, what to do it with, and what to do with the response, but it is _not_ responsible for the functionality of the service itself -- that should be tested in service_test.py. Therefore, we want to mock the values provided by the service so that we can control them and then verify that the controller is doing what it is supposed to given that the service works as expected.
 
-I'll walkthrough a single test here in detail, but you can find a full set of examples for each CRUD operation in the [full example project](<[here](https://github.com/apryor6/flask_api_example)>).
+I'll walkthrough a single test here in detail, but you can find a full set of examples for each CRUD operation in the [full example project](https://github.com/apryor6/flask_api_example).
 
 ```python
 
