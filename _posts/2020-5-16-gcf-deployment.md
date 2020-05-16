@@ -6,7 +6,7 @@ tags:
   [python, gcp, gcf, google cloud, dev ops, serverless, software engineering]
 ---
 
-_The takeaway from this post is that with one command, `invoke deploy_gcs`, you will be able to bundle a python package into and archive and deploy a GCF against that_
+_The takeaway from this post is that with one command, `invoke deploy-gcs`, you will be able to bundle a python package into and archive and deploy a GCF against that_
 
 At [Torqata](https://torqata.com/), we work heavily within Google Cloud Platform, and we spend quite a bit of effort to the end of making our dev ops process more seamless, consistent, easy to use, and automated wherever possible. For example, we use a monorepo structure that houses our Angular and Python code with custom build tools that extend the _awesome_ utility of the Nrwl [Nx](https://nx.dev/) CLI to work the same with Python. In addition, we wrap almost all of our "actions" into [Invoke](http://www.pyinvoke.org/) tasks (or, rather, a modified version of Invoke that allows us to work within our monorepo and target various projects). I would love to write more about many of these topics, as there is a lot of information and code that would be useful to a broader audience, but today I wanted to focus in sharing one useful tidbit relating to deploying Google Cloud Functions.
 
